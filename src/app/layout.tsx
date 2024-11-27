@@ -1,6 +1,7 @@
 import TopBandBanner from "@/components/banner/TopBandBanner";
 import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
+import Header from "@/widgets/ui/Header";
+
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
