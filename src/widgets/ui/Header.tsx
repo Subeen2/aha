@@ -19,14 +19,14 @@ export default function Header() {
         {true ? (
           <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
             <li>
-              <a href={`/profile/${userUID}`} className="group">
+              <a href={`/profile/${userUID}`} className="group cursor-pointer">
                 내 프로필
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
                 </span>
               </a>
             </li>
-            <li className="flex gap-1 group">
+            <li className="flex gap-1 group cursor-pointer">
               <button onClick={handleLogout}>로그아웃</button>
 
               <Image

@@ -43,14 +43,14 @@ const config: Config = {
           },
         },
         reveal: {
-          "0%": { transform: "translateY(100%)" },
+          "0%": { transform: "translateY(120%)" },
           "100%": { transform: "translateY(0)" },
         },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         bubble: "bubble 3s ease-in-out infinite",
-        reveal: "reveal 3s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite",
+        reveal: "reveal 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite",
       },
     },
   },
