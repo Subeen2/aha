@@ -1,7 +1,8 @@
 "use client";
 
-import InputField from "@/components/inputField/field/InputField";
-import { useInput } from "@/hooks/useInput";
+import InputField from "@/shared/ui/InputFeild";
+import { useInput } from "@/shared/ui/useInput";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

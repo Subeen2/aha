@@ -1,6 +1,5 @@
 "use client";
 
-import { RootState } from "@/app/lib/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,7 +12,7 @@ export default function UserInterestsPage({
   params: { id: string };
 }) {
   // Redux에서 user 정보를 가져옵니다.
-  const user = useSelector((state: RootState) => state.userAuth);
+  // const user = useSelector((state: RootState) => state.userAuth);
   const { id } = params;
   const router = useRouter();
 

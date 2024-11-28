@@ -59,7 +59,7 @@ export default function Header() {
               height="42"
               decoding="async"
               data-nimg="1"
-              src="/logos/AHA.png"
+              src="/logos/AHA!.svg"
             />
           </a>
         </h1>

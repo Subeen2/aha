@@ -2,21 +2,21 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
+// import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useRouter } from "next/navigation";
-import { RootState } from "@/app/lib/store";
+// import { RootState } from "@/app/lib/store";
 import * as THREE from "three";
 
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
-  const user = useSelector((state: RootState) => state.userAuth);
-  const dispatch = useDispatch();
+  // const user = useSelector((state: RootState) => state.userAuth);
+  // const dispatch = useDispatch();
   const router = useRouter();
-  const userUID = user.user?.user_uid;
+  // const userUID = user.user?.user_uid;
 
   const handleLogout = () => {
-    dispatch(logout());
+    // dispatch(logout());
     router.push("/login");
   };
 
@@ -141,17 +141,17 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        {isClient && user.isAuthenticated === true ? (
-          <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
-            <a
-              className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-              href={`/interests/${userUID}`}
-            >
-              나의 관심사 등록하기
-            </a>
-          </div>
-        ) : null}
-        {isClient && user.isAuthenticated === true ? (
+        {/* {isClient && user.isAuthenticated === true ? ( */}
+        <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
+          <a
+            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+            href={`/interests/${1}`}
+          >
+            나의 관심사 등록하기
+          </a>
+        </div>
+        {/* ) : null} */}
+        {isClient && true ? (
           <div
             ref={mountRef}
             rel="noopener noreferrer"

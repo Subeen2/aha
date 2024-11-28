@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import { emailRegEx } from "@/utils/regex";
 import { usePathname, useRouter } from "next/navigation";
-import { useInput } from "@/hooks/useInput";
-import InputField from "@/components/inputField/field/InputField";
 import axios from "axios";
-import { login } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useDispatch } from "react-redux";
+import { useInput } from "@/shared/ui/useInput";
+import InputField from "@/shared/ui/InputFeild";
+import { emailRegEx } from "@/shared/config/regex";
 
 export default function LogIn() {
   const httpURL = "http://localhost:3000/api/v1/users";
   // 클라이언트에서만 사용
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // use client + next + router 사용 시 navigation 임포트 해야 함.
   const router = useRouter();
@@ -54,13 +53,13 @@ export default function LogIn() {
 
         if (res.data.result !== null) {
           // redux에 저장
-          dispatch(
-            login({
-              user_uid: res.data.result.user_uid,
-              email: loginData.email,
-              nickname: res.data.result.nickname,
-            })
-          );
+          // dispatch(
+          //   login({
+          //     user_uid: res.data.result.user_uid,
+          //     email: loginData.email,
+          //     nickname: res.data.result.nickname,
+          //   })
+          // );
 
           // 새로고침 시 데이터 날아감 방지
           // localStorage.setItem(
