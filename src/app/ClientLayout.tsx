@@ -1,6 +1,6 @@
 "use client";
 
-import TopButton from "@/components/button/TopButton";
+import GoToTop from "@/widgets/ui/GoToTop";
 import React from "react";
 import { Provider } from "react-redux";
 import { makeStore } from "./lib/store";
@@ -18,7 +18,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({
 makeStore 함수는 스토어를 생성하는 함수이므로, Provider에 스토어 객체를 전달해야 합니다. 이 객체를 생성하려면 makeStore()를 호출해야 합니다.  */}{" "}
       {/* store 객체를 Provider에 전달합니다. */}
       <main>{children}</main>
-      <TopButton />
+      <GoToTop />
     </Provider>
   );
 };

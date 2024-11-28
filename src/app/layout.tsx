@@ -1,6 +1,6 @@
-import TopBandBanner from "@/components/banner/TopBandBanner";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/widgets/ui/Footer";
 import Header from "@/widgets/ui/Header";
+import TopBandBanner from "@/widgets/ui/TopBandBanner";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -33,11 +33,11 @@ const RootLayout = ({
       </Head>
       <body className={inter.className}>
         <ClientLayout>
-          {/** <TopBandBanner
+          <TopBandBanner
             title={"오늘의 추천 키워드"}
             contentArr={["MVVM 패턴", "Flex 패턴"]}
             isRandom={true}
-  />**/}
+          />
           <Header />
           {children}
         </ClientLayout>
