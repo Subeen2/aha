@@ -11,8 +11,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Liking",
-  description: "Liking, Linking",
+  title: "AHA",
+  description: "AHA, moment",
 };
 
 export const viewport: Viewport = {

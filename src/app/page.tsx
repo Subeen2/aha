@@ -139,7 +139,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         {/* {isClient && user.isAuthenticated === true ? ( */}
         <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
@@ -147,7 +147,7 @@ export default function Home() {
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href={`/interests/${1}`}
           >
-            나의 관심사 등록하기
+            인사이트 등록하기
           </a>
         </div>
         {/* ) : null} */}
