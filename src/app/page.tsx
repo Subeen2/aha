@@ -140,9 +140,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
         {/* {isClient && user.isAuthenticated === true ? ( */}
-        <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
+        <h1 className="text-center font-[700]  text-[35px] mb-[40px] mt-5 text-grey900 leading-tight">
+          무엇이 궁금하세요?
+        </h1>
+        <div className="animate-wiggle max-w-sm mx-auto p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href={`/interests/${1}`}

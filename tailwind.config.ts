@@ -16,6 +16,7 @@ const config: Config = {
       second100: "rgb(255 251 224)",
       second200: "#FFF9D0",
       white: "#FFFFFF",
+      grey900: "#191f28",
     },
     extend: {
       backgroundImage: {
