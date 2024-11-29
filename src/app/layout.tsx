@@ -1,5 +1,3 @@
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-
 import Footer from "@/widgets/ui/Footer";
 import Header from "@/widgets/ui/Header";
 import TopBandBanner from "@/widgets/ui/TopBandBanner";
@@ -10,9 +8,9 @@ import Head from "next/head";
 import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] }); // app/layout.js
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
-const theme = createTheme();
+const inter = Inter({ subsets: ["latin"] }); // app/layout.js
 
 export const metadata: Metadata = {
   title: "AHA",
@@ -31,13 +29,13 @@ const RootLayout = ({
 }>) => {
   // TODO :: 일단 header, footer 여기에 두고 페이지 별로 헤더 푸터 유동적으로 사용해야 하는지 판단 후 구조 변경
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <html lang="en">
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <body className={inter.className}>
+    <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <body className={inter.className}>
+        <AppRouterCacheProvider>
           <ClientLayout>
             <TopBandBanner
               title={"오늘의 추천 키워드"}
@@ -48,9 +46,9 @@ const RootLayout = ({
             {children}
           </ClientLayout>
           <Footer />
-        </body>
-      </html>
-    </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
   );
 };
 
