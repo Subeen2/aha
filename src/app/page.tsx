@@ -4,8 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useRouter } from "next/navigation";
-// import { RootState } from "@/app/lib/store";
-import * as THREE from "three";
 
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -20,124 +18,6 @@ export default function Home() {
     router.push("/login");
   };
 
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true); // 클라이언트에서만 실행되도록 처리
-
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    // Scene, Camera, Renderer 생성
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      (window.innerWidth * 0.7) / window.innerHeight,
-      0.1,
-      1000
-    );
-
-    // 창 크기가 변경될 때 캔버스 크기도 업데이트
-    window.addEventListener("resize", () => {
-      // 브라우저 창의 크기에 맞게 canvas 크기 조정
-      const width = window.innerWidth * 0.7;
-      const height = window.innerHeight;
-
-      // 렌더러 크기 설정
-      renderer.setSize(width, height);
-
-      // 카메라 종횡비 업데이트
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    });
-
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth * 0.7, window.innerHeight);
-    renderer.setClearColor(0xffffff); // 배경색을 흰색으로 설정
-    mount.appendChild(renderer.domElement); // mountRef에 렌더러 추가
-
-    // 조명 추가
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(1, 1, 1).normalize();
-    scene.add(light);
-
-    // 하트 모양 생성
-    const heartShape = new THREE.Shape();
-    heartShape.moveTo(0, 0);
-    heartShape.bezierCurveTo(0, -0.5, -0.5, -0.5, -0.5, 0);
-    heartShape.bezierCurveTo(-0.5, 0.5, 0, 0.5, 0, 1);
-    heartShape.bezierCurveTo(0, 0.5, 0.5, 0.5, 0.5, 0);
-    heartShape.bezierCurveTo(0.5, -0.5, 0, -0.5, 0, 0);
-
-    const geometry = new THREE.ShapeGeometry(heartShape);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff69b4 }); // 핑크색
-    const heart = new THREE.Mesh(geometry, material);
-
-    scene.add(heart);
-
-    // // 비눗방울 생성 함수
-    // function createBubble() {
-    //   const geometry = new THREE.SphereGeometry(1, 32, 32);
-    //   const material = new THREE.MeshPhongMaterial({
-    //     color: 0x87cefa, // 예쁜 파란색 (Sky Blue)
-    //     transparent: true,
-    //     opacity: 0.6,
-    //     shininess: 100,
-    //   });
-
-    //   const bubble = new THREE.Mesh(geometry, material);
-    //   bubble.position.set(
-    //     (Math.random() - 0.5) * 10,
-    //     (Math.random() - 0.5) * 10,
-    //     (Math.random() - 0.5) * 10
-    //   );
-    //   bubble.scale.set(0.1, 0.1, 0.1);
-
-    //   scene.add(bubble);
-    //   return bubble;
-    // }
-
-    // // 비눗방울 20개 생성
-    // const bubbles: THREE.Mesh<THREE.SphereGeometry, THREE.MeshPhongMaterial>[] =
-    //   [];
-    // for (let i = 0; i < 20; i++) {
-    //   bubbles.push(createBubble());
-    // }
-
-    // 카메라 위치
-    // camera.position.z = 15;
-    camera.position.z = 5;
-
-    // 애니메이션
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // 각 비눗방울을 조금씩 크게 하고, 위치를 약간 이동
-      // bubbles.forEach((bubble) => {
-      //   bubble.scale.x += 0.01;
-      //   bubble.scale.y += 0.01;
-      //   bubble.scale.z += 0.01;
-
-      //   bubble.position.y += 0.02; // 위로 살짝 이동
-      // });
-
-      // 하트를 가로축으로 360도 회전
-      heart.rotation.x += 0.01;
-      heart.rotation.y += 0.01;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    // Clean up on unmount
-    return () => {
-      if (mount) {
-        mount.removeChild(renderer.domElement); // mount에서 renderer 제거
-      }
-    };
-  }, []);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
@@ -145,6 +25,36 @@ export default function Home() {
         <h1 className="text-center font-[700]  text-[35px] mb-[40px] mt-5 text-grey900 leading-tight">
           무엇이 궁금하세요?
         </h1>
+        <form className="css-1hq0ax0 e1crplu70">
+          <div className="css-17vqye5 e5hjo0l0">
+            <div className="input radius--m input--medium input--default">
+              <span
+                className="icon p-icon p-icon--legacy-colored input__left-addon"
+                aria-hidden="false"
+                role="presentation"
+              >
+                <svg
+                  fill="none"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m19.59 18.41-3.205-3.203c1.0712-1.3712 1.579-3.0994 1.4197-4.832-.1593-1.73274-.9735-3.3394-2.2767-4.49233s-2.9972-1.76527-4.7364-1.71212c-1.73913.05315-3.39252.76779-4.62288 1.99815s-1.945 2.88375-1.99815 4.6229c-.05316 1.7392.55918 3.4332 1.71211 4.7364s2.7596 2.1174 4.49232 2.2767c1.7327.1592 3.4608-.3485 4.832-1.4197l3.204 3.204c.1567.1541.3678.24.5876.2391.2197-.0009.4302-.0886.5856-.2439.1554-.1554.243-.3659.2439-.5856.001-.2198-.085-.431-.2391-.5876zm-4.886-3.808c-.0183.0156-.036.032-.053.049-.042.044-.042.044-.08.092-.91.886-2.197 1.424-3.571 1.424-1.19232.0001-2.348-.4121-3.27107-1.1668s-1.55672-1.8055-1.79352-2.974c-.2368-1.1686-.06217-2.38311.49428-3.43762s1.46047-1.88413 2.55878-2.34819c1.09833-.46405 2.32333-.53398 3.46733-.19793s2.1365 1.0574 2.8094 2.04174c.6728.98434.9845 2.1711.8822 3.359-.1022 1.1879-.6122 2.3039-1.4434 3.1588z"
+                    fill="#6b7684"
+                  ></path>
+                </svg>
+              </span>
+              <input
+                className="input__field"
+                placeholder="이용법, 혜택, 불편함 등 무엇이든 검색해보세요"
+                aria-label="이용법, 혜택, 불편함 등 무엇이든 검색해보세요"
+                id="input-:r1p:"
+              />
+            </div>
+          </div>
+        </form>
         <div className="animate-wiggle max-w-sm mx-auto p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
@@ -153,14 +63,6 @@ export default function Home() {
             인사이트 등록하기
           </a>
         </div>
-        {/* ) : null} */}
-        {isClient && true ? (
-          <div
-            ref={mountRef}
-            rel="noopener noreferrer"
-            className="w-16 h-16 bg-main300 rounded-full animate-bubble"
-          ></div>
-        ) : null}
       </div>
     </main>
   );
