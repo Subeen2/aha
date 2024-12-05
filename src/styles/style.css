@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply relative flex items-center w-full h-12 mx-auto mt-0.5 text-sm leading-5 bg-white border-none outline-none appearance-none overflow-hidden transition-[background,color,box-shadow] duration-200 ease-in;
+  }
+}

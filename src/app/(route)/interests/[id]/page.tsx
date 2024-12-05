@@ -19,7 +19,7 @@ export default function UserInterestsPage({
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
       <p>목록</p>
-      <div>
+      <div className="input">
         <button
           type="button"
           className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md"

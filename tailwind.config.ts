@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "./src/**/*.{html,js,ts,jsx,tsx,css}",
   ],
   theme: {
     colors: {
@@ -55,6 +55,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("./tailwind-plugin")],
 };
 export default config;

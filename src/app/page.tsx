@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 // import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useRouter } from "next/navigation";
 
+import "../styles/style.css";
+
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
