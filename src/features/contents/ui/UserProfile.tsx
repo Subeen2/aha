@@ -1,12 +1,13 @@
 const UserProfile = (
   userImgSrc: string,
   userName: string,
-  isFlexRow: boolean
+  isFlexRow: boolean,
+  showName: boolean = true
 ) => {
   return (
     <div className={isFlexRow ? "flex space-x-5" : "flex space-x-5 flex-col"}>
       <img src={userImgSrc} />
-      <span>{userName}</span>
+      <span className={showName ? "block" : "none"}>{userName}</span>
     </div>
   );
 };
