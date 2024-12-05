@@ -4,6 +4,12 @@
 
 @layer components {
   .input {
-    @apply relative flex items-center w-full h-12 mx-auto mt-0.5 text-sm leading-5 bg-white border-none outline-none appearance-none overflow-hidden transition-[background,color,box-shadow] duration-200 ease-in;
+    @apply relative flex items-center w-full h-12 mx-auto mt-0.5 text-sm leading-5 bg-white outline-none appearance-none overflow-hidden transition-[background,color,box-shadow] duration-200 ease-in;
+  }
+  .user-img-sm {
+    @apply rounded-full w-5 h-5;
+  }
+  .user-img-lg {
+    @apply rounded-full w-10 h-10;
   }
 }

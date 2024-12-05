@@ -15,7 +15,6 @@ export default function UserInterestsPage({
   const { id } = params;
   const router = useRouter();
 
-  console.log("안녕하세요");
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
       <p>목록</p>

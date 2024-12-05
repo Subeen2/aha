@@ -1,5 +1,7 @@
-export const characters: string =
+const characters: string =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-export const charactersWithSpecial: string =
+const charactersWithSpecial: string =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+export { characters, charactersWithSpecial };

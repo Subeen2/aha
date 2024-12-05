@@ -22,16 +22,16 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
+      <div className="z-10 w-full max-w-3xl items-center justify-between font-mono text-sm">
         {/* {isClient && user.isAuthenticated === true ? ( */}
         <h1 className="text-center font-[700]  text-[35px] mb-[40px] mt-5 text-grey900 leading-tight">
-          무엇이 궁금하세요?
+          무엇이 궁금하신가요?
         </h1>
         <form className="css-1hq0ax0 e1crplu70">
           <div className="css-17vqye5 e5hjo0l0">
-            <div className="input radius--m input--medium input--default">
+            <div className="input rounded-md flex border border-[#c8c8c8]">
               <span
-                className="icon p-icon p-icon--legacy-colored input__left-addon"
+                className="icon p-icon p-icon--legacy-colored input__left-addon ml-[20px] mr-[10px]"
                 aria-hidden="false"
                 role="presentation"
               >
@@ -49,21 +49,23 @@ export default function Home() {
                 </svg>
               </span>
               <input
-                className="input__field"
-                placeholder="이용법, 혜택, 불편함 등 무엇이든 검색해보세요"
-                aria-label="이용법, 혜택, 불편함 등 무엇이든 검색해보세요"
+                className="input__field w-full"
+                placeholder="키워드, 최신 트렌드 등 무엇이든 검색해보세요"
+                aria-label="키워드, 최신 트렌드 등 무엇이든 검색해보세요"
                 id="input-:r1p:"
               />
             </div>
           </div>
         </form>
-        <div className="animate-wiggle max-w-sm mx-auto p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href={`/interests/${1}`}
-          >
-            인사이트 등록하기
-          </a>
+        <div className="flex justify-center mt-10">
+          <div className="animate-wiggle max-w-sm p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
+            <a
+              className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+              href={`/interests/${1}`}
+            >
+              인사이트 등록하기
+            </a>
+          </div>
         </div>
       </div>
     </main>
