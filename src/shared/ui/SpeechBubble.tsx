@@ -2,6 +2,7 @@ type SpeechBubbleProps = {
   bgColor: string;
   textColor: string;
   text: string;
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const SpeechBubble = ({ bgColor, textColor, text }: SpeechBubbleProps) => {
