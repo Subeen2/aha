@@ -47,11 +47,21 @@ const config: Config = {
           "0%": { transform: "translateY(120%)" },
           "100%": { transform: "translateY(0)" },
         },
+        bounce: {
+          "0%": { transform: "translateY(0)" },
+          "50%": {
+            transform: "translateY(-5px)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         bubble: "bubble 3s ease-in-out infinite",
         reveal: "reveal 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite",
+        bounce: "bounce 1s ease infinite both",
       },
     },
   },
