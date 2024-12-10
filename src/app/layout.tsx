@@ -1,6 +1,5 @@
-import Footer from "@/widgets/ui/Footer";
-import Header from "@/widgets/ui/Header";
-import TopBandBanner from "@/widgets/ui/TopBandBanner";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { Provider } from "react-redux";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -8,7 +7,11 @@ import Head from "next/head";
 import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import Footer from "@/widgets/ui/Footer";
+import Header from "@/widgets/ui/Header";
+import TopBandBanner from "@/widgets/ui/TopBandBanner";
+
+import store from "@/shared/model/redux/store";
 
 const inter = Inter({ subsets: ["latin"] }); // app/layout.js
 
@@ -35,18 +38,20 @@ const RootLayout = ({
       </Head>
 
       <body className={inter.className}>
-        <AppRouterCacheProvider>
-          <ClientLayout>
-            <TopBandBanner
-              title={"오늘의 추천 키워드"}
-              contentArr={["MVVM 패턴", "Flex 패턴"]}
-              isRandom={true}
-            />
-            <Header />
-            {children}
-          </ClientLayout>
-          <Footer />
-        </AppRouterCacheProvider>
+        <Provider store={store}>
+          <AppRouterCacheProvider>
+            <ClientLayout>
+              <TopBandBanner
+                title={"오늘의 추천 키워드"}
+                contentArr={["MVVM 패턴", "Flex 패턴"]}
+                isRandom={true}
+              />
+              <Header />
+              {children}
+            </ClientLayout>
+            <Footer />
+          </AppRouterCacheProvider>
+        </Provider>
       </body>
     </html>
   );
