@@ -9,11 +9,8 @@ import { AppStore } from "@/shared/model/redux/store";
 // 따라서 next-redux-wrapper 같은 라이브러리 활용해야 함.
 
 export default function StoreProvider({
-  user,
   children,
 }: {
-  // TODO :: any 타입 변경하기
-  user: any;
   children: React.ReactNode;
 }) {
   const storeRef = useRef<AppStore>();

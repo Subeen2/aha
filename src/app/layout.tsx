@@ -39,7 +39,7 @@ const RootLayout = ({
       </Head>
 
       <body className={inter.className}>
-        <StoreProvider store={store}>
+        <StoreProvider>
           <AppRouterCacheProvider>
             <ClientLayout>
               <TopBandBanner
