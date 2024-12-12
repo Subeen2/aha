@@ -12,6 +12,7 @@ import Header from "@/widgets/ui/Header";
 import TopBandBanner from "@/widgets/ui/TopBandBanner";
 
 import store from "@/shared/model/redux/store";
+import StoreProvider from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] }); // app/layout.js
 
@@ -38,7 +39,7 @@ const RootLayout = ({
       </Head>
 
       <body className={inter.className}>
-        <Provider store={store}>
+        <StoreProvider store={store}>
           <AppRouterCacheProvider>
             <ClientLayout>
               <TopBandBanner
@@ -51,7 +52,7 @@ const RootLayout = ({
             </ClientLayout>
             <Footer />
           </AppRouterCacheProvider>
-        </Provider>
+        </StoreProvider>
       </body>
     </html>
   );

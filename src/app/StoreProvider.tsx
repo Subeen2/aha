@@ -1,7 +1,8 @@
 "use client";
 import { useRef } from "react";
 import { Provider } from "react-redux";
-// import { AppStore, makeStore } from "./lib/store";
+import makeStore from "@/shared/model/redux/store";
+import { AppStore } from "@/shared/model/redux/store";
 
 // Redux 스토어와 상호작용하는 모든 구성 요소(생성, 제공, 읽기 또는 쓰기)는 클라이언트 구성 요소여야 합니다.
 // 스토어에 액세스하려면 React 컨텍스트가 필요하고 컨텍스트는 클라이언트 구성 요소에서만 사용할 수 있기 때문
@@ -15,13 +16,12 @@ export default function StoreProvider({
   user: any;
   children: React.ReactNode;
 }) {
-  // const storeRef = useRef<AppStore>();
-  // if (!storeRef.current) {
-  // Create the store instance the first time this renders
-  // storeRef.current = makeStore();
+  const storeRef = useRef<AppStore>();
+  if (!storeRef.current) {
+    storeRef.current = makeStore();
+    // TODO :: 디스패치 안 매개변수 고쳐야 함.
+    storeRef.current.dispatch(() => {});
+  }
 
-  // TODO :: 디스패치 안 매개변수 고쳐야 함.
-  // storeRef.current.dispatch(() => {});
-
-  return <></>;
+  return <Provider store={storeRef.current}>{children}</Provider>;
 }
