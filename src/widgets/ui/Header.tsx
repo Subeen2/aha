@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import LogIn from "@/app/(route)/login/page";
+import Login from "@/shared/model/redux/features/users/Login";
 export default function Header() {
   const router = useRouter();
 
@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-second100">
-      <LogIn />
+      <Login />
       <div className="container mx-auto w-full max-w-[1024px] flex justify-between items-center py-[18px] px-[16px] lg:px-0">
         <h1 className="text-[30px] font-extrabold">
           <a href="/">
