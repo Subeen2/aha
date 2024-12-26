@@ -1,21 +1,18 @@
 "use client";
 
+import AddPost from "@/entities/ui/post/AddPost";
+import Modal from "@/widgets/ui/Modal";
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
-import { useRouter } from "next/navigation";
 
 import "../styles/style.css";
 
 export default function Home() {
-  const mountRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLogout = () => {
-    // dispatch(logout());
-    router.push("/login");
-  };
-
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
       <div className="z-10 w-full max-w-3xl items-center justify-between font-mono text-sm">
@@ -55,15 +52,16 @@ export default function Home() {
         </form>
         <div className="flex justify-center mt-10">
           <div className="animate-wiggle max-w-sm p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
-            <a
-              className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-              href={`/interests/${1}`}
+            <button
+              className="pointer flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+              onClick={openModal}
             >
               인사이트 등록하기
-            </a>
+            </button>
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} children={<AddPost />} />
     </main>
   );
 }

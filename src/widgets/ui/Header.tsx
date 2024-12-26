@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Login from "@/shared/model/redux/features/users/Login";
+import Logo from "./Logo";
 export default function Header() {
   const router = useRouter();
 
@@ -17,19 +18,7 @@ export default function Header() {
     <header className="bg-second100">
       <Login />
       <div className="container mx-auto w-full max-w-[1024px] flex justify-between items-center py-[18px] px-[16px] lg:px-0">
-        <h1 className="text-[30px] font-extrabold">
-          <a href="/">
-            <Image
-              alt="아하 로고"
-              loading="lazy"
-              width="110"
-              height="42"
-              decoding="async"
-              data-nimg="1"
-              src="/logos/AHA!.svg"
-            />
-          </a>
-        </h1>
+        <Logo />
         <div className="flex items-center">
           <nav className="hidden md:block">
             <h2 className="hidden">주메뉴</h2>

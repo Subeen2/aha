@@ -19,6 +19,9 @@ const config: Config = {
       grey900: "#191f28",
     },
     extend: {
+      boxShadow: {
+        custom: "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
