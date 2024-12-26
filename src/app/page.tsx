@@ -1,6 +1,7 @@
 "use client";
 
 import AddPost from "@/entities/ui/post/AddPost";
+import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,8 +11,16 @@ import "../styles/style.css";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
-  const openModal = () => setIsModalOpen(true);
+  const openModal = () => {
+    if (!isLoggedIn) {
+      alert("로그인이 필요합니다."); // 로그인 필요 경고 메시지
+      return;
+    }
+
+    setIsModalOpen(true); // 모달 열기
+  };
   const closeModal = () => setIsModalOpen(false);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
@@ -51,9 +60,9 @@ export default function Home() {
           </div>
         </form>
         <div className="flex justify-center mt-10">
-          <div className="animate-wiggle max-w-sm p-6 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
+          <div className="animate-wiggle max-w-sm p-1 items-center bg-white rounded-xl shadow-md space-x-4 inline-block">
             <button
-              className="pointer flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+              className="pointer flex place-items-center gap-2 p-4 lg:pointer-events-auto lg:p-4"
               onClick={openModal}
             >
               인사이트 등록하기
