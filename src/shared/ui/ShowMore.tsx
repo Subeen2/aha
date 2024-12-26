@@ -21,7 +21,7 @@ const LoadMoreComponent = ({ items }: { items: any[] }) => {
       </div>
       {currentDisplayCount < items.length && (
         <button
-          id="loadMore2"
+          id="loadMore"
           onClick={handleLoadMore}
           className="mt-5 mx-auto px-6 py-2 text-sm border border-gray-300 rounded-lg text-gray-800 bg-white hover:bg-gray-100"
         >

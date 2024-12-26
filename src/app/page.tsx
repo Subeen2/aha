@@ -9,11 +9,7 @@ import "../styles/style.css";
 
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
-
-  // const user = useSelector((state: RootState) => state.userAuth);
-  // const dispatch = useDispatch();
   const router = useRouter();
-  // const userUID = user.user?.user_uid;
 
   const handleLogout = () => {
     // dispatch(logout());
