@@ -33,8 +33,30 @@ export async function GET(request: Request) {
   const mockData = [
     {
       createUser: 1,
-      content: "ddd",
+      content:
+        "트랜스파일러는 3단계로 이루어 집니다. 파싱, 트랜스폼, 코드 생성",
       linkArr: [1, 2],
+    },
+    {
+      createUser: 1,
+      content:
+        "History API는 Link 태그를 사용합니다. Link는 a 태그의 기본 동작인 새로고침을 막고, pushState로만 URL을 변경합니다. 그래서 SPA에서는 a태그 대신 Link를 써야합니다.",
+      linkArr: [2, 3],
+    },
+    {
+      createUser: 1,
+      content: "ddd",
+      linkArr: [4, 5],
+    },
+    {
+      createUser: 1,
+      content: "ddd",
+      linkArr: [6, 7],
+    },
+    {
+      createUser: 1,
+      content: "ddd",
+      linkArr: [8, 9],
     },
   ];
 

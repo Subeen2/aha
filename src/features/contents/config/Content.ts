@@ -8,7 +8,7 @@ export interface CommentI {
 }
 
 export interface ContentI {
-  contentId: number;
+  contentId: number | string;
   content: string;
   linkArr: string[];
 }

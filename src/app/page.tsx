@@ -1,8 +1,8 @@
 "use client";
 
-import { ContentI } from "@/entities/config/content";
 import AddPost from "@/entities/ui/post/AddPost";
-import { login } from "@/shared/model/redux/features/users/userSlice";
+import { ContentI } from "@/features/contents/config/Content";
+import ContentCard from "@/features/contents/ui/ContentCard";
 import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
 import axios from "axios";
@@ -16,6 +16,7 @@ export default function Home() {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const [posts, setPosts] = useState<ContentI[]>();
 
+  // 게시글 모두 불러오기
   const getPosts = async () => {
     try {
       const response = await axios.get(
@@ -28,6 +29,7 @@ export default function Home() {
     }
   };
 
+  // 인사이트 등록 버튼 클릭 시 모달 열기
   const openModal = () => {
     if (!isLoggedIn) {
       alert("로그인이 필요합니다.");
@@ -36,6 +38,7 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
+  // 모달 닫는 핸들러
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
@@ -95,9 +98,20 @@ export default function Home() {
         onClose={closeModal}
         children={<AddPost afterAdd={closeModal} />}
       />
-      {posts?.map((item, index) => {
-        return <div>{item?.content}</div>;
-      })}
+      <div className="flex flex-wrap space-y-5 mt-10">
+        {posts?.map((item, index) => {
+          return (
+            <ContentCard
+              likedNum={0}
+              userProfile={{ profileImg: "", userId: 1, nickname: "me" }}
+              comments={[]}
+              contentId={item.contentId}
+              content={item.content}
+              linkArr={["http://www.korea.com", "https://www.naver.com"]}
+            />
+          );
+        })}
+      </div>
     </main>
   );
 }
