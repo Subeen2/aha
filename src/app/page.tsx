@@ -1,27 +1,47 @@
 "use client";
 
+import { ContentI } from "@/entities/config/content";
 import AddPost from "@/entities/ui/post/AddPost";
+import { login } from "@/shared/model/redux/features/users/userSlice";
 import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
+import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 
 import "../styles/style.css";
-
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const [posts, setPosts] = useState<ContentI[]>();
+
+  const getPosts = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/content`
+      );
+      console.log(response.data.result.mockData);
+      if (response) setPosts(response.data.result.mockData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const openModal = () => {
     if (!isLoggedIn) {
-      alert("로그인이 필요합니다."); // 로그인 필요 경고 메시지
+      alert("로그인이 필요합니다.");
       return;
     }
-
-    setIsModalOpen(true); // 모달 열기
+    setIsModalOpen(true);
   };
+
   const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
       <div className="z-10 w-full max-w-3xl items-center justify-between font-mono text-sm">
@@ -70,7 +90,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} children={<AddPost />} />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        children={<AddPost afterAdd={closeModal} />}
+      />
+      {posts?.map((item, index) => {
+        return <div>{item?.content}</div>;
+      })}
     </main>
   );
 }
