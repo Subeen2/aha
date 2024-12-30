@@ -11,7 +11,6 @@ export default function UserInterestsPage({
   params: { id: string };
 }) {
   // Redux에서 user 정보를 가져옵니다.
-  // const user = useSelector((state: RootState) => state.userAuth);
   const { id } = params;
   const router = useRouter();
 

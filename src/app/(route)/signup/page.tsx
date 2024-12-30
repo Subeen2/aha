@@ -9,7 +9,6 @@ import React, { useState } from "react";
 
 export default function SignUp() {
   // use client + next + router 사용 시 navigation 임포트 해야 함.
-  const httpURL = "http://localhost:3000/api/v1/users";
 
   const router = useRouter();
 
@@ -75,7 +74,10 @@ export default function SignUp() {
     setSuccess("");
 
     try {
-      const response = await axios.post(`${httpURL}/signup`, input);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/signup`,
+        input
+      );
       if (response.status === 200) {
         setSuccess("회원가입 성공! 로그인 페이지로 이동합니다.");
         setTimeout(() => router.push("/login"), 2000); // 2초 후 로그인 페이지로 리디렉션

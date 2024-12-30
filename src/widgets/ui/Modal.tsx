@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white shadow-md rounded-lg max-w-lg w-full p-6 relative"
+        className="bg-white shadow-md rounded-lg max-w-lg w-full p-10 relative"
         onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 닫히지 않음
       >
         <button

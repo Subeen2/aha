@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux";
 import { useInput } from "@/shared/ui/useInput";
 import InputField from "@/shared/ui/InputFeild";
 import { emailRegEx } from "@/shared/config/regex";
+import { login } from "@/shared/model/redux/features/users/userSlice";
 
 export default function LogIn() {
-  const httpURL = "http://localhost:3000/api/v1/users";
+  const dispatch = useDispatch();
   // 클라이언트에서만 사용
   // const dispatch = useDispatch();
 
@@ -47,30 +48,33 @@ export default function LogIn() {
 
     // mock API 호출
     try {
-      await axios.post(`${httpURL}/login`, loginData).then((res) => {
-        console.log(loginData);
-        console.log(res.data.result);
+      await axios
+        .post(`${process.env.NEXT_PUBLIC_HTTP_LOCAL}/login`, loginData)
+        .then((res) => {
+          console.log(loginData);
+          console.log(res.data.result);
 
-        if (res.data.result !== null) {
-          // redux에 저장
-          // dispatch(
-          //   login({
-          //     user_uid: res.data.result.user_uid,
-          //     email: loginData.email,
-          //     nickname: res.data.result.nickname,
-          //   })
-          // );
+          if (res.data.result !== null) {
+            dispatch(login(res.data.result.nickname));
+            // redux에 저장
+            // dispatch(
+            //   login({
+            //     user_uid: res.data.result.user_uid,
+            //     email: loginData.email,
+            //     nickname: res.data.result.nickname,
+            //   })
+            // );
 
-          // 새로고침 시 데이터 날아감 방지
-          // localStorage.setItem(
-          //   "reduxState",
-          //   JSON.stringify({ uid: res.data.result, email: loginData.email })
-          // );
+            // 새로고침 시 데이터 날아감 방지
+            // localStorage.setItem(
+            //   "reduxState",
+            //   JSON.stringify({ uid: res.data.result, email: loginData.email })
+            // );
 
-          // 메인페이지로 리디렉션
-          router.push("/");
-        }
-      });
+            // 메인페이지로 리디렉션
+            router.push("/");
+          }
+        });
     } catch (err) {
       return { error: err };
     }
@@ -81,7 +85,7 @@ export default function LogIn() {
   };
 
   return (
-    <div className="flex flex-col text-center py-xl">
+    <div className="flex flex-col text-center py-xl mt-10">
       <h1 className="text-3xl font-bold  mb-[70px]">로그인</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form

@@ -1,0 +1,4410 @@
+<style>
+  .rixx-main-swiper {
+    height: 480px;
+  } /*20230429 ìˆ˜ì •*/
+  .wrap-rixx-main-swiper .swiper-slide {
+    overflow: hidden;
+  }
+  .rixx-main-swiper-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .rixx-main-swiper-link img {
+    position: absolute;
+    max-height: 480px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  } /*20230509 ìˆ˜ì •*/
+  .rixx-main-swiper
+    .swiper-horizontal
+    > .swiper-pagination-bullets
+    .swiper-pagination-bullet,
+  .rixx-main-swiper
+    .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    margin: 0;
+  }
+  .rixx-main-swiper .swiper-horizontal > .swiper-pagination-bullets,
+  .rixx-main-swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 20px;
+  }
+  .rixx-main-swiper .swiper-pagination-bullet {
+    width: 10px;
+    height: 2px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .rixx-main-swiper .swiper-pagination-bullet-active {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  [class*="rixx-main-swiper"] .swiper-button-next,
+  [class*="rixx-main-swiper"] .swiper-button-prev {
+    color: rgba(19, 11, 11, 0.75);
+  }
+  [class*="rixx-main-swiper"] .swiper-button-next::after,
+  [class*="rixx-main-swiper"] .swiper-button-prev::after {
+    font-size: 40px;
+  }
+
+  .shortcut_collection {
+    margin-top: 28px;
+    padding-bottom: 14px;
+    border-bottom: 0px solid #e5e7eb;
+  }
+  .shortcut_items_wrap {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-row-gap: 16px;
+    row-gap: 16px;
+    grid-column-gap: 8px;
+    column-gap: 8px;
+  }
+  .shortcut_item {
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .shortcut_item_img_wrap {
+    border-radius: 10px;
+    border-color: #fff;
+    height: 100px;
+    position: relative;
+  }
+  .shortcut_item_img_wrap > .shortcut_item_img_bg {
+    border-radius: 9px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    border: none;
+    background-color: #fff;
+  }
+  .shortcut_item {
+    text-align: center;
+    cursor: pointer;
+  }
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    image-rendering: auto;
+  }
+  .shortcut_item_title {
+    font-size: 15px;
+    letter-spacing: -0.15px;
+    color: #333;
+    margin-top: 8px;
+  }
+  .shortcut_item_img_wrap:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(153, 153, 153);
+    border-radius: 10px;
+  }
+
+  @media (max-width: 767px) {
+    .rixx-main-swiper {
+      height: 340px;
+    } /*20230427 ìˆ˜ì •*/
+    .rixx-main-swiper-link img {
+      max-height: 340px;
+    } /*20230509 ì¶”ê°€*/
+    .shortcut_items_wrap {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .shortcut_item_img_wrap {
+      border-radius: 50%;
+      padding-top: 100%;
+      height: 0;
+    }
+    .shortcut_item_img_wrap > .shortcut_item_img_bg {
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .shortcut_item_title {
+      width: 100%;
+      font-size: 14px;
+      display: -webkit-box;
+      letter-spacing: -0.7px;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      word-break: keep-all;
+      margin-top: 4px;
+      word-wrap: break-word;
+    }
+  }
+
+  .main-contents {
+    overflow: hidden;
+  }
+  .main-section {
+    display: flex;
+    padding-bottom: 46px;
+    padding-top: 28px;
+    width: 100%;
+    border-bottom: 0px solid #e5e7eb;
+    flex-wrap: wrap;
+  }
+  .main-section.bdb-none {
+    border-bottom: none;
+  }
+  .main-section-left-side {
+    width: calc(100% - 320px);
+  }
+  .main-section-right-side {
+    width: 300px;
+    flex: none;
+    padding-left: 20px;
+  }
+
+  .wrap-main-view-more {
+    text-align: center;
+    padding-top: 20px;
+    width: 100%;
+  }
+  a.link-view-more {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 20px;
+    letter-spacing: 0px;
+    border-radius: 9px;
+    border: 1px solid #2c2c2c;
+    color: #2c2c2c;
+    text-align: center;
+  }
+  a.link-view-more:hover {
+    border-color: #000;
+    background-color: #4e4e4e;
+    color: #fff;
+  }
+
+  a.link-block {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    word-break: keep-all;
+    font-family: "helvetica", "Spoqa Han Sans", "Apple SD Gothic Neo",
+      "Malgun Gothic", "Nanum Gothic", "Noto Sans", "sans-serif" !important;
+  }
+  a.main-prd-items {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .main-prd-items-info {
+    padding: 14px 0 20px;
+    margin-top: auto;
+  }
+  .main-prd-items-info .badge {
+    margin-bottom: 5px;
+  }
+  .main-prd-items-img {
+    width: 100%;
+    padding-bottom: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .main-prd-items-img img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: center center;
+    transition: all 0.3s;
+    height: 100%;
+  }
+  .main-prd-items:hover img {
+    transform: scale(1.05);
+  }
+  .main-prd-items-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 1.4em;
+    max-height: 2.8em;
+    color: #2a2a2a;
+    font-size: 14px;
+  }
+  .main-prd-items-price {
+    padding-top: 4px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .right-side-banner {
+    position: relative;
+  }
+  .right-side-banner img {
+    width: 100%;
+  }
+  .row-2 {
+  }
+  .link-imageMap {
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+  .row-2 .link-imageMap {
+    height: 50%;
+    bottom: 0;
+  }
+  .row-2 .link-imageMap:first-of-type {
+    bottom: auto;
+    top: 0;
+  }
+
+  .swiperPerview-col45 .swiper-slide {
+    width: 23%;
+    padding: 0 7.5px;
+  }
+  [class*="swiperPerview-"] {
+    padding-top: 30px;
+    width: 100%;
+  }
+  .swiperPerview-auto .swiper-wrapper {
+    transition-timing-function: linear;
+  }
+  [class*="swiperPerview-"] .swiper-button-next,
+  [class*="swiperPerview-"] .swiper-button-prev {
+    color: rgba(19, 11, 11, 0.75);
+  }
+  [class*="swiperPerview-"] .swiper-button-next::after,
+  [class*="swiperPerview-"] .swiper-button-prev::after {
+    font-size: 26px;
+  }
+
+  .main-section-title {
+    font-size: 17px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+  }
+  .main-section-title.text-center {
+    font-size: 30px;
+  }
+  .main-section-lead {
+    font-size: 13x;
+    color: #747474;
+    width: 100%;
+    padding-bottom: 14px;
+  }
+  .main-section-lead.text-center {
+    color: #000;
+  }
+
+  .swiperPerview-group3 .swiper-wrapper {
+    padding-bottom: 0px;
+  }
+
+  .swiperPerview-group3
+    .swiper-horizontal
+    > .swiper-pagination-bullets
+    .swiper-pagination-bullet,
+  .swiperPerview-group3
+    .swiper-pagination-horizontal.swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    margin: 0;
+  }
+  .swiperPerview-group3 .swiper-pagination-bullet {
+    width: 10px;
+    height: 2px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .swiperPerview-group3 .swiper-pagination-bullet-active {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .wrap-swiperPerview-col5 .main-section-title,
+  .wrap-swiperPerview-col5 .main-section-lead {
+    /*padding-left: 50px;*/
+  } /*20230529 ìˆ˜ì •*/
+  .swiperPerview-col5 {
+    /*padding-left: 50px;padding-right: 50px;*/
+  } /*20230529 ìˆ˜ì •*/
+  .swiperPerview-col5 .swiper-button-next,
+  .swiperPerview-col5 .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  } /*20230529 ìˆ˜ì •*/
+  .swiperPerview-col5 .swiper-button-next {
+    right: 0;
+  }
+  .swiperPerview-col5 .swiper-button-prev {
+    left: 0;
+  }
+  .c-purple {
+    color: #000000;
+  }
+
+  .main-prd-color-chip {
+    padding-bottom: 10px;
+  }
+  .main-prd-color-chip-items {
+    display: inline-block;
+    position: relative;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .main-banner-section-0 {
+    background-color: #ebebeb;
+    text-align: center;
+    width: 100%;
+  }
+  .main-banner-section-1 {
+    background-color: #e4d0c2;
+    text-align: center;
+    width: 100%;
+  }
+  .main-banner-section-2 {
+    background-color: #3e4044;
+    text-align: center;
+    width: 100%;
+  }
+  .main-banner-section-3 {
+    background-color: #b4c0ca;
+    text-align: center;
+    width: 100%;
+  }
+  .main-banner-section-4 {
+    background-color: #b3c7be;
+    text-align: center;
+    width: 100%;
+  }
+  .main-banner-section-5 {
+    background-color: #f9f9f9;
+    text-align: center;
+    width: 100%;
+  }
+
+  .main-banner-section {
+    background-color: #ebe7e4;
+    text-align: center;
+    width: 100%;
+  }
+  .link-banner-section {
+    display: inline-block;
+    height: 460px;
+    position: relative;
+    line-height: 0;
+  }
+  .link-banner-section.lg {
+    height: 600px;
+  }
+  .link-banner-section img {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .link-banner-section.top-padding {
+    margin-top: 30px;
+    height: 395px;
+  }
+
+  .main-section-lead + .main-banner-section {
+    margin-top: 16px;
+  }
+
+  .main-section.sm {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .rect-box-list {
+    display: flex;
+    border: 1px solid #eee;
+    margin-top: 30px;
+  }
+  .rect-box-list-items {
+    width: 100%;
+  }
+  .rect-box-list-items + .rect-box-list-items {
+    border-left: 1px solid #eee;
+  }
+  .main-prd-items-info.text-center {
+    padding: 10px;
+  }
+  .rect-box-list .main-prd-items-img {
+    height: 335px;
+  }
+  .rect-box-list .main-prd-items-img img {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .rect-box-list .main-prd-items-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .rect-box-list .main-prd-items-title {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .rect-box-list .main-prd-items-price {
+    color: #999;
+  }
+
+  .main-section.top-padding-sm {
+    padding-top: 12px;
+  }
+  .main-section.top-padding-sm [class*="swiperPerview-"] {
+    padding-top: 0;
+  }
+
+  .main-box-list3 {
+    display: flex;
+    min-width: 100%;
+    margin: 30px -7.5px 0;
+    overflow: hidden;
+  }
+  .main-box-list3-items {
+    width: 100%;
+    padding: 0 7.5px;
+  }
+
+  .main-box-list5 {
+    display: flex;
+    min-width: 100%;
+    margin: 30px -7.5px 0;
+    overflow: hidden;
+  }
+  .main-box-list5-items {
+    width: 100%;
+    padding: 0 7.5px;
+  }
+
+  .main-card-list {
+    display: flex;
+    min-width: 100%;
+    margin: 0 -12.5px;
+  }
+  .main-card-list-items {
+    width: 100%;
+  }
+  .main-card-list-items {
+    padding: 12.5px;
+  }
+
+  .main-card-list-items .main-prd-items {
+    border-radius: 10px;
+    border: 1px solid #eee;
+    overflow: hidden;
+  }
+  .main-card-list-items .main-prd-items-img {
+    padding-bottom: 134.6%;
+  }
+  .main-card-list-items .main-prd-items-img img {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .main-card-list-items .main-prd-items-summary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-height: 1.4em;
+    max-height: 5.6em;
+    font-size: 14px;
+    color: #757575;
+    margin-top: 5px;
+  }
+  .main-card-list-items .main-prd-items-writer {
+    margin-top: auto;
+    font-size: 14px;
+    color: #757575;
+    padding-top: 5px;
+  }
+  .main-card-list-items .main-prd-items-info {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .foot-custom {
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+  }
+  .custom-text-info-notice {
+    padding: 40px 0 20px;
+  }
+  .foot-custom .business-hours {
+    padding-bottom: 60px;
+  }
+  .foot-app-menu {
+    margin-top: 30px;
+    padding-bottom: 10px;
+  }
+  .foot-app-menu a.btn {
+    width: 195px;
+    height: 60px;
+    padding: 0 24px;
+  }
+  .foot-app-menu a.btn .sm-txt {
+    font-size: 11px;
+    color: #999;
+  }
+  .foot-app-menu a.btn .lg-txt {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .pt15 {
+    padding-top: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .pc-only {
+      display: none !important;
+    }
+    .main-section {
+      padding-top: 15px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .main-section-right-side {
+      width: 100%;
+      padding-left: 0;
+    }
+    .row-2 .link-imageMap:first-of-type {
+      left: 0;
+    }
+    .row-2 .link-imageMap {
+      left: 50%;
+      width: 50%;
+      height: 100%;
+    }
+
+    .swiperPerview-col5 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .swiperPerview-col5 .swiper-button-next,
+    .swiperPerview-col5 .swiper-button-prev {
+      background-color: transparent;
+    }
+
+    .main-section-title,
+    .main-section-lead,
+    .wrap-swiperPerview-col5 .main-section-title,
+    .wrap-swiperPerview-col5 .main-section-lead {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .swiperPerview-col5 .main-prd-items-info {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      bottom: 0;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .swiperPerview-col5 .main-prd-items-title {
+      color: #fff;
+    }
+    .swiperPerview-col5 .c-purple {
+      color: #fff;
+    }
+
+    .main-section {
+      padding-bottom: 0px;
+    }
+
+    .link-banner-section,
+    .link-banner-section.lg {
+      height: auto;
+    }
+    .link-banner-section img {
+      width: 100%;
+      height: auto;
+      position: static;
+      left: 0;
+      top: 0;
+      transform: translate(0, 0);
+    }
+
+    .wrap-main-view-more {
+      padding-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .link-view-more {
+      display: block;
+      width: 100%;
+    }
+    a.link-view-more {
+      border-radius: 5px;
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+
+    [class*="swiperPerview-"] {
+      padding-top: 10px;
+    }
+    .main-section.sm {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .rect-box-list .main-prd-items-img {
+      height: 170px;
+    }
+    .rect-box-list .main-prd-items-title {
+      margin-top: 5px;
+    }
+
+    .main-card-list {
+      flex-direction: column;
+      padding: 25px 5px 10px;
+    }
+    .main-card-list-items {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .main-card-list-items .main-prd-items {
+      flex-direction: row;
+    }
+    .main-card-list-items .main-prd-items-img {
+      width: 120px;
+      padding-bottom: 120px;
+      flex: none;
+    }
+  } /*mobile only*/
+
+  @media (min-width: 768px) {
+    .mobile-only {
+      display: none;
+    }
+    .pc-only {
+      display: auto;
+    }
+  } /*pc only*/
+
+  #prod_goods_form
+    > div:nth-child(17)
+    > div
+    > div:nth-child(3)
+    > div:nth-child(1)
+    > a,
+  #prod_goods_form
+    > div:nth-child(17)
+    > div
+    > div:nth-child(3)
+    > div:nth-child(2)
+    > a {
+    font-size: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  #prod_goods_form
+    > div:nth-child(17)
+    > div
+    > div:nth-child(3)
+    > div:nth-child(3)
+    > a {
+    line-height: 25px;
+    font-size: 14px;
+  }
+
+  #prod_image_list
+    > div:nth-child(4)
+    > a
+    > div:nth-child(1)
+    > div:nth-child(1)
+    > div:nth-child(1) {
+    border-radius: 3px;
+  }
+
+  #prod_goods_form > div:nth-child(7) > a:nth-child(2) {
+    margin-top: 10px !important;
+  }
+
+  #rixx_clothes_form
+    > div
+    > div.sizeChoice-swiper-top
+    > div.swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: 100px !important;
+  }
+</style>
+<!-- 
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      />
+      
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+/>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script>
+  // 신발 사이즈 모달 시작
+
+  function rixx_getCookie(name) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+    return unescape(matches ? decodeURIComponent(matches[1]) : undefined);
+  }
+
+  // 사용자가 설정해놓은 사이즈 데이터 쿠키에 저장
+  function rixx_setCookie(name, value, options = {}) {
+    options = {
+      path: "/",
+      // 필요한 경우, 옵션 기본값을 설정할 수도 있습니다.
+      ...options,
+    };
+
+    if (options.expires instanceof Date) {
+      options.expires = options.expires.toUTCString();
+    }
+
+    let updatedCookie =
+      encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+    for (let optionKey in options) {
+      updatedCookie += "; " + optionKey;
+      let optionValue = options[optionKey];
+      if (optionValue !== true) {
+        updatedCookie += "=" + optionValue;
+      }
+    }
+
+    document.cookie = updatedCookie;
+    // 쿠키 설정 예시
+    //setCookie('user', 'John', {secure: true, 'max-age': 3600});
+  }
+
+  // 값이 없는 경우를 판별해주는 함수 : 없으면 true, 있으면 false
+  function isEmpty(str) {
+    if (
+      typeof str == "undefined" ||
+      str == "undefined" ||
+      str == null ||
+      str == ""
+    )
+      return true;
+    else return false;
+  }
+
+  // 신발 사이즈 모달 내부 컨텐츠
+  var rixxShoesPop_contents = `<!-- Modal --> <div class="modal" id="rixxSizePop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"> <div class="modal-dialog" role="document"> <div class="modal-content"> <!-- 20230217 htmlbody --> <div class="modal-body"> <div class="rixx-sizeChoice-container"> <!-- 20230407 form --> <form action="" class="rixx-sizeChoice-header"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <div class="sizeChoice-select-profile"> <div class="sizeChoice-select-col"> <input type="radio" name="rixx_shoes_profile" id="rixx_shoes_profile_1" onchange="rixx_shoes_profile_fn(this)" class="sr-only" checked="checked"> <label for="rixx_shoes_profile_1" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필1</span> </label> </div> <div class="sizeChoice-select-col"> <input type="radio" name="rixx_shoes_profile" id="rixx_shoes_profile_2" onchange="rixx_shoes_profile_fn(this)" class="sr-only"> <label for="rixx_shoes_profile_2" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필2</span> </label> </div> <div class="sizeChoice-select-col"> <input type="radio" name="rixx_shoes_profile" id="rixx_shoes_profile_3" onchange="rixx_shoes_profile_fn(this)" class="sr-only"> <label for="rixx_shoes_profile_3" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필3</span> </label> </div> </div> </div> </form> <!-- //20230407 form --> <!-- 20230407 form --> <form action="" class="rixx-sizeChoice-body"> <!-- 20230407 선호하는 사이즈 프로필 리스트/ 숨길경우 addClass hide --> <div class="rixx-sizeChoice-prefer hide"> <div class="rixx-sizeChoice-prdImg"> <img src="https://cdn.imweb.me/thumbnail/20230217/c0faa7157a56b.jpg" alt=""> </div> <div class="rixx-sizeChoice-condition"> <h3 class="rixx-sizeChoice-title">고객님께서 선호하시는 의류사이즈</h3> <dl class="list-rixx-sizeChoice-prefer"> <dt class="list-rixx-sizeChoice-prefer-title">프로필1</dt> <dd class="list-rixx-sizeChoice-prefer-contents"> <ul class="list-rixx-sizeChoice-prefer-info"> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">성별:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">키:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">몸무게:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">가슴모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">배모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">상의사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">하의사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">선호하는 핏:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> </ul> </dd> <dt class="list-rixx-sizeChoice-prefer-title">프로필2</dt> <dd class="list-rixx-sizeChoice-prefer-contents"> <ul class="list-rixx-sizeChoice-prefer-info"> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">성별:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">키:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">몸무게:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">가슴모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">배모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">상의사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">하이사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">선호하는 핏:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> </ul> </dd> <dt class="list-rixx-sizeChoice-prefer-title">프로필3</dt> <dd class="list-rixx-sizeChoice-prefer-contents"> <ul class="list-rixx-sizeChoice-prefer-info"> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">성별:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">키:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">몸무게:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">가슴모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">배모양:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">상의사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> <strong class="rixx-sizeChoice-prefer-info-tit">하이사이즈:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> <li class="rixx-sizeChoice-prefer-info-items"> <strong class="rixx-sizeChoice-prefer-info-tit">선호하는 핏:</strong> <span class="rixx-sizeChoice-prefer-info">test</span> </li> </ul> </dd> </dl> </div> <div class="rixx-sizeChoice-btn-wrap"> <div class="rixx-sizeChoice-btn-left"> <button type="button" class="btn-rixx-newInput close-rixx-sizeChoice-prefer">새로입력하기</button> </div> <div class="rixx-sizeChoice-btn-right"><button type="button" class="btn-rixx-continue close-rixxSizePop">닫기</button></div> </div> </div> <!-- //20230407 선호하는 사이즈 프로필 리스트/ 숨길경우 addClass hide --> <div class="sizeChoice-swiper-top op-hide"> <div class="wrap-sizeChoice-swiper-top-lead"> <div class="sizeChoice-swiper-top-chk"></div> <p class="sizeChoice-swiper-top-lead"><span class="rixx-swiper-top-shoes-brand"></span><span class="rixx-swiper-top-shoes-kind"></span><span class="rixx-swiper-top-shoes-size"></span> 선택하셨습니다. 질문이 <span class="rixx-swiper-top-page-cnt">3</span>개 남았습니다.</p> </div> <div class="swiper-pagination"></div> </div> <div class="rixx-sizeChoice-prdImg"> <img src="https://cdn.imweb.me/thumbnail/20230217/c0faa7157a56b.jpg" id="rixx-sizeChoice-thumbnail" alt=""> </div> <!-- Slider main container --> <div class="rixx-sizeChoice-condition"> <div class="swiper sizeChoice-swiper-main"> <!-- Additional required wrapper --> <div class="swiper-wrapper"> <!-- Slides --> <!-- 신발 brand --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-brand"> <h3 class="rixx-sizeChoice-title">자주 신는 신발 브랜드</h3> <div class="list-sizeChoice-rect"> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_나이키" name="rixx_shoes_brand"> <label for="rixx_shoes_size_나이키" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">나이키</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Adidas" name="rixx_shoes_brand"> <label for="rixx_shoes_size_Adidas" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">아디다스</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Balance" name="rixx_shoes_brand"> <label for="rixx_shoes_size_Balance" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">뉴발란스</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_발렌시아가" name="rixx_shoes_brand"> <label for="rixx_shoes_size_발렌시아가" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">발렌시아가</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_구찌" name="rixx_shoes_brand"> <label for="rixx_shoes_size_구찌" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">구찌</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_루이비통" name="rixx_shoes_brand"> <label for="rixx_shoes_size_루이비통" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">루이비통</span></label></div> </div> </div> <!-- //신발 brand --> <!-- 신발 종류 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-kind"> <h3 class="rixx-sizeChoice-title">신발 종류</h3> <div class="rixx-sizeChoice-lead">처음 답변했던 신발의 카테고리를 선택해주세요.</div> <div class="list-sizeChoice-rect sizeChoice-rect-kind"> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Sneakers" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Sneakers" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/bc723deb9a2a8.png" alt=""></span> <span class="sizeChoice-rect-label">스니커즈</span> </label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Running" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Running" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/b47a2b613c97d.png" alt=""></span> <span class="sizeChoice-rect-label">러닝화</span> </label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Boots" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Boots" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/517ff92796c08.png" alt=""></span> <span class="sizeChoice-rect-label">부츠</span> </label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Basketball" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Basketball" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/dd8b479081cef.png" alt=""></span> <span class="sizeChoice-rect-label">농구화</span> </label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Flip" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Flip" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/431a9ef8e9703.png" alt=""></span> <span class="sizeChoice-rect-label">슬리퍼</span> </label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_Loafers" name="rixx_shoes_kind"> <label for="rixx_shoes_size_Loafers" class="btn-sizeChoice-rect"> <span class="sizeChoice-rect-label-img"><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/21c120fcc385c.png" alt=""></span> <span class="sizeChoice-rect-label">구두</span> </label> </div> </div> </div> <!-- //신발 종류 --> <!-- 신발 사이즈 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-shoes-size"> <h3 class="rixx-sizeChoice-title">신발 사이즈</h3> <div class="rixx-sizeChoice-lead"> <div class="sizeChoice-nation-size"> <span class="sizeChoice-nation-flag korea">한국 사이즈</span> </div> </div> <div class="list-sizeChoice-rect"> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_220" name="rixx_shoes_size"> <label for="rixx_shoes_size_220" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">220</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_225" name="rixx_shoes_size"> <label for="rixx_shoes_size_225" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">225</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_230" name="rixx_shoes_size"> <label for="rixx_shoes_size_230" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">230</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_235" name="rixx_shoes_size"> <label for="rixx_shoes_size_235" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">235</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_240" name="rixx_shoes_size"> <label for="rixx_shoes_size_240" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">240</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_245" name="rixx_shoes_size"> <label for="rixx_shoes_size_245" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">245</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_250" name="rixx_shoes_size"> <label for="rixx_shoes_size_250" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">250</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_255" name="rixx_shoes_size"> <label for="rixx_shoes_size_255" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">255</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_260" name="rixx_shoes_size"> <label for="rixx_shoes_size_260" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">260</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_265" name="rixx_shoes_size"> <label for="rixx_shoes_size_265" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">265</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_270" name="rixx_shoes_size"> <label for="rixx_shoes_size_270" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">270</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_275" name="rixx_shoes_size"> <label for="rixx_shoes_size_275" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">275</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_280" name="rixx_shoes_size"> <label for="rixx_shoes_size_280" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">280</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_285" name="rixx_shoes_size"> <label for="rixx_shoes_size_285" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">285</span></label> </div> <div class="sizeChoice-rect-btn"> <input type="radio" class="sizeChoice-rect-btn-input" id="rixx_shoes_size_290" name="rixx_shoes_size"> <label for="rixx_shoes_size_290" class="btn-sizeChoice-rect"><span class="sizeChoice-rect-label">290</span></label> </div> </div> </div> <!-- //신발 사이즈 --> <!-- 발볼 너비 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-feet"> <h3 class="rixx-sizeChoice-title">발볼 너비</h3> <div class="rixx-sizeChoice-lead">고객님의 발볼과 가장 비슷한 것을 선택해주세요.</div> <div class="rixx-sizeChoice-form rixx-flex-box"> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_shoes_foot_ball" id="rixx_shoes_size_foot_ball_s" class="rixx-sizeChoice-chest-radio"> <label for="rixx_shoes_size_foot_ball_s" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/13cf432dd252c.png" alt=""></p> <p class="sizeChoice-chest-label-text">좁음</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_shoes_foot_ball" id="rixx_shoes_size_foot_ball_m" class="rixx-sizeChoice-chest-radio"> <label for="rixx_shoes_size_foot_ball_m" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/97b0d778fc23c.png" alt=""></p> <p class="sizeChoice-chest-label-text">보통</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_shoes_foot_ball" id="rixx_shoes_size_foot_ball_l" class="rixx-sizeChoice-chest-radio"> <label for="rixx_shoes_size_foot_ball_l" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/24c10bf2529dd.png" alt=""></p> <p class="sizeChoice-chest-label-text">넓음</p> </label> </div> </div> </div> <!-- //발볼 너비 --> </div> </div> </div> <div class="rixx-sizeChoice-btn-wrap"> <div class="rixx-sizeChoice-btn-left"> <div class="swiper-button-prev"></div> </div> <div class="rixx-sizeChoice-btn-right rixx-sizeChoice-btn-continue"><button type="button" class="btn-rixx-continue">계속하기</button></div> <div class="rixx-sizeChoice-btn-right rixx-sizeChoice-btn-save"><button type="button" id="rixx_shoes_save" class="btn-rixx-continue">저장</button></div> </div> </form> <!-- //20230407 form --> </div> </div> <!-- //20230217 htmlbody --> </div> </div> </div> <!-- //Modal -->`;
+
+  // 신발 사이즈 모달 변수
+  var rixx_shoes_color_origin_onchange = [];
+  var rixx_shoes_color_origin_onchange_m = [];
+  var g_shoes_slider = "";
+  var r_shoes_profile = "rixx_shoes_profile_1";
+  var r_shoes_brand = "";
+  var r_shoes_kind = "";
+  var r_shoes_size = "";
+  var r_shoes_foot_ball = "";
+  var r_shoes_color_btn_click_flag = false;
+  var r_shoes_device = "";
+  var pageUrl = window.location.href;
+
+  // url 검사해서 신발 카테고리인지 확인해서 불 값 반환하는 함수
+  function get_rixxShoesSizeUrlCheck(url) {
+    result = false;
+    check_url = [
+      "148",
+      "1148",
+      "178309006",
+      "3697",
+      "2490",
+      "2500",
+      "1202224610",
+      "1738419952",
+      "4765",
+      "2825",
+      "377969780",
+      "4771",
+      "16321",
+      "16310",
+      "16316",
+      "16317",
+      "16318",
+      "969658559",
+      "16319",
+      "19708",
+      "16320",
+      "19740",
+      "19697",
+      "19699",
+      "18720",
+      "2485",
+      "4195",
+      "4189",
+      "4204",
+      "623457079",
+      "2491",
+      "2497",
+      "2493",
+      "2494",
+      "2492",
+      "9121",
+      "2495",
+      "2498",
+      "2499",
+      "2496",
+      "4742",
+      "2501",
+      "2502",
+      "2503",
+      "2504",
+      "2505",
+      "2506",
+      "4750",
+      "1003158160",
+      "145134282",
+      "728456684",
+      "1854303229",
+      "668206899",
+      "3723",
+      "9142",
+      "613206281",
+      "4767",
+      "17753",
+      "4768",
+      "4769",
+      "22167",
+      "4770",
+      "15073",
+      "158204879",
+      "1877464112",
+      "1284374437",
+      "2856",
+      "4764",
+      "16802",
+      "1027475597",
+      "16790",
+      "16792",
+      "16796",
+      "16798",
+      "19709",
+      "16800",
+      "19741",
+      "19698",
+      "19700",
+      "18721",
+      "2486",
+      "2487",
+      "4193",
+      "2488",
+      "4710",
+      "4202",
+      "2489",
+      "4712",
+      "4196",
+      "4197",
+      "843066198",
+      "4198",
+      "4199",
+      "4200",
+      "4718",
+      "4201",
+      "4715",
+      "4722",
+      "4723",
+      "4724",
+      "4725",
+      "4727",
+      "4728",
+      "4726",
+      "701930264",
+      "4779",
+      "16060",
+      "15172",
+      "19607",
+      "510376173",
+      "15189",
+      "15180",
+      "15177",
+      "1587094731",
+      "19616",
+      "15175",
+      "19617",
+      "15187",
+      "15182",
+      "15179",
+      "15178",
+      "15191",
+      "16512",
+      "1882302898",
+      "16513",
+      "16514",
+      "15188",
+      "15190",
+      "16517",
+      "15176",
+      "15196",
+      "15194",
+      "15195",
+      "15184",
+      "15173",
+      "15181",
+      "15185",
+      "15193",
+      "15192",
+      "628508911",
+      "15198",
+      "965688947",
+      "1317373485",
+      "3697",
+      "32351",
+      "30386",
+      "44158",
+      "2485",
+      "2487",
+      "2486",
+    ];
+
+    if (window.location.href.indexOf("/?idx=9423") != -1) {
+      result = true;
+    }
+    result = true; //어차피 신발 카테고리 아니면 버튼 자체가 없음
+    return result;
+  }
+
+  function rixxShoesOptionController() {
+    if (
+      get_rixxShoesSizeUrlCheck(window.location.href) &&
+      pageUrl.indexOf("idx") != -1
+    ) {
+      $('div.option_title.text-bold:contains("옵션정보")')
+        .parent()
+        .parent()
+        .css("display", "none");
+      $('div.option_title.text-15:contains("필수옵션")')
+        .parent()
+        .css("display", "none");
+      //구매버튼 제어
+      $($("a.btn.buy.bg-brand._btn_buy")[0]).attr(
+        "onclick",
+        "rixx_shoes_buy_btn_Controller()"
+      );
+      $("a.btn.defualt.buy.bg-brand").attr(
+        "onclick",
+        "rixx_shoes_buy_btn_Controller_m()"
+      );
+
+      rixx_shoes_color_btn_Controller2();
+    }
+  }
+
+  // 신발 사이즈 모달 구매 버튼 컨트롤러
+  function rixx_shoes_buy_btn_Controller() {
+    const existSizeBtn = document.getElementsByClassName(
+      "btn-rixx-size-setting"
+    )[0];
+
+    // 사이즈 설정하기 버튼이 없을 경우
+    if (!existSizeBtn) {
+      SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+    } else {
+      // 구매 버튼 클릭 시 호출할 함수
+      var origin_onclick =
+        "SITE_SHOP_DETAIL.addOrder('normal', '" + pageUrl + "')";
+
+      // 디바이스가 PC인지 모바일인지에 따른 조건문
+      if (r_shoes_device == "pc") {
+        if (isEmpty(r_shoes_brand)) {
+          open_new_size_shoes_table();
+          return;
+        } else {
+          // 아임웹 실제 구매 버튼 핸들러 함수로 변경시켜줌.
+          SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+          // eval(origin_onclick);
+        }
+      }
+
+      // 모바일인 경우
+      if (r_shoes_device == "m") {
+        if (
+          !(
+            document.querySelector(
+              "#prod_options > div:nth-child(1) > div > div.option_box_wrap > div.option_box > input"
+            ).value !== "" ||
+            document.querySelector("._selected_require_option") !== null
+          )
+        ) {
+          open_new_size_shoes_table();
+          SITE_SHOP_DETAIL.showMobileOptions();
+          return;
+        } else {
+          eval(origin_onclick);
+        }
+      }
+    }
+  }
+
+  // 모바일인 경우 신발 사이즈 구매 버튼 핸들러
+
+  function rixx_shoes_buy_btn_Controller_m() {
+    var origin_onclick = "SITE_SHOP_DETAIL.showMobileOptions('buy')";
+    if (
+      !(
+        document.querySelector(
+          "#prod_options > div:nth-child(1) > div > div.option_box_wrap > div.option_box > input"
+        ).value !== "" ||
+        document.querySelector("._selected_require_option") !== null
+      )
+    ) {
+      open_new_size_shoes_table();
+      SITE_SHOP_DETAIL.showMobileOptions();
+      return;
+    } else {
+      eval(origin_onclick);
+    }
+  }
+
+  // 신발 컬러 버튼 핸들러
+  function rixx_shoes_color_btn_Controller() {
+    var color_btn = $("label[data-opttype=color] > input[type=radio]");
+
+    if (color_btn.length != 0) {
+      for (var i = 0; i < color_btn.length; i++) {
+        $(color_btn[i]).attr(
+          "onchange",
+          "rixx_shoes_color_onchange_fn();" +
+            rixx_shoes_color_origin_onchange[i]
+        );
+      }
+      temp_r_shoes_device = "pc";
+    } else {
+      temp_r_shoes_device = "pc";
+    }
+
+    var color_dropdown = $('a.dropdown-toggle:contains("색상")').siblings(
+      "div.dropdown-menu"
+    );
+
+    if (color_dropdown.length != 0) {
+      color_dropdown_m = color_dropdown[0].children;
+
+      for (var i = 0; i < color_dropdown_m.length; i++) {
+        $(color_dropdown[i]).attr(
+          "onclick",
+          "rixx_shoes_color_onchange_fn();r_shoes_color_btn_click_flag=true;" +
+            rixx_shoes_color_origin_onchange_m[i]
+        );
+      }
+
+      temp_r_shoes_device = "m";
+    } else {
+      temp_r_shoes_device = "pc";
+    }
+
+    if (isEmpty(r_shoes_device)) {
+      r_shoes_device = temp_r_shoes_device;
+    }
+  }
+
+  function rixx_shoes_color_btn_Controller2() {
+    if (window.innerWidth > 768) {
+      temp_r_shoes_device = "pc";
+    } else {
+      temp_r_shoes_device = "m";
+    }
+    if (isEmpty(r_shoes_device)) {
+      r_shoes_device = temp_r_shoes_device;
+    }
+  }
+
+  // 신발 컬러가 변경되었을 시 초기화
+  function rixx_shoes_color_onchange_fn() {
+    r_shoes_brand = "";
+    r_shoes_kind = "";
+    r_shoes_size = "";
+    r_shoes_foot_ball = "";
+  }
+
+  function rixx_shoes_color_btn_get_onchange() {
+    if (isEmpty(rixx_shoes_color_origin_onchange)) {
+      var color_btn = $("label[data-opttype=color] > input[type=radio]");
+      if (color_btn.length != 0) {
+        for (var i = 0; i < color_btn.length; i++) {
+          if (color_btn.length != 0) {
+            rixx_shoes_color_origin_onchange.push(
+              $(color_btn[0]).attr("onchange")
+            );
+          }
+        }
+      }
+    }
+    if (isEmpty(rixx_shoes_color_origin_onchange_m)) {
+      var color_dropdown = $('a.dropdown-toggle:contains("색상")').siblings(
+        "div.dropdown-menu"
+      );
+      if (color_dropdown.length != 0) {
+        color_dropdown_m = color_dropdown[0].children;
+        for (var i = 0; i < color_dropdown_m.length; i++) {
+          rixx_shoes_color_origin_onchange_m.push(
+            $(color_dropdown_m[i].children[0]).attr("onclick")
+          );
+        }
+      }
+    }
+  }
+
+  // 신발 설정하는 버튼 추가하는 함수
+  function append_shoes_set_btn2() {
+    shoes_size_btn = document.createElement("p");
+    shoes_size_btn.setAttribute("class", "sizeChoice_select_profile_n");
+    shoes_size_btn.setAttribute(
+      "style",
+      "display:block;flex:1;margin-top: 12px; margin-bottom: 12px; padding-top: 11px; padding-bottom: 11px; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb;"
+    );
+    //shoes_size_btn.innerHTML="<button type='button' id='rixx_shoes_modal_btn' style='background-color:black; width:130px; padding: 7px 0; height:35px; font-weight:700; cursor:pointer; text-align:center; display:inline-block;border-radius:5px; color:white' onclick='open_new_size_shoes_table()'>사이즈 설정</button>";
+
+    // 버튼 내부 컨텐츠
+    shoes_size_btn.innerHTML = `<p class="wrap-rixx-size-setting-btn" style="margin-bottom: 0px !important;">
+              <button type="button" class="btn-rixx-size-setting" id="rixx_shoes_modal_btn" onclick="open_new_size_shoes_table()">
+                <span class="rixx-size-setting-text" style="font-family: 'montserrat', 'Noto Sans Korean', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic', 'Noto Sans', 'sans-serif';font-size: 14px;font-style: normal;font-weight: 600; letter-spacing: -0.64px; line-height: 19.2px; text-size-adjust: 100%;">
+                  사이즈 설정
+                </span>
+             </button>
+            </p>`;
+
+    // 위의 버튼 컨텐츠를 setting
+    $("#prod_selected_options").before(shoes_size_btn);
+  }
+
+  var open_new_size_shoes_table = function () {
+    // $("body").append(rixxShoesPop_contents); //body에 사이즈 선택 팝업 추가
+    const swiper = new Swiper(".sizeChoice-swiper-main", {
+      // Optional parameters
+      loop: false,
+      observeParents: true,
+      observer: true,
+      allowTouchMove: false,
+      touchRatio: false,
+      allowSlideNext: false,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      // Navigation arrows
+      navigation: {
+        nextEl: ".rixx-sizeChoice-btn-continue",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+        slideChange: function () {
+          if (
+            this.slides.eq(this.activeIndex).hasClass("sizeChoice-kind") ||
+            this.slides
+              .eq(this.activeIndex)
+              .hasClass("sizeChoice-shoes-size") ||
+            this.slides?.eq(this.activeIndex).hasClass("sizeChoice-feet")
+          ) {
+            $(".rixx-swiper-top-page-cnt").text(
+              this.slides.length - this.activeIndex
+            );
+            $(".sizeChoice-swiper-top").removeClass("op-hide");
+          } else {
+            $(".sizeChoice-swiper-top").addClass("op-hide");
+          } //남은 질문 갯수 영역 show hide//20230402사이즈 선택 tabs 추가 수정//20230403 sizeChoice-size class 수정
+
+          if (this.activeIndex == this.slides.length - 1) {
+            $(".rixx-sizeChoice-btn-continue").addClass("hide");
+            $(".rixx-sizeChoice-btn-save").addClass("show");
+          } else {
+            $(".rixx-sizeChoice-btn-continue").removeClass("hide");
+            $(".rixx-sizeChoice-btn-save").removeClass("show");
+          } //마지막 slide일 경우 계속하기 버튼 숨김, 저장버튼 노출 20230401 추가
+
+          rixx_shoes_contiune_btn_flag();
+        },
+      },
+    }); //swiper
+
+    $("#rixx-sizeChoice-thumbnail").attr(
+      "src",
+      $("div.item._item > img").attr("src")
+    );
+
+    // 모달 띄워줌
+    $("#rixxSizePop").modal("show");
+
+    $("#rixxSizePop").on("hidden.bs.modal", function (e) {
+      $(".rixx-sizeChoice-btn-continue").removeClass("hide");
+      $(".rixx-sizeChoice-btn-save").removeClass("show");
+      $(".sizeChoice-swiper-top").addClass("op-hide");
+    }); //20230402 모달 close시 버튼 reset 추가
+
+    // 20230407 신발 사이즈 top
+    $(".sizeChoice-brand")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-brand").text(
+          $(this)
+            .siblings(".btn-sizeChoice-rect")
+            .find(".sizeChoice-rect-label")
+            .text()
+        );
+      }); //브랜드
+
+    $(".sizeChoice-kind")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-kind").text(
+          ", " +
+            $(this)
+              .siblings(".btn-sizeChoice-rect")
+              .find(".sizeChoice-rect-label")
+              .text()
+        );
+      }); //신발종류
+
+    $(".sizeChoice-shoes-size")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-size").text(
+          ", " +
+            $(this)
+              .siblings(".btn-sizeChoice-rect")
+              .find(".sizeChoice-rect-label")
+              .text() +
+            "사이즈"
+        );
+      }); //신발사이즈
+
+    // 20230407 신발 사이즈 top
+
+    g_shoes_slider = swiper;
+
+    rixx_shoes_contiune_btn_flag();
+    rixx_shoes_init(r_shoes_profile);
+  };
+
+  // 체크된 프로필 판별 및 선택
+  var rixx_shoes_profile_fn = function (e) {
+    if ($(e).prop("checked") == true) {
+      r_shoes_profile = $(e).attr("id");
+      rixx_shoes_init(r_shoes_profile);
+    }
+  };
+
+  function rixx_shoes_init(profile) {
+    console.log("선택된 프로필 : " + profile);
+    $(".btn-rixx-continue").addClass("disabled");
+    g_shoes_slider.allowSlideNext = false;
+    $("input[name=rixx_shoes_brand]:checked").prop("checked", false);
+    $("input[name=rixx_shoes_kind]:checked").prop("checked", false);
+    $("input[name=rixx_shoes_size]:checked").prop("checked", false);
+    $("input[name=rixx_shoes_foot_ball]:checked").prop("checked", false);
+
+    r_shoes_brand = rixx_getCookie("r_shoes_brand_" + profile.substr(-1));
+    if (!isEmpty(r_shoes_brand)) {
+      r_shoes_kind = rixx_getCookie("r_shoes_kind_" + profile.substr(-1));
+      r_shoes_size = rixx_getCookie("r_shoes_size_" + profile.substr(-1));
+      r_shoes_foot_ball = rixx_getCookie(
+        "r_shoes_foot_ball_" + profile.substr(-1)
+      );
+
+      eval("$('#" + r_shoes_brand + "').prop('checked',true);");
+      eval("$('#" + r_shoes_kind + "').prop('checked',true);");
+      eval("$('#" + r_shoes_size + "').prop('checked',true);");
+      eval("$('#" + r_shoes_foot_ball + "').prop('checked',true);");
+    } else {
+      r_shoes_brand = "";
+      r_shoes_kind = "";
+      r_shoes_size = "";
+      r_shoes_foot_ball = "";
+    }
+
+    rixx_shoes_contiune_btn_flag();
+  }
+
+  function rixx_shoes_contiune_btn_flag() {
+    if (g_shoes_slider.activeIndex != 0) {
+      $(".sizeChoice-select-profile").addClass("op-hide");
+    } else {
+      $(".sizeChoice-select-profile").removeClass("op-hide");
+    }
+
+    if (!isEmpty(r_shoes_brand)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_shoes_slider.allowSlideNext = false;
+      return;
+    }
+
+    if (!isEmpty(r_shoes_kind)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_shoes_slider.allowSlideNext = false;
+      return;
+    }
+
+    if (!isEmpty(r_shoes_size)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_shoes_slider.allowSlideNext = false;
+      return;
+    }
+
+    if (!isEmpty(r_shoes_foot_ball)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_shoes_slider.allowSlideNext = false;
+      return;
+    }
+  }
+
+  // 사용자가 선택한 정보를 쿠키에 저장
+  function rixx_shoes_save_fn() {
+    if (r_shoes_profile == "rixx_shoes_profile_1") {
+      rixx_setCookie("r_shoes_brand_1", r_shoes_brand, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_kind_1", r_shoes_kind, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_size_1", r_shoes_size, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_foot_ball_1", r_shoes_foot_ball, {
+        "max-age": 31536000,
+      });
+    } else if (r_shoes_profile == "rixx_shoes_profile_2") {
+      rixx_setCookie("r_shoes_brand_2", r_shoes_brand, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_kind_2", r_shoes_kind, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_size_2", r_shoes_size, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_foot_ball_2", r_shoes_foot_ball, {
+        "max-age": 31536000,
+      });
+    } else if (r_shoes_profile == "rixx_shoes_profile_3") {
+      rixx_setCookie("r_shoes_brand_3", r_shoes_brand, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_kind_3", r_shoes_kind, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_size_3", r_shoes_size, { "max-age": 31536000 });
+      rixx_setCookie("r_shoes_foot_ball_3", r_shoes_foot_ball, {
+        "max-age": 31536000,
+      });
+    }
+
+    var regex = /[^0-9]/g;
+    var r_shoes_brand_str = "";
+    var r_shoes_kind_str = "";
+    var r_shoes_size_str = "";
+    var r_shoes_foot_ball_str = "";
+
+    r_shoes_brand_str = r_shoes_brand.split("_")[3];
+
+    if (r_shoes_kind == "rixx_shoes_size_Sneakers") {
+      r_shoes_kind_str = "스니커즈";
+    } else if (r_shoes_kind == "rixx_shoes_size_Running") {
+      r_shoes_kind_str = "러닝화";
+    } else if (r_shoes_kind == "rixx_shoes_size_Boots") {
+      r_shoes_kind_str = "부츠";
+    } else if (r_shoes_kind == "rixx_shoes_size_Basketball") {
+      r_shoes_kind_str = "농구화";
+    } else if (r_shoes_kind == "rixx_shoes_size_Flip") {
+      r_shoes_kind_str = "슬리퍼";
+    } else if (r_shoes_kind == "rixx_shoes_size_Loafers") {
+      r_shoes_kind_str = "구두";
+    }
+
+    r_shoes_size_str = r_shoes_size.replace(regex, "");
+    if (r_shoes_size_str == "220") r_shoes_size_str = "34 size, 220mm";
+    if (r_shoes_size_str == "225") r_shoes_size_str = "35 size, 225mm";
+    if (r_shoes_size_str == "230") r_shoes_size_str = "36 size, 230mm";
+    if (r_shoes_size_str == "235") r_shoes_size_str = "37 size, 235mm";
+    if (r_shoes_size_str == "240") r_shoes_size_str = "38 size, 240mm";
+    if (r_shoes_size_str == "245") r_shoes_size_str = "39 size, 245mm";
+    if (r_shoes_size_str == "250") r_shoes_size_str = "40 size, 250mm";
+    if (r_shoes_size_str == "255") r_shoes_size_str = "40 size, 255mm";
+    if (r_shoes_size_str == "260") r_shoes_size_str = "41 size, 260mm";
+    if (r_shoes_size_str == "265") r_shoes_size_str = "42 size, 265mm";
+    if (r_shoes_size_str == "270") r_shoes_size_str = "42 size, 270mm";
+    if (r_shoes_size_str == "275") r_shoes_size_str = "43 size, 275mm";
+    if (r_shoes_size_str == "280") r_shoes_size_str = "44 size, 280mm";
+    if (r_shoes_size_str == "285") r_shoes_size_str = "45 size, 285mm";
+    if (r_shoes_size_str == "290") r_shoes_size_str = "46 size, 290mm";
+
+    if (r_shoes_foot_ball == "rixx_shoes_size_foot_ball_s") {
+      r_shoes_foot_ball_str = "좁음";
+    } else if (r_shoes_foot_ball == "rixx_shoes_size_foot_ball_m") {
+      r_shoes_foot_ball_str = "보통";
+    } else if (r_shoes_foot_ball == "rixx_shoes_size_foot_ball_l") {
+      r_shoes_foot_ball_str = "넓음";
+    }
+
+    var option_str = `Shoes : ${r_shoes_size_str}/ ${r_shoes_brand_str}/ ${r_shoes_kind_str}/ ${r_shoes_foot_ball_str}`;
+    console.log(option_str);
+    $("div.option_box input").val(option_str);
+    $("div.option_box input").change();
+    $("#rixxSizePop").modal("hide");
+  }
+</script>
+
+<script>
+  // 의류 사이즈 모달 시작
+
+  function rixx_getCookie(name) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+    return unescape(matches ? decodeURIComponent(matches[1]) : undefined);
+  }
+
+  function rixx_setCookie(name, value, options = {}) {
+    options = {
+      path: "/",
+      // 필요한 경우, 옵션 기본값을 설정할 수도 있습니다.
+      ...options,
+    };
+
+    if (options.expires instanceof Date) {
+      options.expires = options.expires.toUTCString();
+    }
+
+    let updatedCookie =
+      encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+    for (let optionKey in options) {
+      updatedCookie += "; " + optionKey;
+      let optionValue = options[optionKey];
+      if (optionValue !== true) {
+        updatedCookie += "=" + optionValue;
+      }
+    }
+
+    document.cookie = updatedCookie;
+    // 쿠키 셋팅 예시
+    //setCookie('user', 'John', {secure: true, 'max-age': 3600});
+  }
+
+  function isEmpty(str) {
+    if (
+      typeof str == "undefined" ||
+      str == "undefined" ||
+      str == null ||
+      str == ""
+    )
+      return true;
+    else return false;
+  }
+
+  // 의류 사이즈 모달 내부 컨텐츠
+
+  var rixxSizePop_contents =
+    '<!-- Modal --> <div class="modal" id="rixxSizePop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"> <div class="modal-dialog" role="document"> <div class="modal-content"> <!-- 20230217 htmlbody --> <div class="modal-body"><form id="rixx_clothes_form"> <div class="rixx-sizeChoice-container"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <div class="sizeChoice-select-profile"> <div class="sizeChoice-select-col"> <input type="radio" id="rixx_clothes_profile_1" onchange="rixx_clothes_profile_fn(this)" name="rixx_clothes_profile" class="sr-only" checked="checked"> <label for="rixx_clothes_profile_1" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필1</span> </label> </div> <div class="sizeChoice-select-col"> <input type="radio" id="rixx_clothes_profile_2" onchange="rixx_clothes_profile_fn(this)" name="rixx_clothes_profile" class="sr-only"> <label for="rixx_clothes_profile_2" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필2</span> </label> </div> <div class="sizeChoice-select-col"> <input type="radio" id="rixx_clothes_profile_3" onchange="rixx_clothes_profile_fn(this)" name="rixx_clothes_profile" class="sr-only"> <label for="rixx_clothes_profile_3" class="btn_pay btn-text" data-toggle="modal"> <span class="text-btn-pay">프로필3</span> </label> </div> </div> </div> <div class="sizeChoice-swiper-top op-hide"> <div class="wrap-sizeChoice-swiper-top-lead"> <div class="sizeChoice-swiper-top-chk"></div> <p class="sizeChoice-swiper-top-lead">고객님의 <strong class="rixx-swiper-top-cnt">체형</strong>을 토대로 정확한 사이즈 추천해드리기 위해 질문이 <span class="rixx-swiper-top-page-cnt">3</span>개 남았습니다.</p> </div> <div class="swiper-pagination"></div> </div> <div class="rixx-sizeChoice-prdImg"> <img id="rixx-sizeChoice-thumbnail" src="https://cdn.imweb.me/thumbnail/20230217/c0faa7157a56b.jpg" alt=""> </div> <!-- Slider main container --> <div class="rixx-sizeChoice-condition"> <div class="swiper sizeChoice-swiper-main"> <!-- Additional required wrapper --> <div class="swiper-wrapper"> <!-- Slides --> <!-- 신체 사이즈 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-size"> <h3 class="rixx-sizeChoice-title">신체 사이즈</h3> <div class="rixx-sizeChoice-lead"> 고객님의 신체 사이즈를 토대로 알맞은 사이즈를 추천해드려요. </div> <ul class="rixx-sizeChoice-form"> <li class="rixx-sizeChoice-form-items"> <label for="rixx_clothes_height" class="rixx-sizeChoice-form-label">키</label> <div class="rixx-sizeChoice-form-wrap"> <div class="rixx-sizeChoice-formcontrol"> <input type="number" id="rixx_clothes_height" oninput="rixx_clothes_size(this)"class="rixx-sizeChoice-form-input" min="25" max="250"> <span class="rixx-sizeChoice-form-unit">cm</span> </div> <div class="rixx-sizeChoice-form-switch clearfix"> <span class="rixx-sizeChoice-form-switch-title-default">CM</span><input type="checkbox" id="rixx-sizeChoice-form-cm" class="rixx-sizeChoice-form-check" title="단위 선택" onchange="rixxSizeUnit(this);"><span class="rixx-sizeChoice-form-switch-title">IN</span> </div> </div> </li> <li class="rixx-sizeChoice-form-items"> <label for="rixx_clothes_weight" class="rixx-sizeChoice-form-label">몸무게</label> <div class="rixx-sizeChoice-form-wrap"> <div class="rixx-sizeChoice-formcontrol"> <input type="number" id="rixx_clothes_weight" oninput="rixx_clothes_size(this)" class="rixx-sizeChoice-form-input"> <span class="rixx-sizeChoice-form-unit">kg</span> </div> <div class="rixx-sizeChoice-form-switch clearfix"> <span class="rixx-sizeChoice-form-switch-title-default">KG</span><input type="checkbox" id="rixx-sizeChoice-form-kg" class="rixx-sizeChoice-form-check" title="단위 선택" onchange="rixxSizeUnit(this);"><span class="rixx-sizeChoice-form-switch-title">LBS</span> </div> </div> </li> </ul> </div> <!-- //신체 사이즈 --> <!-- 가슴모양 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-chest"> <h3 class="rixx-sizeChoice-title">어깨 너비</h3> <div class="rixx-sizeChoice-lead">고객님의 어깨 너비를 선택해주세요.</div> <div class="rixx-sizeChoice-form rixx-flex-box"> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_chest" id="rixx_clothes_chest_s" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_chest_s" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/d12d55946664b.png" alt=""></p> <p class="sizeChoice-chest-label-text">좁음</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_chest" id="rixx_clothes_chest_m" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_chest_m" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/4c334829fe7b0.png" alt=""></p> <p class="sizeChoice-chest-label-text">보통</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_chest" id="rixx_clothes_chest_l" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_chest_l" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/162b3ff8cdcd8.png" alt=""></p> <p class="sizeChoice-chest-label-text">넓음</p> </label> </div> </div> </div> <!-- //가슴모양 --> <!-- 가슴모양 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-belly"> <h3 class="rixx-sizeChoice-title">배 모양</h3> <div class="rixx-sizeChoice-lead">고객님의 배 모양을 선택해주세요.</div> <div class="rixx-sizeChoice-form rixx-flex-box"> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_belly" id="rixx_clothes_belly_s" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_belly_s" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/25bd80dc437f2.png" alt=""></p> <p class="sizeChoice-chest-label-text">마름</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_belly" id="rixx_clothes_belly_m" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_belly_m" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/bb4807430e6b2.png" alt=""></p> <p class="sizeChoice-chest-label-text">보통</p> </label> </div> <div class="rixx-sizeChoice-chest-items"> <input type="radio" name="rixx_clothes_belly" id="rixx_clothes_belly_l" class="rixx-sizeChoice-chest-radio"> <label for="rixx_clothes_belly_l" class="rixx-sizeChoice-chest-label"> <p><img src="https://cdn.imweb.me/upload/S20230518820d16215774e/16ac31a009524.png" alt=""></p> <p class="sizeChoice-chest-label-text">통통함</p> </label> </div> </div> </div> <!-- //가슴모양 --> <!-- 나이 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-age"> <h3 class="rixx-sizeChoice-title">나이</h3> <div class="rixx-sizeChoice-lead">고객님의 나이 정보는 알맞은 사이즈를 추천하는데 도움이 됩니다.</div> <ul class="rixx-sizeChoice-form"> <li class="rixx-sizeChoice-form-items"> <div class="rixx-sizeChoice-form-wrap"> <div class="rixx-sizeChoice-formcontrol"> <input type="number" id="rixx_clothes_age" oninput="rixx_clothes_age_fn(this)" class="rixx-sizeChoice-form-input"> <span class="rixx-sizeChoice-form-unit">세</span> </div> </div> </li> </ul> </div> <!-- //나이 --> <!-- 상/하의 20230402사이즈 선택 tabs 추가 //20230403 class 수정 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-size-gender"> <form class="md-form"> <div class="form_area"> <div class="fieldset compulsory"> <label>성별</label> <ul class="md-button-radio-group half nav-tabs"> <li> <input type="radio" id="rixx_clothes_gender_w" name="rixx_clothes_gender" value="rixx_clothes_gender_w" class="button_radio" checked> <label for="rixx_clothes_gender_w"><span class="img"></span>여성</label> <a href="#home" data-toggle="tab" class="hidden-tab-button" type="button" role="tab" aria-controls="home" aria-selected="true"><span class="sr-only">여성</span></a> </li> <li> <input type="radio" id="rixx_clothes_gender_m" name="rixx_clothes_gender" value="rixx_clothes_gender_m" class="button_radio"> <label for="rixx_clothes_gender_m"><span class="img"></span>남성</label> <a href="#profile" data-toggle="tab" class="hidden-tab-button" type="button" role="tab" aria-controls="profile" aria-selected="false"><span class="sr-only">남성</span></a> </li> </ul> </div> <div class="tab-content"> <!-- 여성 --> <div class="fieldset compulsory tab-pane fade active in" id="home" role="tabpanel"> <label>상의</label> <div class="md-button-radio-group fluid"> <p> <input type="radio" id="rixx_clothes_top_w_44" name="rixx_clothes_top_w" value="rixx_clothes_top_w_44" class="button_radio"> <label for="rixx_clothes_top_w_44">44</label> </p> <p> <input type="radio" id="rixx_clothes_top_w_55" name="rixx_clothes_top_w" value="rixx_clothes_top_w_55" class="button_radio"> <label for="rixx_clothes_top_w_55">55</label> </p> <p> <input type="radio" id="rixx_clothes_top_w_66" name="rixx_clothes_top_w" value="rixx_clothes_top_w_66" class="button_radio"> <label for="rixx_clothes_top_w_66">66</label> </p> <p> <input type="radio" id="rixx_clothes_top_w_77" name="rixx_clothes_top_w" value="rixx_clothes_top_w_77" class="button_radio"> <label for="rixx_clothes_top_w_77">77</label> </p> <p> <input type="radio" id="rixx_clothes_top_w_88" name="rixx_clothes_top_w" value="rixx_clothes_top_w_88" class="button_radio"> <label for="rixx_clothes_top_w_88">88</label> </p> </div> <label >하의</label> <div class="md-button-radio-group fluid"> <p> <input type="radio" id="rixx_clothes_pants_w_24" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_24" class="button_radio"> <label for="rixx_clothes_pants_w_24">24</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_25" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_25" class="button_radio"> <label for="rixx_clothes_pants_w_25">25</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_26" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_26" class="button_radio"> <label for="rixx_clothes_pants_w_26">26</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_27" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_27" class="button_radio"> <label for="rixx_clothes_pants_w_27">27</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_28" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_28" class="button_radio"> <label for="rixx_clothes_pants_w_28">28</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_29" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_29" class="button_radio"> <label for="rixx_clothes_pants_w_29">29</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_30" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_30" class="button_radio"> <label for="rixx_clothes_pants_w_30">30</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_31" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_31" class="button_radio"> <label for="rixx_clothes_pants_w_31">31</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_32" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_32" class="button_radio"> <label for="rixx_clothes_pants_w_32">32</label> </p> <p> <input type="radio" id="rixx_clothes_pants_w_33" name="rixx_clothes_pants_w" value="rixx_clothes_pants_w_33" class="button_radio"> <label for="rixx_clothes_pants_w_33">33</label> </p> </div> </div> <!-- //여성 --> <!-- 남성 --> <div class="fieldset compulsory tab-pane fade" id="profile" role="tabpanel"> <label >상의</label> <div class="md-button-radio-group fluid"> <p> <input type="radio" id="rixx_clothes_top_m_95" name="rixx_clothes_top_m" value="rixx_clothes_top_m_95" class="button_radio"> <label for="rixx_clothes_top_m_95">95</label> </p> <p> <input type="radio" id="rixx_clothes_top_m_100" name="rixx_clothes_top_m" value="rixx_clothes_top_m_100" class="button_radio"> <label for="rixx_clothes_top_m_100">100</label> </p> <p> <input type="radio" id="rixx_clothes_top_m_105" name="rixx_clothes_top_m" value="rixx_clothes_top_m_105" class="button_radio"> <label for="rixx_clothes_top_m_105">105</label> </p> <p> <input type="radio" id="rixx_clothes_top_m_110" name="rixx_clothes_top_m" value="rixx_clothes_top_m_110" class="button_radio"> <label for="rixx_clothes_top_m_110">110</label> </p> <p> <input type="radio" id="rixx_clothes_top_m_115" name="rixx_clothes_top_m" value="rixx_clothes_top_m_115" class="button_radio"> <label for="rixx_clothes_top_m_115">115</label> </p> </div> <label>하의</label> <div class="md-button-radio-group fluid"> <p> <input type="radio" id="rixx_clothes_pants_m_25" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_25" class="button_radio"> <label for="rixx_clothes_pants_m_25">25</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_26" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_26" class="button_radio"> <label for="rixx_clothes_pants_m_26">26</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_27" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_27" class="button_radio"> <label for="rixx_clothes_pants_m_27">27</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_28" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_28" class="button_radio"> <label for="rixx_clothes_pants_m_28">28</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_29" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_29" class="button_radio"> <label for="rixx_clothes_pants_m_29">29</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_30" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_30" class="button_radio"> <label for="rixx_clothes_pants_m_30">30</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_32" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_32" class="button_radio"> <label for="rixx_clothes_pants_m_32">32</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_34" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_34" class="button_radio"> <label for="rixx_clothes_pants_m_34">34</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_36" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_36" class="button_radio"> <label for="rixx_clothes_pants_m_36">36</label> </p> <p> <input type="radio" id="rixx_clothes_pants_m_38" name="rixx_clothes_pants_m" value="rixx_clothes_pants_m_38" class="button_radio"> <label for="rixx_clothes_pants_m_38">38</label> </p> </div> </div> <!-- //남성 --> </div> </div> </form> </div> <!-- //상/하의 20230402사이즈 선택 tabs 추가 --> <!-- 선호하는 핏 --> <div class="swiper-slide sizeChoice-swiper-main-slide sizeChoice-fit"> <h3 class="rixx-sizeChoice-title">선호하는 핏</h3> <div class="rixx-sizeChoice-lead">원하는 핏을 선택하세요.</div> <div class="rixx-sizeChoice-form"> <div class="rixx-range-slider"> <div class="range-slider" style="--min:0; --max:6; --step:1; --value:3; --text-value:\'보통\';"> <em class="range-slide-start-label">타이트함</em> <input type="range" id="rixx_clothes_fitRange" min="0" max="6" step="1" value="3" oninput="fitRange(this);"> <output></output> <div class="range-slider__progress"></div> <em class="range-slide-end-label">매우 헐렁함</em> </div> </div> </div> </div> <!-- //선호하는 핏 --> </div> </div> </div> <div class="rixx-sizeChoice-btn-wrap"> <div class="rixx-sizeChoice-btn-left"> <div class="swiper-button-prev"></div> </div> <div class="rixx-sizeChoice-btn-right rixx-sizeChoice-btn-continue"><button type="button" class="btn-rixx-continue disabled">계속하기</button></div> <div class="rixx-sizeChoice-btn-right rixx-sizeChoice-btn-save"><button type="button" id="rixx_clothes_save" class="btn-rixx-continue">저장</button></div> </div> </div></form> </div> <!-- //20230217 htmlbody --> </div> </div> </div> <!-- //Modal -->';
+
+  // 의류 사이즈 모달 내부 변수
+  var r_clothes_input_flag = "";
+  var color_origin_onchange = [];
+  var color_origin_onchange_m = [];
+  var g_slider = "";
+  var r_clothes_profile = "rixx_clothes_profile_1";
+  var r_clothes_height = "";
+  var r_clothes_weight = "";
+  var r_clothes_chest = "";
+  var r_clothes_belly = "";
+  var r_clothes_age = "";
+  var r_clothes_gender = "rixx_clothes_gender_w";
+  var r_clothes_top = "";
+  var r_clothes_pants = "";
+  var r_clothes_fitRange = "3";
+  var r_clothes_color_btn_click_flag = false;
+  var r_clothes_device = "";
+  var pageUrl = window.location.href;
+
+  function get_rixxClothesSizeUrlCheck(url) {
+    result = false;
+
+    // 의류 카테고리에 해당하는 idx
+    check_url = [
+      "1152",
+      "151",
+      "2819",
+      "1870",
+      "1961",
+      "1962",
+      "1963",
+      "1964",
+      "25537",
+      "1966",
+      "1965",
+      "1967",
+      "2475",
+      "1968",
+      "1969",
+      "105",
+      "478973669",
+      "2006",
+      "2007",
+      "2008",
+      "1814",
+      "2246",
+      "2247",
+      "2248",
+      "2249",
+      "1813",
+      "2128",
+      "2676",
+      "17850",
+      "2848",
+      "2849",
+      "2850",
+      "26183",
+      "2851",
+      "2852",
+      "2853",
+      "2854",
+      "2855",
+      "26189",
+      "91",
+      "2002",
+      "2003",
+      "2004",
+      "2005",
+      "1811",
+      "2235",
+      "2236",
+      "2237",
+      "2238",
+      "1810",
+      "2233",
+      "123",
+      "2014",
+      "25884",
+      "2016",
+      "25886",
+      "1817",
+      "2255",
+      "2256",
+      "2257",
+      "2258",
+      "1816",
+      "25893",
+      "906",
+      "633",
+      "25913",
+      "25914",
+      "25915",
+      "722",
+      "2293",
+      "2294",
+      "2295",
+      "2296",
+      "251910701",
+      "2163",
+      "816",
+      "714",
+      "25945",
+      "25946",
+      "25947",
+      "1747",
+      "2285",
+      "2286",
+      "2287",
+      "2288",
+      "715",
+      "716",
+      "2198",
+      "25553",
+      "26184",
+      "3014",
+      "2313",
+      "25560",
+      "2342",
+      "2314",
+      "2344",
+      "2343",
+      "2315",
+      "2316",
+      "2340",
+      "2820",
+      "5260",
+      "4694",
+      "5262",
+      "5263",
+      "2821",
+      "5266",
+      "59390811",
+      "397937959",
+      "2822",
+      "2823",
+      "16721",
+      "2827",
+      "2828",
+      "2824",
+      "16058",
+      "8902",
+      "24965",
+      "24967",
+      "15146",
+      "8903",
+      "8904",
+      "8905",
+      "15149",
+      "2079603927",
+      "353760498",
+      "8906",
+      "1517255881",
+      "413283684",
+      "8908",
+      "507610522",
+      "50894372",
+      "15159",
+      "2044897425",
+      "8907",
+      "1602845381",
+      "8914",
+      "8913",
+      "89",
+      "1",
+      "8909",
+      "8910",
+      "8915",
+      "8923",
+      "8917",
+      "25611",
+      "22520",
+      "25854",
+      "25739",
+      "25740",
+      "25741",
+      "25742",
+      "25743",
+      "25744",
+      "25745",
+      "25746",
+      "25747",
+      "25748",
+      "25749",
+      "44159",
+      "33411",
+      "33417",
+      "33417",
+      "44301",
+      "33424",
+      "33421",
+      "33426",
+      "33422",
+      "33426",
+      "33420",
+      "33418",
+      "33419",
+      "33412",
+      "33413",
+      "33414",
+      "33415",
+      "33416",
+      "33423",
+      "293516601",
+      "33414",
+      "33425",
+    ];
+
+    if (window.location.href.indexOf("/?idx=9423") != -1) {
+      result = true;
+    }
+    result = true; //어차피 의류 카테고리 아니면 버튼 자체가 없음
+    return result;
+  }
+
+  function optionController() {
+    if (
+      get_rixxClothesSizeUrlCheck(window.location.href) &&
+      pageUrl.indexOf("idx") != -1
+    ) {
+      //폰트임시 의류
+      if ($("#rixx_s_h_clothes").length > 0) {
+        $("#rixx_s_h_clothes").css("font-size", "14px");
+      }
+      $('div.option_title.text-bold:contains("옵션정보")')
+        .parent()
+        .parent()
+        .css("display", "none");
+      $('div.option_title.text-15:contains("필수옵션")')
+        .parent()
+        .css("display", "none");
+
+      // 장바구니 버튼 제어
+      $("a.btn.defualt-cart").attr(
+        "onclick",
+        "rixx_clothes_buy_btn_Controller_m()"
+      );
+
+      //구매버튼 제어
+      $($("a.btn.buy.bg-brand._btn_buy")[0]).attr(
+        "onclick",
+        "rixx_clothes_buy_btn_Controller()"
+      );
+      $("a.btn.defualt.buy.bg-brand").attr(
+        "onclick",
+        "rixx_clothes_buy_btn_Controller_m()"
+      );
+      //rixx_clothes_color_btn_Controller();
+      rixx_clothes_color_btn_Controller2();
+    }
+  }
+
+  // 의류 카테고리 구매 버튼 핸들러
+  function rixx_clothes_buy_btn_Controller() {
+    const existSizeBtn = document.getElementsByClassName(
+      "btn-rixx-size-setting"
+    )[0];
+
+    // 사이즈 설정하기 버튼이 없을 경우
+    if (!existSizeBtn) {
+      SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+    } else {
+      var origin_onclick =
+        "SITE_SHOP_DETAIL.addOrder('normal', '" + pageUrl + "')";
+
+      if (r_clothes_device == "pc") {
+        if (isEmpty(r_clothes_pants)) {
+          open_new_size_clothes_table();
+          return;
+        } else {
+          // 아임웹 실제 구매 버튼 핸들러 함수로 변경시켜줌.
+          SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+          //eval(origin_onclick);
+        }
+      }
+      if (r_clothes_device == "m") {
+        if (!isEmpty(r_clothes_pants)) {
+          SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+          //eval(origin_onclick);
+        } else if (!r_clothes_color_btn_click_flag) {
+          //} else if (!(document.querySelector('#prod_options > div:nth-child(1) > div > div.option_box_wrap > div.option_box > input').value !== "" || document.querySelector('._selected_require_option') !== null)) {
+          open_new_size_clothes_table();
+          SITE_SHOP_DETAIL.showMobileOptions();
+          return;
+        } else {
+          open_new_size_clothes_table();
+          SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+          //eval(origin_onclick);
+        }
+      }
+    }
+  }
+
+  // 모바일 전용 의류 구매 버튼 핸들러
+  function rixx_clothes_buy_btn_Controller_m() {
+    // $("body").append(rixxSizePop_contents); //body에 사이즈 선택 팝업 추가
+
+    var origin_onclick = "SITE_SHOP_DETAIL.showMobileOptions('buy')";
+
+    if (!r_clothes_color_btn_click_flag) {
+      open_new_size_clothes_table();
+      SITE_SHOP_DETAIL.showMobileOptions();
+      return;
+    } else {
+      SITE_SHOP_DETAIL.confirmOrderWithCartItems("normal", pageUrl);
+      //eval(origin_onclick);
+    }
+  }
+  function rixx_clothes_color_onchange_fn() {
+    r_clothes_height = "";
+    r_clothes_weight = "";
+    r_clothes_chest = "";
+    r_clothes_belly = "";
+    r_clothes_age = "";
+    r_clothes_gender = "rixx_clothes_gender_w";
+    r_clothes_top = "";
+    r_clothes_pants = "";
+    r_clothes_fitRange = "3";
+  }
+  function rixx_clothes_color_btn_get_onchange() {
+    if (isEmpty(color_origin_onchange)) {
+      var color_btn = $("label[data-opttype=color] > input[type=radio]");
+      if (color_btn.length != 0) {
+        for (var i = 0; i < color_btn.length; i++) {
+          if (color_btn.length != 0) {
+            color_origin_onchange.push($(color_btn[0]).attr("onchange"));
+          }
+        }
+      }
+    }
+    if (isEmpty(color_origin_onchange_m)) {
+      var color_dropdown = $('a.dropdown-toggle:contains("색상")').siblings(
+        "div.dropdown-menu"
+      );
+      if (color_dropdown.length != 0) {
+        color_dropdown_m = color_dropdown[0].children;
+        for (var i = 0; i < color_dropdown_m.length; i++) {
+          color_origin_onchange_m.push(
+            $(color_dropdown_m[i].children[0]).attr("onclick")
+          );
+        }
+      }
+    }
+  }
+  function rixx_clothes_color_btn_Controller() {
+    var color_btn = $("label[data-opttype=color] > input[type=radio]");
+    if (color_btn.length != 0) {
+      for (var i = 0; i < color_btn.length; i++) {
+        $(color_btn[i]).attr(
+          "onchange",
+          "rixx_clothes_color_onchange_fn();" + color_origin_onchange[i]
+        );
+      }
+      temp_r_clothes_device = "pc";
+    } else {
+      temp_r_clothes_device = "pc";
+    }
+    var color_dropdown = $('a.dropdown-toggle:contains("색상")').siblings(
+      "div.dropdown-menu"
+    );
+    if (color_dropdown.length != 0) {
+      color_dropdown_m = color_dropdown[0].children;
+      for (var i = 0; i < color_dropdown_m.length; i++) {
+        $(color_dropdown[i]).attr(
+          "onclick",
+          "rixx_clothes_color_onchange_fn();r_clothes_color_btn_click_flag=true;" +
+            color_origin_onchange_m[i]
+        );
+      }
+      temp_r_clothes_device = "m";
+    } else {
+      temp_r_clothes_device = "pc";
+    }
+    if (isEmpty(r_clothes_device)) {
+      r_clothes_device = temp_r_clothes_device;
+    }
+  }
+  function rixx_clothes_color_btn_Controller2() {
+    if (window.innerWidth > 768) {
+      temp_r_clothes_device = "pc";
+    } else {
+      temp_r_clothes_device = "m";
+    }
+    if (isEmpty(r_clothes_device)) {
+      r_clothes_device = temp_r_clothes_device;
+    }
+  }
+
+  function append_clothes_set_btn2() {
+    clothes_size_btn = document.createElement("p");
+    clothes_size_btn.setAttribute("class", "sizeChoice_select_profile_n");
+    clothes_size_btn.setAttribute(
+      "style",
+      "display:block;flex:1;margin-top: 12px; margin-bottom: 12px; padding-top: 11px; padding-bottom: 11px; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb;"
+    );
+    // clothes_size_btn.innerHTML="<button type='button' id='rixx_clothes_modal_btn' style='background-color:black; width:130px; padding: 7px 0; height:35px; font-weight:700; cursor:pointer; text-align:center; display:inline-block;border-radius:5px; color:white' onclick='open_new_size_clothes_table()'>사이즈 설정</button>";
+    clothes_size_btn.innerHTML = `<p class="wrap-rixx-size-setting-btn" style="margin-bottom: 0px !important;">
+        <button type="button" class="btn-rixx-size-setting" id="rixx_clothes_modal_btn" onclick="open_new_size_clothes_table()">
+          <span class="rixx-size-setting-text" style="font-family: 'montserrat', 'Noto Sans Korean', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic', 'Noto Sans', 'sans-serif';font-size: 14px;font-style: normal;font-weight: 600; letter-spacing: -0.64px; line-height: 19.2px; text-size-adjust: 100%;">
+            사이즈 설정
+          </span>
+        </button>
+        </p>`;
+
+    // 사이즈 설정 버튼 셋팅해줌
+    $("#prod_selected_options").before(clothes_size_btn);
+  }
+
+  //선호 핏 range
+
+  var fitRange = function (e) {
+    r_clothes_fitRange = $("#rixx_clothes_fitRange").val();
+    var fitRangeLabel = [
+      "매우타이트함",
+      "타이트함",
+      "약간타이트함 ",
+      "정사이즈",
+      "약간 헐렁함",
+      "헐렁함",
+      "매우헐렁함",
+    ];
+    e.parentNode.style.setProperty("--value", e.value);
+    e.parentNode.style.setProperty(
+      "--text-value",
+      JSON.stringify(fitRangeLabel[e.value])
+    );
+  };
+
+  function fitRange_fn(e) {
+    var fitRangeLabel = [
+      "매우타이트함",
+      "타이트함",
+      "약간타이트함 ",
+      "정사이즈",
+      "약간 헐렁함",
+      "헐렁함",
+      "매우헐렁함",
+    ];
+    e?.parentNode?.style.setProperty("--value", e.value);
+    e?.parentNode?.style.setProperty(
+      "--text-value",
+      JSON.stringify(fitRangeLabel[e.value])
+    );
+  }
+
+  //키, 몸무게 단위 변경
+  var rixxSizeUnit = function (e) {
+    if ($(e).prop("checked") == true) {
+      $(e)
+        .closest(".rixx-sizeChoice-form-wrap")
+        .find(".rixx-sizeChoice-form-unit")
+        .text($(e).siblings(".rixx-sizeChoice-form-switch-title").text());
+    } else {
+      $(e)
+        .closest(".rixx-sizeChoice-form-wrap")
+        .find(".rixx-sizeChoice-form-unit")
+        .text(
+          $(e).siblings(".rixx-sizeChoice-form-switch-title-default").text()
+        );
+    }
+  };
+
+  var open_new_size_clothes_table = function () {
+    const swiper = new Swiper(".sizeChoice-swiper-main", {
+      // Optional parameters
+      loop: false,
+      observeParents: true,
+      observer: true,
+      allowTouchMove: false,
+      touchRatio: false,
+      allowSlideNext: false,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      // Navigation arrows
+      navigation: {
+        nextEl: ".rixx-sizeChoice-btn-continue",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+        activeIndexChange: function () {},
+        slideChange: function () {
+          this.allowSlideNext = false;
+          $(".btn-rixx-continue").addClass("disabled");
+
+          // if (this.activeIndex != 0) {
+          //   $(".sizeChoice-select-profile").addClass("op-hide");
+          // } else {
+          //   $(".sizeChoice-select-profile").removeClass("op-hide");
+          // }
+
+          if (
+            this.slides.eq(this.activeIndex).hasClass("sizeChoice-age") ||
+            this.slides.eq(this.activeIndex).hasClass("sizeChoice-fit") ||
+            this.slides.eq(this.activeIndex).hasClass("sizeChoice-size-gender")
+          ) {
+            $(".rixx-swiper-top-page-cnt").text(
+              this.slides.length - this.activeIndex
+            );
+            $(".sizeChoice-swiper-top").removeClass("op-hide");
+          } else {
+            $(".sizeChoice-swiper-top").addClass("op-hide");
+          } //남은 질문 갯수 영역 show hide//20230402사이즈 선택 tabs 추가 수정//20230403 sizeChoice-size class 수정
+
+          if (this.activeIndex == this.slides.length - 1) {
+            $(".rixx-sizeChoice-btn-continue").addClass("hide");
+            $(".rixx-sizeChoice-btn-save").addClass("show");
+          } else {
+            $(".rixx-sizeChoice-btn-continue").removeClass("hide");
+            $(".rixx-sizeChoice-btn-save").removeClass("show");
+          }
+          //마지막 slide일 경우 계속하기 버튼 숨김, 저장버튼 노출 20230401 추가
+          rixx_clothes_contiune_btn_flag();
+        },
+      },
+    }); //swiper
+
+    // 선호하는 핏 range
+    $(".swiper .range-slider").on("mousedown touchmove", function () {
+      swiper.allowTouchMove = false;
+      swiper.update();
+    });
+
+    $(".swiper .range-slider").on("mouseup touchend", function () {
+      swiper.allowTouchMove = true;
+      swiper.update();
+    });
+    // 선호하는 핏 range
+
+    $("#rixx_clothes_height").on("change", function () {
+      var uninIpt = $(this).siblings(".rixx-sizeChoice-form-unit").text();
+      $("#test").text($(this).val() + uninIpt);
+    }); //input value test
+
+    $("#rixxSizePop").modal("show");
+
+    $(".nav-tabs")
+      .find(".button_radio")
+      .on("change", function () {
+        if ($(this).prop("checked") == true) {
+          $(this).siblings(".hidden-tab-button").trigger("click");
+        }
+      }); // 20230402사이즈 선택 tabs 추가
+    $("#rixxSizePop").on("hidden.bs.modal", function (e) {
+      $(".rixx-sizeChoice-btn-continue").removeClass("hide");
+      $(".rixx-sizeChoice-btn-save").removeClass("show");
+      $(".sizeChoice-swiper-top").addClass("op-hide");
+    }); //20230402 모달 close시 버튼 reset 추가
+    $("#rixx-sizeChoice-thumbnail").attr(
+      "src",
+      $("div.item._item > img").attr("src")
+    );
+    // 20230407 선호하는 의류사이즈
+    $(".close-rixx-sizeChoice-prefer").on("click", function () {
+      $(".rixx-sizeChoice-prefer").addClass("hide");
+    });
+
+    $(".close-rixxSizePop").on("click", function () {
+      $("#rixxSizePop").modal("hide");
+    });
+    // 20230407 선호하는 의류사이즈
+    // 20230407 신발 사이즈 top
+    $(".sizeChoice-brand")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-brand").text(
+          $(this)
+            .siblings(".btn-sizeChoice-rect")
+            .find(".sizeChoice-rect-label")
+            .text()
+        );
+      }); //브랜드
+
+    $(".sizeChoice-kind")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-kind").text(
+          ", " +
+            $(this)
+              .siblings(".btn-sizeChoice-rect")
+              .find(".sizeChoice-rect-label")
+              .text()
+        );
+      }); //신발종류
+
+    $(".sizeChoice-shoes-size")
+      .find(".sizeChoice-rect-btn-input")
+      .on("change", function () {
+        $(".rixx-swiper-top-shoes-size").text(
+          ", " +
+            $(this)
+              .siblings(".btn-sizeChoice-rect")
+              .find(".sizeChoice-rect-label")
+              .text() +
+            "사이즈"
+        );
+      }); //신발사이즈
+    // 20230407 신발 사이즈 top
+    g_slider = swiper;
+
+    rixx_clothes_contiune_btn_flag();
+    rixx_clothes_init(r_clothes_profile);
+  };
+
+  //프로필 선택
+  var rixx_clothes_profile_fn = function (e) {
+    if ($(e).prop("checked") == true) {
+      r_clothes_profile = $(e).attr("id");
+      rixx_clothes_init(r_clothes_profile);
+    }
+  };
+
+  function rixx_clothes_init(profile) {
+    // $('#rixx_clothes_form')[0].reset();
+
+    console.log("선택된 프로필 : " + profile);
+    $(".btn-rixx-continue").addClass("disabled");
+    g_slider.allowSlideNext = false;
+
+    $("#rixx_clothes_height").val("");
+    $("#rixx_clothes_weight").val("");
+    $("#rixx_clothes_age").val("");
+    $("input[name=rixx_clothes_chest]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_belly]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_gender]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_top_m]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_pants_m]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_top_w]:checked").prop("checked", false);
+    $("input[name=rixx_clothes_pants_w]:checked").prop("checked", false);
+    $($("#rixx_clothes_fitRange")).val(3);
+    fitRange_fn(document.getElementById("rixx_clothes_fitRange"));
+
+    r_clothes_height = rixx_getCookie("r_clothes_height_" + profile.substr(-1));
+    if (!isEmpty(r_clothes_height)) {
+      r_clothes_weight = rixx_getCookie(
+        "r_clothes_weight_" + profile.substr(-1)
+      );
+      r_clothes_chest = rixx_getCookie("r_clothes_chest_" + profile.substr(-1));
+      r_clothes_belly = rixx_getCookie("r_clothes_belly_" + profile.substr(-1));
+      r_clothes_age = rixx_getCookie("r_clothes_age_" + profile.substr(-1));
+      r_clothes_gender = rixx_getCookie(
+        "r_clothes_gender_" + profile.substr(-1)
+      );
+      r_clothes_top = rixx_getCookie("r_clothes_top_" + profile.substr(-1));
+      r_clothes_pants = rixx_getCookie("r_clothes_pants_" + profile.substr(-1));
+      r_clothes_fitRange = rixx_getCookie(
+        "r_clothes_fitRange_" + profile.substr(-1)
+      );
+
+      $("#rixx_clothes_height").val(r_clothes_height);
+      $("#rixx_clothes_weight").val(r_clothes_weight);
+      eval("$('#" + r_clothes_chest + "').prop('checked',true);");
+      eval("$('#" + r_clothes_belly + "').prop('checked',true);");
+      $("#rixx_clothes_age").val(r_clothes_age);
+      eval("$('#" + r_clothes_gender + "').prop('checked',true);");
+      $(
+        $("#" + r_clothes_gender)
+          .siblings(".hidden-tab-button")
+          .attr("href")
+      )
+        .addClass("active in")
+        .siblings(".tab-pane")
+        .removeClass("active in");
+      eval("$('#" + r_clothes_top + "').prop('checked',true);");
+      eval("$('#" + r_clothes_pants + "').prop('checked',true);");
+      $($("#rixx_clothes_fitRange")).val(r_clothes_fitRange);
+      fitRange_fn(document.getElementById("rixx_clothes_fitRange"));
+    } else {
+      r_clothes_height = "";
+      r_clothes_weight = "";
+      r_clothes_chest = "";
+      r_clothes_belly = "";
+      r_clothes_age = "";
+      r_clothes_gender = "rixx_clothes_gender_w";
+      r_clothes_top = "";
+      r_clothes_pants = "";
+      r_clothes_fitRange = "3";
+    }
+    rixx_clothes_contiune_btn_flag();
+  }
+
+  function rixx_clothes_contiune_btn_flag() {
+    if (g_slider.activeIndex != 0) {
+      $(".sizeChoice-select-profile").addClass("op-hide");
+    } else {
+      $(".sizeChoice-select-profile").removeClass("op-hide");
+    }
+    if (!isEmpty(r_clothes_height) && !isEmpty(r_clothes_weight)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+    if (!isEmpty(r_clothes_chest)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+    if (!isEmpty(r_clothes_belly)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+    if (!isEmpty(r_clothes_age)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+    if (
+      !isEmpty(r_clothes_gender) &&
+      !isEmpty(r_clothes_top) &&
+      !isEmpty(r_clothes_pants)
+    ) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+    if (!isEmpty(r_clothes_fitRange)) {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    } else {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+      return;
+    }
+  }
+
+  // 사이즈 계속하기 버튼 컨트롤
+  var rixx_clothes_size = function (e) {
+    if (
+      isEmpty($("#rixx_clothes_height").val()) ||
+      isEmpty($("#rixx_clothes_weight").val())
+    ) {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+    } else {
+      r_clothes_height = $("#rixx_clothes_height").val();
+      r_clothes_weight = $("#rixx_clothes_weight").val();
+
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    }
+  };
+  var rixx_clothes_age_fn = function (e) {
+    if (isEmpty($("#rixx_clothes_age").val())) {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+    } else {
+      r_clothes_age = $("#rixx_clothes_age").val();
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    }
+  };
+
+  // 사용자가 선택한 의류 사이즈 정보들 쿠키에 셋팅 (임시 저장)
+  function rixx_clothes_save_fn() {
+    if (r_clothes_profile == "rixx_clothes_profile_1") {
+      rixx_setCookie("r_clothes_height_1", r_clothes_height, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_weight_1", r_clothes_weight, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_chest_1", r_clothes_chest, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_belly_1", r_clothes_belly, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_age_1", r_clothes_age, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_gender_1", r_clothes_gender, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_top_1", r_clothes_top, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_pants_1", r_clothes_pants, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_fitRange_1", r_clothes_fitRange, {
+        "max-age": 31536000,
+      });
+    } else if (r_clothes_profile == "rixx_clothes_profile_2") {
+      rixx_setCookie("r_clothes_height_2", r_clothes_height, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_weight_2", r_clothes_weight, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_chest_2", r_clothes_chest, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_belly_2", r_clothes_belly, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_age_2", r_clothes_age, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_gender_2", r_clothes_gender, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_top_2", r_clothes_top, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_pants_2", r_clothes_pants, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_fitRange_2", r_clothes_fitRange, {
+        "max-age": 31536000,
+      });
+    } else if (r_clothes_profile == "rixx_clothes_profile_3") {
+      rixx_setCookie("r_clothes_height_3", r_clothes_height, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_weight_3", r_clothes_weight, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_chest_3", r_clothes_chest, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_belly_3", r_clothes_belly, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_age_3", r_clothes_age, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_gender_3", r_clothes_gender, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_top_3", r_clothes_top, { "max-age": 31536000 });
+      rixx_setCookie("r_clothes_pants_3", r_clothes_pants, {
+        "max-age": 31536000,
+      });
+      rixx_setCookie("r_clothes_fitRange_3", r_clothes_fitRange, {
+        "max-age": 31536000,
+      });
+    }
+
+    // 의류 데이터 변수
+    var r_clothes_chest_str = "";
+    var r_clothes_belly_str = "";
+    var r_clothes_gender_str = "";
+    var r_clothes_top_str = "";
+    var r_clothes_pants_str = "";
+    var r_clothes_gender_str = "";
+    var r_clothes_fitRange_str = "";
+
+    if (r_clothes_chest == "rixx_clothes_chest_s") {
+      r_clothes_chest_str = "좁음";
+    } else if (r_clothes_chest == "rixx_clothes_chest_m") {
+      r_clothes_chest_str = "보통";
+    } else if (r_clothes_chest == "rixx_clothes_chest_l") {
+      r_clothes_chest_str = "넓음";
+    }
+
+    if (r_clothes_belly == "rixx_clothes_belly_s") {
+      r_clothes_belly_str = "마름";
+    } else if (r_clothes_belly == "rixx_clothes_belly_m") {
+      r_clothes_belly_str = "보통";
+    } else if (r_clothes_belly == "rixx_clothes_belly_l") {
+      r_clothes_belly_str = "통통함";
+    }
+
+    if (r_clothes_gender == "rixx_clothes_gender_w") {
+      r_clothes_gender_str = "여성";
+    } else if (r_clothes_gender == "rixx_clothes_gender_m") {
+      r_clothes_gender_str = "남성";
+    }
+
+    var regex = /[^0-9]/g;
+
+    r_clothes_top_str = r_clothes_top.replace(regex, "");
+    if (r_clothes_top_str == "44") r_clothes_top_str = "XS / 44";
+    if (r_clothes_top_str == "55") r_clothes_top_str = "S / 55";
+    if (r_clothes_top_str == "66") r_clothes_top_str = "M / 66";
+    if (r_clothes_top_str == "77") r_clothes_top_str = "L / 77";
+    if (r_clothes_top_str == "88") r_clothes_top_str = "XL / 88";
+    if (r_clothes_top_str == "95") r_clothes_top_str = "S ~ M / 95";
+    if (r_clothes_top_str == "100") r_clothes_top_str = "M ~ L / 100";
+    if (r_clothes_top_str == "105") r_clothes_top_str = "L ~ XL / 105";
+    if (r_clothes_top_str == "110") r_clothes_top_str = "2XL / 110";
+    if (r_clothes_top_str == "115") r_clothes_top_str = "3XL / 115";
+    r_clothes_pants_str = r_clothes_pants.replace(regex, "");
+
+    if (r_clothes_fitRange == "0") {
+      r_clothes_fitRange_str = "매우타이트함";
+    } else if (r_clothes_fitRange == "1") {
+      r_clothes_fitRange_str = "타이트함";
+    } else if (r_clothes_fitRange == "2") {
+      r_clothes_fitRange_str = "약간타이트함";
+    } else if (r_clothes_fitRange == "3") {
+      r_clothes_fitRange_str = "정사이즈";
+    } else if (r_clothes_fitRange == "4") {
+      r_clothes_fitRange_str = "약간헐렁함";
+    } else if (r_clothes_fitRange == "5") {
+      r_clothes_fitRange_str = "헐렁함";
+    } else if (r_clothes_fitRange == "6") {
+      r_clothes_fitRange_str = "매우헐렁함";
+    }
+
+    var option_str = `${r_clothes_height}cm, ${r_clothes_weight}kg, ${r_clothes_top_str}, ${r_clothes_pants_str} / ${r_clothes_chest_str} / ${r_clothes_belly_str} / ${r_clothes_age} / ${r_clothes_gender_str} / ${r_clothes_fitRange_str}`;
+    $("div.option_box input").val(option_str);
+    $("div.option_box input").change();
+    $("#rixxSizePop").modal("hide");
+  }
+
+  function rixx_clothes_top_pants_flag() {
+    if (isEmpty(r_clothes_top) || isEmpty(r_clothes_pants)) {
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+    } else {
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+    }
+  }
+
+  var temp_test =
+    '<style>.banner_alert[data-v-32b7052e]{padding-top:20px}.banner_alert.alert_wrap[data-v-32b7052e]{display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;padding:11px 12px 12px 11px;background-color:#fafafa;border:1px solid rgba(153, 153, 153);border-radius:5px;-webkit-box-shadow:0 2px 6px rgba(0,0,0,.12);box-shadow:0 2px 6px rgba(0,0,0,.12)}.banner_alert.alert_wrap.disabled[data-v-32b7052e]{cursor:default}.banner_alert.banner_alert_content[data-v-32b7052e]{-webkit-box-flex:1;flex:1;margin-right:20px}.banner_alert.banner_alert_content.alert_title[data-v-32b7052e]:after{content:"";display:block;clear:both}.banner_alert.banner_alert_content.care_mark[data-v-32b7052e]{float:left;display:block;line-height:12px;padding:3px 5px 2px;margin-right:4px;border-radius:2px;font-size:12px;letter-spacing:-.06px;font-weight:600;color:#fff;background-color:#ff8824}.banner_alert.banner_alert_content.alert_text[data-v-32b7052e]{overflow:hidden;display:block;line-height:15px;font-size:13px;letter-spacing:-.07px;font-weight:600}.banner_alert.banner_alert_content.alert_subtext[data-v-32b7052e]{overflow:hidden;display:block;line-height:14px;margin-top:4px;font-size:12px;letter-spacing:-.06px;color:rgba(153, 153, 153)}.banner_alert.ico_arrow[data-v-32b7052e]{line-height:0;margin-left:auto}.banner_alert.ico_arrow[class*=ico-][data-v-32b7052e]{width:25px;height:21px;vertical-align:top}.banner_alert.mo[data-v-32b7052e],.banner_alert.sm[data-v-32b7052e]{padding-top:16px;margin:0 24px}.banner_alert.sm[data-v-32b7052e]{margin:0 16px}</style><!--<div id="test"><button type="button"onclick="$("#rixxSizePop2").modal("show");">text</button></div>--><div class="modal"id="rixxSizePop2"tabindex="-1"role="dialog"aria-labelledby="exampleModalLongTitle"aria-hidden="true"><div class="modal-dialog"role="document"><div class="modal-content"><div class="modal-body"><iframe data-v-9f208c4a=""data-v-1a009402=""width="100%"height="500px"src="https://kream.co.kr/api/app/pages/0401_notice.html"frameborder="0"></iframe></div></div></div></div><div data-v-32b7052e=""data-v-034ea55b=""class="banner_alert lg"><a data-v-32b7052e=""href="https://kream.co.kr/api/app/pages/0401_notice.html"class="alert_wrap"><div data-v-32b7052e=""class="banner_alert_content"><p data-v-32b7052e=""class="alert_title"><span data-v-32b7052e=""class="care_mark">주의</span><span data-v-32b7052e=""class="alert_text">판매거래주의사항</span></p><p data-v-32b7052e=""class="alert_subtext">반드시보유한상품만판매하세요.</p></div><div data-v-32b7052e=""class="ico_arrow"><svg data-v-32b7052e=""xmlns="http://www.w3.org/2000/svg"class="ico-arr-type icon sprite-icons"><use data-v-32b7052e=""href="/_nuxt/d5c3f88dd25ac2e8fc7a9b8fa85de4c5.svg#i-ico-arr-type"xlink:href="/_nuxt/d5c3f88dd25ac2e8fc7a9b8fa85de4c5.svg#i-ico-arr-type"></use></svg></div></a></div>';
+</script>
+
+<script>
+  // 페이지 구성에 필요한 데이터 추출
+
+  // 상세 페이지 수정 여부 (썸네일 동작)
+  is_modified_page = true;
+
+  var product_rating_img_src__n = "";
+
+  // 요약 설명을 추가했을 경우에 true로 셋팅 (즉 커스텀 하겠다는 의미)
+  if (
+    document.querySelectorAll(
+      "#prod_goods_form > .goods_summary > .fr-view > .sd__n"
+    ).length == 1
+  )
+    is_modified_page = true;
+
+  get_data = async () => {
+    // 상품명
+    try {
+      product_name = document
+        .querySelector("#prod_goods_form > header > div.view_tit")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 요약설명 sd__n 클래스 사용할 예정
+    // 요약 설명 있으면 sd__n이 있고, 공란이면 없다.
+    try {
+      summary_description = document.querySelector(
+        "#prod_goods_form > div.goods_summary > div.fr-view > .sd__n"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 원산지 제조사 등등을 기다릴 수 있게 해주는 함수
+    function waitForElm(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+        const observer = new MutationObserver((mutations) => {
+          if (document.querySelector(selector)) {
+            observer.disconnect();
+            resolve(document.querySelector(selector));
+          }
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+
+    get_item_detail = () => {
+      return waitForElm(
+        "#prod_goods_form > div.item_detail > div > div.margin-bottom-xxl > div.option_wrap"
+      ).then((elm) => {
+        place_of_origin_manufacturer_brand_name = {};
+        for (i of document.querySelectorAll(
+          "#prod_goods_form > div.item_detail > div._item_detail_wrap > div:nth-child(1) > div"
+        )) {
+          if (i.querySelector("div:nth-child(1) > span"))
+            place_of_origin_manufacturer_brand_name[
+              i
+                .querySelector("div:nth-child(1) > span")
+                .innerText.replace(" ", " ")
+            ] = i
+              .querySelector("div:nth-child(2) > span")
+              .innerText.replace(" ", " ");
+        }
+        //return [place_of_origin, manufacturer, brand_name];
+        return place_of_origin_manufacturer_brand_name;
+      });
+    };
+
+    try {
+      place_of_origin_manufacturer_brand_name = await get_item_detail();
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 자체 상품코드 (안보임)
+    // 판매가
+    try {
+      selling_price = document
+        .querySelector(
+          "#prod_goods_form > header > div.pay_detail > div.holder.table-row span.real_price"
+        )
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 옵션
+    get_opt_group_bg = () => {
+      return waitForElm("#prod_goods_form > div.opt-group-bg").then((elm) => {
+        opt_group_bg = document.querySelector(
+          "#prod_goods_form > div.opt-group-bg"
+        );
+        return opt_group_bg;
+      });
+    };
+    try {
+      opt_group_bg = await get_opt_group_bg();
+    } catch (e) {
+      console.log(e);
+    }
+    get_opt_group = () => {
+      return waitForElm("#prod_goods_form > div.opt-group").then((elm) => {
+        opt_group = document.querySelector("#prod_goods_form > div.opt-group");
+        return opt_group;
+      });
+    };
+    try {
+      opt_group = await get_opt_group();
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 구매하기 버튼들 PC
+    try {
+      buy_btns_pc = document
+        .querySelector("#prod_goods_form > div.buy_btns.pc")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 공유하기 버튼 PC
+    try {
+      share_btn_pc = document
+        .querySelector(
+          "#prod_goods_form > header > div.pay_detail > div.comment_num_warp"
+        )
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 쿠폰 버튼 PC
+    try {
+      coupon_btn_pc = document
+        .querySelector("#prod_goods_form > header > div.pay_detail > button")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+      coupon_btn_pc = "";
+    }
+
+    // 구매하기 버튼들 모바일
+    try {
+      buy_btns_mobile = document
+        .querySelector("#prod_goods_form > div.buy_btns.mobile")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 좋아요 공유하기 버튼들 모바일
+    try {
+      like_share_btns_mobile = document
+        .querySelector("#prod_goods_form > div.buy_btns.categorize-mobile")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 나중에 사용될 수 있거나 용도를 모르거나 모바일 전용인 것들
+    try {
+      today_arrival_wrap = document
+        .querySelector("#prod_goods_form > div._today_arrival_wrap")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+    }
+    //try {details_mobile = $("#prod_goods_form > div.m-btn-group.background_tab");} catch (e) {console.log(e);}
+    try {
+      details_mobile = $(
+        "#prod_goods_form > div.categorize-mobile._categorize_mobile"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      social_pc_position = document
+        .querySelector("#prod_goods_form > div > div._social_pc_position")
+        .cloneNode(true);
+    } catch (e) {
+      console.log(e);
+      social_pc_position = "";
+    }
+    try {
+      kakao_talk_channel_chat_button = $("#kakao-talk-channel-chat-button");
+    } catch (e) {
+      console.log(e);
+    }
+
+    // 상품 썸네일 링크
+    try {
+      kakao_talk_channel_chat_button = $("#kakao-talk-channel-chat-button");
+    } catch (e) {
+      console.log(e);
+    }
+
+    return {
+      product_name: product_name,
+      summary_description: summary_description,
+      place_of_origin_manufacturer_brand_name:
+        place_of_origin_manufacturer_brand_name,
+      selling_price: selling_price,
+      opt_group_bg: opt_group_bg,
+      opt_group: opt_group,
+      buy_btns_pc: buy_btns_pc,
+      share_btn_pc: share_btn_pc,
+      coupon_btn_pc: coupon_btn_pc,
+      buy_btns_mobile: buy_btns_mobile,
+      like_share_btns_mobile: like_share_btns_mobile,
+      today_arrival_wrap: today_arrival_wrap,
+      details_mobile: details_mobile,
+      social_pc_position: social_pc_position,
+      kakao_talk_channel_chat_button: kakao_talk_channel_chat_button,
+    };
+  };
+</script>
+<script>
+  // 데이터 가공
+
+  data_processing = async () => {
+    extracted_data = await get_data();
+
+    brand_name = "";
+
+    // 상품명 한글 from 상품명
+    // 그대로
+    // product_badge도 옆에 붙여야 함.
+    product_name_kr = extracted_data["product_name"];
+
+    // 상품명 영문 from 요약설명
+    // 특정 클래스 속에 입력하도록
+    try {
+      product_name_en = extracted_data["summary_description"]
+        .querySelector(".product_name_en__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      product_name_en = "";
+    }
+
+    // 매장가 from 분류-원산지
+    // 그대로
+    try {
+      shop_price =
+        "매장가 " +
+        extracted_data["place_of_origin_manufacturer_brand_name"]["매장가"];
+      if (
+        extracted_data["place_of_origin_manufacturer_brand_name"]["매장가"] ===
+        undefined
+      )
+        shop_price = "매장가 -";
+    } catch (e) {
+      console.log(e);
+      shop_price = "매장가 -";
+    }
+    if (shop_price === "매장가 undefined") shop_price = "매장가 -";
+
+    // 판매가 from 가격-판매가
+    // 그대로
+    selling_price = extracted_data["selling_price"];
+
+    // 상품정보 텍스트 static
+    product_information_text = "상품정보";
+
+    // 상품정보 from 요약 설명
+    product_information_model_number_text = "모델 번호";
+    try {
+      product_information_model_number = extracted_data["summary_description"]
+        .querySelector(".model_number__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      product_information_model_number = "-";
+    }
+    if (product_information_model_number === "")
+      product_information_model_number = "-";
+    product_information_material_text = "소재";
+    try {
+      product_information_material = extracted_data["summary_description"]
+        .querySelector(".material__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      product_information_material = "-";
+    }
+    if (product_information_material === "") product_information_material = "-";
+    product_information_delivery_text = "배송방법";
+    product_information_delivery =
+      "해외배송 - 항공특송<br>국내배송 - CJ대한통운";
+    product_information_color_text = "컬러";
+    product_information_color = "";
+    try {
+      product_information_color_all =
+        extracted_data["summary_description"].querySelectorAll(".color__n > p");
+      for (let i = 0; i < product_information_color_all.length; i++) {
+        product_information_color += product_information_color_all[
+          i
+        ].innerText.replace(" ", " ");
+        product_information_color += ", ";
+      }
+      product_information_color = product_information_color.slice(0, -2);
+    } catch (e) {
+      console.log(e);
+    }
+    if (product_information_color === "") product_information_color = "-";
+
+    brand_name_kr = "-";
+    brand_btn_icon1_link = "";
+    brand_link = "/";
+
+    try {
+      category_gender = extracted_data["summary_description"]
+        .querySelector(".category_gender__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      category_gender = "";
+    }
+
+    try {
+      category_filter_by_imweb = document.querySelector(
+        "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(2) > a"
+      ).innerText;
+    } catch (e) {
+      console.log(e);
+      category_filter_by_imweb = "";
+    }
+
+    try {
+      //카테고리 판별하는 곳
+      category_top = extracted_data["summary_description"]
+        .querySelector(".category_top__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      category_top = "";
+    }
+    try {
+      category_bottom = extracted_data["summary_description"]
+        .querySelector(".category_bottom__n")
+        .innerText.replace(" ", " ");
+    } catch (e) {
+      console.log(e);
+      category_bottom = "";
+    }
+
+    try {
+      if (
+        category_gender === "남성" ||
+        category_gender === "unisex" ||
+        category_gender === "Unisex" ||
+        category_gender === "UniSex" ||
+        category_gender === "UNISEX" ||
+        category_gender === "uni sex" ||
+        category_gender === "Uni sex" ||
+        category_gender === "Uni Sex" ||
+        category_gender === "UNI SEX"
+      ) {
+        brand_link = "/" + brand_link_dict_man2[brand_name_kr];
+      } else if (category_gender === "여성") {
+        brand_link = "/" + brand_link_dict_woman2[brand_name_kr];
+      } else {
+        brand_link = "/";
+      }
+    } catch (e) {
+      console.log(e);
+      brand_link = "/";
+    }
+    right_arrow_btn_icon_link =
+      "https://cdn.imweb.me/upload/S20230518820d16215774e/aa450da5dc975.jpg";
+    // 브랜드 링크는 두 가지로 나뉜다. 1.브랜드관, 2.여성인지 남성인지는 알아내서 해당 성별관의 해당 브랜드
+
+    // 상품 등급보기 버튼 static or from 카테고리
+    // static 모달 링크 or 카테고리로부터 어떤 모달 띄울지
+    product_rating_btn_text = "상품 등급보기";
+    product_rating_modal_link_dict = {
+      의류: "javascript:SITE.openModalMenu('m20231204cef862c233fee', 'm20231121ff0dc0080b8f1');",
+      신발: "javascript:SITE.openModalMenu('m20231204b4937ee944cfc', 'm20231121ff0dc0080b8f1');",
+      가방: "javascript:SITE.openModalMenu('m20231204f493fe004ceec', 'm20231121ff0dc0080b8f1');",
+      시계: "javascript:SITE.openModalMenu('m2023120415f08fd852f5a', 'm20231121ff0dc0080b8f1');",
+      잡화: "javascript:SITE.openModalMenu('m2023120450f07ca8ff12d', 'm20231121ff0dc0080b8f1');",
+      지갑: "",
+      액세서리: "",
+    };
+
+    try {
+      product_rating_explain_modal_link =
+        product_rating_modal_link_dict[category_top];
+    } catch (e) {
+      console.log(e);
+      product_rating_explain_modal_link = "";
+    }
+
+    // 하이엔드 설명 3단 배너 static
+    // 이미지, 텍스트, 하이엔드 보증서는 모달 링크
+    high_end_banner1_icon_link =
+      "https://cdn.imweb.me/upload/S20240827ca22ca894bec0/5f16190c0d7d0.png";
+    high_end_banner1_text1 = "퀄리티 보상 제도";
+    high_end_banner1_text2 =
+      "해당 상품이 최고 퀄리티 상품이 아닐 시 300%를 보상해드립니다.";
+    high_end_banner2_icon_link =
+      "https://cdn.imweb.me/upload/S20240827ca22ca894bec0/548279dc8f2cd.png";
+    high_end_banner2_text1 = "전문 검수 서비스";
+    high_end_banner2_text2 =
+      "걱정 없이 구매할 수 있도록, 전문 검수팀이 발송전 검수를 대신합니다.";
+    high_end_banner3_icon_link =
+      "https://cdn.imweb.me/upload/S20230518820d16215774e/d3a0bbe11b06b.jpg";
+    high_end_banner3_text1 = "하이엔드 보증서";
+    high_end_banner3_text2 =
+      "하이엔드 검수에 합격한 경우에 한하여 하이엔드 인증 패키지(실링택, 일련번호, 바코드 등)가 포함된 상품이 배송됩니다.";
+    high_end_banner3_modal_link =
+      "javascript:SITE.openModalMenu('m202311089b0b6717270b8', 'm20231121ff0dc0080b8f1');";
+
+    // 프리미엄 혜택 정보 static
+    // 텍스트, 혜택별 링크
+    premium_benefits_information_text = "레플릭스 특별한 혜택";
+    premium_benefits_information1_text1 = "A/S 서비스";
+    premium_benefits_information1_text2 =
+      "하이엔드만의 프리미엄 서비스로 철저한 사후관리까지 원스톱 진행";
+    premium_benefits_information1_link =
+      "javascript:SITE.openModalMenu('m20231201bb198da7c00b0', 'm20231121ff0dc0080b8f1');";
+    premium_benefits_information2_text1 = "클리닝 서비스";
+    premium_benefits_information2_text2 =
+      "레플리카 최초 명품 클리닝 전문 서비스";
+    premium_benefits_information2_link =
+      "javascript:SITE.openModalMenu('m2023110983347e978d672', 'm20231121ff0dc0080b8f1');";
+    premium_benefits_information3_text1 = "회원등급 혜택";
+    premium_benefits_information3_text2 =
+      "레플릭스 회원만의 특별한 혜택을 누려보세요.";
+    premium_benefits_information3_link =
+      "javascript:SITE.openModalMenu('m20241213507e3a05fb2f7');";
+    premium_benefits_information4_text1 = "품절 보상제도";
+    premium_benefits_information4_text2 =
+      "품절도 걱정마세요, 무조건 보상해드립니다.";
+    premium_benefits_information4_link =
+      "javascript:SITE.openModalMenu('m20241213b6b2cd989d55a');";
+
+    // 추가 선택 옵션 설명 버튼 static or from 옵션콤보
+    // 텍스트, 이미지, 모달 링크 or 정적인 텍스트, 이미지, 모달이 존재할지 말지, 가격도 연동?
+    additional_selection_options_text = "추가옵션";
+    additional_selection_options1_icon_link =
+      "https://cdn.imweb.me/upload/S20240827ca22ca894bec0/86d6b7c0f4a1e.png";
+    additional_selection_options1_text1 = "빠른 배송 100,000원";
+    additional_selection_options1_text2 = "지겨운 기다림은 그만!";
+    additional_selection_options1_modal_link =
+      "javascript:SITE.openModalMenu('m2024121296c80885113a6');";
+    additional_selection_options2_icon_link =
+      "https://cdn.imweb.me/upload/S20240827ca22ca894bec0/62b74f36c114a.png";
+    additional_selection_options2_text1 = "포장 보완 50,000원";
+    additional_selection_options2_text2 = "파손걱정 없는 안전한 배송";
+    additional_selection_options2_modal_link =
+      "javascript:SITE.openModalMenu('m20241212ec1cef33e8e10');";
+
+    // 상품 등급 관련 설명 연결 모달 버튼
+    product_rating_explain_modal_link_buymobile = "";
+    product_rating_explain_img_link_buymobile = "";
+    if (category_top === "가방") {
+      product_rating_explain_modal_link_buymobile =
+        "javascript:SITE.openModalMenu('m20231203e9b0ad1d569cc', 'm20231121ff0dc0080b8f1');";
+      product_rating_explain_img_link_buymobile =
+        "https://cdn.imweb.me/upload/S20230518820d16215774e/b049f9503ed6b.png";
+    }
+    if (category_top === "신발") {
+      product_rating_explain_modal_link_buymobile =
+        "javascript:SITE.openModalMenu('m20231203e9b0ad1d569cc', 'm20231121ff0dc0080b8f1');";
+      product_rating_explain_img_link_buymobile =
+        "https://cdn.imweb.me/upload/S20230518820d16215774e/7d8279a7ee625.png";
+    }
+
+    // 옵션 콤보 박스 from 옵션 콤보
+    // 디자인을 적용하기 위한 클래스를 추가하거나 해서 위치만 이동
+    opt_group_bg = extracted_data["opt_group_bg"];
+    opt_group = extracted_data["opt_group"];
+
+    // 구매하기, 장바구니, 좋아요 버튼 static
+    // 디자인을 적용하기 위한 클래스를 추가하거나 해서 위치만 이동
+    try {
+      buy_btn_pc = extracted_data["buy_btns_pc"].querySelector("a.buy");
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      cart_btn_pc = extracted_data["buy_btns_pc"].querySelector("a.cart");
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      like_btn_pc = extracted_data["buy_btns_pc"].querySelector("a.like_box");
+    } catch (e) {
+      console.log(e);
+    }
+    //share_btn_pc = extracted_data['share_btn_pc'].querySelector("button");
+    share_btn_pc = extracted_data["share_btn_pc"];
+    coupon_btn_pc = extracted_data["coupon_btn_pc"];
+    try {
+      buy_btn_mobile1 = extracted_data["buy_btns_mobile"].querySelector(
+        "div.cart_btn > div.pay-box > div.cart_btn_child > a:nth-child(1)"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      buy_btn_mobile2 = extracted_data["buy_btns_mobile"].querySelector(
+        "div.cart_btn > div.pay-box > div.cart_btn_child > a:nth-child(2)"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      cart_btn_mobile1 = extracted_data["buy_btns_mobile"].querySelector(
+        "div.cart_btn > div.pay-box > a:nth-child(1)"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      cart_btn_mobile2 = extracted_data["buy_btns_mobile"].querySelector(
+        "div.cart_btn > div.pay-box > a:nth-child(2)"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      like_btn_mobile =
+        extracted_data["like_share_btns_mobile"].querySelector("a");
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      share_btn_mobile =
+        extracted_data["like_share_btns_mobile"].querySelector("button");
+    } catch (e) {
+      console.log(e);
+    }
+    buy_btns_mobile = extracted_data["buy_btns_mobile"];
+    like_share_btns_mobile = extracted_data["like_share_btns_mobile"];
+
+    // 나중에 사용될 수 있거나 용도를 모르거나 모바일 전용인 것들
+    today_arrival_wrap = extracted_data["today_arrival_wrap"];
+    details_mobile = extracted_data["details_mobile"];
+    get_social_pc_position = () => {
+      element = document.createElement("div");
+      element.append(extracted_data["social_pc_position"]);
+      return element;
+    };
+    social_pc_position = get_social_pc_position();
+    kakao_talk_channel_chat_button =
+      extracted_data["kakao_talk_channel_chat_button"];
+
+    try {
+      product_information_qc_all =
+        extracted_data["summary_description"].querySelectorAll(".qc__n > p");
+    } catch (e) {
+      console.log(e);
+    }
+
+    return {
+      brand_name: brand_name,
+      product_name_kr: product_name_kr,
+      product_name_en: product_name_en,
+      shop_price: shop_price,
+      selling_price: selling_price,
+      category_gender: category_gender,
+      category_filter_by_imweb: category_filter_by_imweb,
+      category_top: category_top,
+      category_bottom: category_bottom,
+      product_information_text: product_information_text,
+      product_information_model_number_text:
+        product_information_model_number_text,
+      product_information_model_number: product_information_model_number,
+      product_information_material_text: product_information_material_text,
+      product_information_material: product_information_material,
+      product_information_delivery_text: product_information_delivery_text,
+      product_information_delivery: product_information_delivery,
+      product_information_color_text: product_information_color_text,
+      product_information_color: product_information_color,
+      brand_name_kr: brand_name_kr,
+      brand_btn_icon1_link: brand_btn_icon1_link,
+      brand_link: brand_link,
+      right_arrow_btn_icon_link: right_arrow_btn_icon_link,
+      product_rating_explain_modal_link: product_rating_explain_modal_link,
+      product_rating_explain_modal_link_buymobile:
+        product_rating_explain_modal_link_buymobile,
+      product_rating_explain_img_link_buymobile:
+        product_rating_explain_img_link_buymobile,
+      product_rating_btn_text: product_rating_btn_text,
+      high_end_banner1_icon_link: high_end_banner1_icon_link,
+      high_end_banner1_text1: high_end_banner1_text1,
+      high_end_banner1_text2: high_end_banner1_text2,
+      high_end_banner2_icon_link: high_end_banner2_icon_link,
+      high_end_banner2_text1: high_end_banner2_text1,
+      high_end_banner2_text2: high_end_banner2_text2,
+      high_end_banner3_icon_link: high_end_banner3_icon_link,
+      high_end_banner3_text1: high_end_banner3_text1,
+      high_end_banner3_text2: high_end_banner3_text2,
+      high_end_banner3_modal_link: high_end_banner3_modal_link,
+      premium_benefits_information_text: premium_benefits_information_text,
+      premium_benefits_information1_text1: premium_benefits_information1_text1,
+      premium_benefits_information1_text2: premium_benefits_information1_text2,
+      premium_benefits_information1_link: premium_benefits_information1_link,
+      premium_benefits_information2_text1: premium_benefits_information2_text1,
+      premium_benefits_information2_text2: premium_benefits_information2_text2,
+      premium_benefits_information2_link: premium_benefits_information2_link,
+      premium_benefits_information3_text1: premium_benefits_information3_text1,
+      premium_benefits_information3_text2: premium_benefits_information3_text2,
+      premium_benefits_information3_link: premium_benefits_information3_link,
+      premium_benefits_information4_text1: premium_benefits_information4_text1,
+      premium_benefits_information4_text2: premium_benefits_information4_text2,
+      premium_benefits_information4_link: premium_benefits_information4_link,
+      additional_selection_options_text: additional_selection_options_text,
+      additional_selection_options1_icon_link:
+        additional_selection_options1_icon_link,
+      additional_selection_options1_text1: additional_selection_options1_text1,
+      additional_selection_options1_text2: additional_selection_options1_text2,
+      additional_selection_options1_modal_link:
+        additional_selection_options1_modal_link,
+      additional_selection_options2_icon_link:
+        additional_selection_options2_icon_link,
+      additional_selection_options2_text1: additional_selection_options2_text1,
+      additional_selection_options2_text2: additional_selection_options2_text2,
+      additional_selection_options2_modal_link:
+        additional_selection_options2_modal_link,
+      product_rating_explain_modal_link: product_rating_explain_modal_link,
+      product_rating_explain_modal_link_buymobile:
+        product_rating_explain_modal_link_buymobile,
+      product_rating_explain_img_link_buymobile:
+        product_rating_explain_img_link_buymobile,
+      opt_group_bg: opt_group_bg,
+      opt_group: opt_group,
+      buy_btn_pc: buy_btn_pc,
+      cart_btn_pc: cart_btn_pc,
+      like_btn_pc: like_btn_pc,
+      share_btn_pc: share_btn_pc,
+      coupon_btn_pc: coupon_btn_pc,
+      buy_btns_mobile: buy_btns_mobile,
+      like_share_btns_mobile: like_share_btns_mobile,
+      today_arrival_wrap: today_arrival_wrap,
+      details_mobile: details_mobile,
+      social_pc_position: social_pc_position,
+      kakao_talk_channel_chat_button: kakao_talk_channel_chat_button,
+    };
+  };
+</script>
+<script>
+  // pc 디자인에 맞게 배치, 데이터가 없을 때 어떻게 할지 ex)기획전카테고리에서 일부는 브랜드가
+  application = async () => {
+    processing_data_dict = await data_processing();
+    // prod_goods_form 초기화
+    try {
+      let prod_goods_form = document.querySelector("#prod_goods_form");
+    } catch (e) {
+      console.log(e);
+    }
+    let prod_goods_form_copied = prod_goods_form.cloneNode(true);
+    try {
+      prod_goods_form_copied
+        .querySelector("#prod_goods_form > header")
+        .remove();
+    } catch (e) {
+      console.log(e);
+    }
+    for (let i of prod_goods_form_copied.querySelectorAll(
+      "#prod_goods_form > div"
+    ))
+      i.remove();
+
+    // 사용할 데이터 초기화
+    createElement_innerText = (key) => {
+      let element = document.createElement("div");
+      element.classList.add(`${key}__n`);
+      element.innerText = processing_data_dict[key];
+      return element;
+    };
+    brand_name = createElement_innerText("brand_name");
+    product_name_kr = createElement_innerText("product_name_kr");
+    product_name_en = createElement_innerText("product_name_en");
+    shop_price = createElement_innerText("shop_price");
+    get_selling_price = () => {
+      selling_price = processing_data_dict["selling_price"];
+      share_btn_pc = processing_data_dict["share_btn_pc"];
+      coupon_btn_pc = processing_data_dict["coupon_btn_pc"];
+
+      element = document.createElement("div");
+      element.classList.add(`selling_price__n`);
+      if (coupon_btn_pc === "") {
+      } else {
+        coupon_btn_pc = coupon_btn_pc.outerHTML;
+      }
+      element.innerHTML = `<div style="position:relative;width:100%;">
+              <div style="display:flex; justify-content: space-between;">
+                ${selling_price}<button class="btl bt-share pc__n" type="button" onclick="SNS.showDefalutSnsShareList();" style="position: absolute; right: 0px; top: 0px; bottom: 0px; background: rgb(255, 255, 255);">
+              </button>
+              </div>
+              
+              ${coupon_btn_pc}
+            </div>`;
+      return element;
+    };
+    selling_price = get_selling_price();
+    hr1 = document.createElement("hr");
+    hr1.classList.add("hr__n");
+    product_information_text = createElement_innerText(
+      "product_information_text"
+    );
+
+    // 상품 정보
+    get_product_information = () => {
+      product_information_model_number_text =
+        processing_data_dict["product_information_model_number_text"];
+      product_information_model_number =
+        processing_data_dict["product_information_model_number"];
+      product_information_material_text =
+        processing_data_dict["product_information_material_text"];
+      product_information_material =
+        processing_data_dict["product_information_material"];
+      product_information_delivery_text =
+        processing_data_dict["product_information_delivery_text"];
+      product_information_delivery =
+        processing_data_dict["product_information_delivery"];
+      //product_information_color_text = processing_data_dict['product_information_color_text'];
+      //product_information_color = processing_data_dict['product_information_color'];
+
+      product_information = document.createElement("div");
+      product_information.innerHTML = `<div style="display: flex;">
+            //  <div class="product_information_r__n mobile_font_size_12__n" style="flex: 1;padding-right: 12px;">
+            //    <strong><span style="color: rgb(0, 0, 0);">${product_information_model_number_text}</span></strong>
+            //    <span style="color: rgb(0, 0, 0);"><br></span>
+            //    <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_model_number}</span>
+            //  </div>
+            //  <div class="product_information_r__n product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;padding-right: 12px;">
+            //    <strong><span style="color: rgb(0, 0, 0);">${product_information_material_text}</span></strong>
+            //    <span style="color: rgb(0, 0, 0);"><br></span>
+            //    <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_material}</span>
+            //  </div>
+            //  <div class="product_information_r__n product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;padding-right: 12px;">
+            //    <strong><span style="color: rgb(0, 0, 0);">${product_information_delivery_text}</span></strong>
+            //    <span style="color: rgb(0, 0, 0);"><br></span>
+            //    <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_delivery}</span>
+            //  </div>
+            //  <div class="product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;">
+            //    <strong><span style="color: rgb(0, 0, 0);">${product_information_color_text}</span></strong>
+            //    <span style="color: rgb(0, 0, 0);"><br></span>
+            //    <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_color}</span>
+            //  </div>
+            //</div>`;
+      product_information.innerHTML = `<div style="display: flex;">
+              <div class="product_information_r__n mobile_font_size_12__n" style="flex: 1;padding-right: 12px;">
+                <strong><span style="color: rgb(0, 0, 0);">${product_information_model_number_text}</span></strong>
+                <span style="color: rgb(0, 0, 0);"><br></span>
+                <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_model_number}</span>
+              </div>
+              <div class="product_information_r__n product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;padding-right: 12px;">
+                <strong><span style="color: rgb(0, 0, 0);">${product_information_material_text}</span></strong>
+                <span style="color: rgb(0, 0, 0);"><br></span>
+                <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_material}</span>
+              </div>
+              <div class="product_information_r__n product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;padding-right: 12px;">
+                <strong><span style="color: rgb(0, 0, 0);">${product_information_delivery_text}</span></strong>
+                <span style="color: rgb(0, 0, 0);"><br></span>
+                <span style="color: rgba(153, 153, 153);margin-top: 4px;">${product_information_delivery}</span>
+              </div>
+              <div class="product_information_l__n mobile_font_size_12__n" style="border-left: 1px solid #ebebeb;flex: 1;padding-left: 12px;">
+                <strong><span style="color: rgb(0, 0, 0);">구성품</span></strong>
+                <span style="color: rgb(0, 0, 0);"><br></span>
+                <span style="color: rgba(153, 153, 153);margin-top: 4px;">풀박스</span>
+              </div>
+            </div>`;
+
+      return product_information;
+    };
+    product_information = get_product_information();
+    hr2 = hr1.cloneNode(true);
+    get_brand_btn = () => {
+      brand_name_kr = processing_data_dict["brand_name_kr"];
+      brand_btn_icon1_link = processing_data_dict["brand_btn_icon1_link"];
+      brand_link = processing_data_dict["brand_link"];
+
+      brand_btn = document.createElement("div");
+      brand_btn.innerHTML = `<a class="hover1__n" style="align-items: center;display: flex;cursor: pointer;" href="${brand_link}">
+              <div style="align-items: center;display:flex;flex: 1;">
+                <div style="display:flex;max-width: 46.4px;max-height: 46.4px;border-radius: 70%;border: 0.8px solid rgba(153, 153, 153);overflow: hidden;margin-right: 10px;">
+                  <img alt="image" src="${brand_btn_icon1_link}" style="width: 100%;height: 100%;object-fit: cover;">
+                </div>
+                <div class="left-container">
+                  <div class="title" style="font-size: 16px;font-weight: 600;color: rgb(153, 153, 153);">${processing_data_dict["brand_name"]}</div>
+                  <div class="subtitle" style="font-size: 14px;color: rgba(153, 153, 153);">${brand_name_kr}</div>
+                </div>
+              </div>
+              <div>
+                <img alt="image" src="${processing_data_dict["right_arrow_btn_icon_link"]}" style="width: 25px;height: 25px;">
+              </div>
+            </a>`;
+
+      brand_btn2 = document.createElement("div");
+
+      return brand_btn2;
+    };
+    brand_btn = get_brand_btn();
+    hr3 = hr1.cloneNode(true);
+    get_product_rating_btn = () => {
+      product_rating_explain_modal_link =
+        processing_data_dict["product_rating_explain_modal_link"];
+      product_rating_btn_text = processing_data_dict["product_rating_btn_text"];
+
+      product_rating_btn = document.createElement("div");
+      if (product_rating_explain_modal_link === "") {
+        //pass
+      } else {
+        // product_rating_btn.innerHTML = `<a class="btn hover2__n" style="margin: 0px 20px;border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;align-items: center;" href="${product_rating_explain_modal_link}">
+        //   <div>${product_rating_btn_text}</div>
+        // </a>`;
+      }
+      return product_rating_btn;
+    };
+    product_rating_btn = get_product_rating_btn();
+    get_high_end_banner = () => {
+      high_end_banner1_icon_link =
+        processing_data_dict["high_end_banner1_icon_link"];
+      high_end_banner1_text1 = processing_data_dict["high_end_banner1_text1"];
+      high_end_banner1_text2 = processing_data_dict["high_end_banner1_text2"];
+      high_end_banner2_icon_link =
+        processing_data_dict["high_end_banner2_icon_link"];
+      high_end_banner2_text1 = processing_data_dict["high_end_banner2_text1"];
+      high_end_banner2_text2 = processing_data_dict["high_end_banner2_text2"];
+      high_end_banner3_icon_link =
+        processing_data_dict["high_end_banner3_icon_link"];
+      high_end_banner3_text1 = processing_data_dict["high_end_banner3_text1"];
+      high_end_banner3_text2 = processing_data_dict["high_end_banner3_text2"];
+      high_end_banner3_modal_link =
+        processing_data_dict["high_end_banner3_modal_link"];
+
+      high_end_banner = document.createElement("div");
+      high_end_banner.innerHTML = `<a class="hover1__n" style="display: flex;height:50px;margin-top:20px;align-items: center;">
+              <div style="display:flex;width: 40px;height: 40px;margin-right: 10px;">
+                <img alt="image" src="${high_end_banner1_icon_link}">
+              </div>
+              <div>
+                <div style="font-size: 16px;font-weight: 600;color: rgb(0, 0, 0);">${high_end_banner1_text1}</div>
+                <div class="mobile_font_size_12__n" style="font-size: 14px;color: rgba(153, 153, 153);">${high_end_banner1_text2}</div>
+              </div>
+            </a>
+            <a class="hover1__n" style="display: flex;height:50px;margin-top:10px;align-items: center;">
+              <div style="display:flex;width: 40px;height: 40px;margin-right: 10px;">
+                <img alt="image" src="${high_end_banner2_icon_link}">
+              </div>
+              <div>
+                <div style="font-size: 16px;font-weight: 600;color: rgb(0, 0, 0);">${high_end_banner2_text1}</div>
+                <div class="mobile_font_size_12__n" style="font-size: 14px;color: rgba(153, 153, 153);">${high_end_banner2_text2}</div>
+              </div>
+            </a>
+           `;
+      return high_end_banner;
+    };
+    high_end_banner = get_high_end_banner();
+    hr4 = hr1.cloneNode(true);
+    premium_benefits_information_text = createElement_innerText(
+      "premium_benefits_information_text"
+    );
+    get_premium_benefits_information = () => {
+      premium_benefits_information1_text1 =
+        processing_data_dict["premium_benefits_information1_text1"];
+      premium_benefits_information1_text2 =
+        processing_data_dict["premium_benefits_information1_text2"];
+      premium_benefits_information1_link =
+        processing_data_dict["premium_benefits_information1_link"];
+      premium_benefits_information2_text1 =
+        processing_data_dict["premium_benefits_information2_text1"];
+      premium_benefits_information2_text2 =
+        processing_data_dict["premium_benefits_information2_text2"];
+      premium_benefits_information2_link =
+        processing_data_dict["premium_benefits_information2_link"];
+      premium_benefits_information3_text1 =
+        processing_data_dict["premium_benefits_information3_text1"];
+      premium_benefits_information3_text2 =
+        processing_data_dict["premium_benefits_information3_text2"];
+      premium_benefits_information3_link =
+        processing_data_dict["premium_benefits_information3_link"];
+      premium_benefits_information4_text1 =
+        processing_data_dict["premium_benefits_information4_text1"];
+      premium_benefits_information4_text2 =
+        processing_data_dict["premium_benefits_information4_text2"];
+      premium_benefits_information4_link =
+        processing_data_dict["premium_benefits_information4_link"];
+
+      premium_benefits_information = document.createElement("div");
+      premium_benefits_information.innerHTML = `<div style="display:felx;flex-wrap:wrap;width:100%;line-height:1.6;">
+            
+              <a class="hover1__n" href="${premium_benefits_information3_link}" style="display:flex;width:100%;cursor:pointer;">
+                <div class="premium_benefits_information_text_title" style="display:flex;">${premium_benefits_information3_text1}</div>
+                <div class="premium_benefits_information_text_detail" style="display:flex;width:75%;">${premium_benefits_information3_text2}</div>
+              </a>
+              <a class="hover1__n" href="${premium_benefits_information4_link}" style="display:flex;width:100%;cursor:pointer;">
+                <div class="premium_benefits_information_text_title" style="display:flex;">${premium_benefits_information4_text1}</div>
+                <div class="premium_benefits_information_text_detail" style="display:flex;width:75%;">${premium_benefits_information4_text2}</div>
+              </a>
+            </div>`;
+      return premium_benefits_information;
+    };
+    premium_benefits_information = get_premium_benefits_information();
+    hr5 = hr1.cloneNode(true);
+    additional_selection_options_text = createElement_innerText(
+      "additional_selection_options_text"
+    );
+    get_additional_selection_options = () => {
+      additional_selection_options1_icon_link =
+        processing_data_dict["additional_selection_options1_icon_link"];
+      additional_selection_options1_text1 =
+        processing_data_dict["additional_selection_options1_text1"];
+      additional_selection_options1_text2 =
+        processing_data_dict["additional_selection_options1_text2"];
+      additional_selection_options1_modal_link =
+        processing_data_dict["additional_selection_options1_modal_link"];
+      additional_selection_options2_icon_link =
+        processing_data_dict["additional_selection_options2_icon_link"];
+      additional_selection_options2_text1 =
+        processing_data_dict["additional_selection_options2_text1"];
+      additional_selection_options2_text2 =
+        processing_data_dict["additional_selection_options2_text2"];
+      additional_selection_options2_modal_link =
+        processing_data_dict["additional_selection_options2_modal_link"];
+
+      additional_selection_options = document.createElement("div");
+      additional_selection_options.innerHTML = `<a class="hover1__n" style="display: flex;height:50px;cursor: pointer;align-items: center;" href="${additional_selection_options1_modal_link}">
+              <div style="display:flex;width: 40px;height: 40px;margin-right: 10px;border-radius: 70%;">
+                <img alt="image" src="${additional_selection_options1_icon_link}">
+              </div>
+              <div>
+                <div style="font-size: 16px;font-weight: 600;color: rgb(0, 0, 0);">${additional_selection_options1_text1}</div>
+                <div style="font-size: 14px;color: rgba(153, 153, 153);">${additional_selection_options1_text2}</div>
+              </div>
+              <div style="flex: 1;"></div>
+              <div>
+                <img alt="image" src="${processing_data_dict["right_arrow_btn_icon_link"]}" style="width: 25px;height: 25px;">
+              </div>
+            </a>
+            <hr class="hr_light__n">
+            <a class="hover1__n" style="display: flex;height:50px;cursor: pointer;align-items: center;" href="${additional_selection_options2_modal_link}">
+              <div style="display:flex;width: 40px;height: 40px;margin-right: 10px;border-radius: 70%;">
+                <img alt="image" src="${additional_selection_options2_icon_link}">
+              </div>
+              <div>
+                <div style="font-size: 16px;font-weight: 600;color: rgb(0, 0, 0);">${additional_selection_options2_text1}</div>
+                <div style="font-size: 14px;color: rgba(153, 153, 153);">${additional_selection_options2_text2}</div>
+              </div>
+              <div style="flex: 1;"></div>
+              <div>
+                <img alt="image" src="${processing_data_dict["right_arrow_btn_icon_link"]}" style="width: 25px;height: 25px;">
+              </div>
+            </a>`;
+      return additional_selection_options;
+    };
+    additional_selection_options = get_additional_selection_options();
+    hr6 = hr1.cloneNode(true);
+    hr6.classList.add("pc__n");
+
+    get_option_box = () => {
+      opt_group_bg = processing_data_dict["opt_group_bg"];
+      opt_group = processing_data_dict["opt_group"];
+      buy_btn_pc = processing_data_dict["buy_btn_pc"];
+      cart_btn_pc = processing_data_dict["cart_btn_pc"];
+      like_btn_pc = processing_data_dict["like_btn_pc"];
+
+      category_by_imweb = document.querySelector(
+        "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(2) > a"
+      )?.innerText;
+
+      category_by_imweb2 = document.querySelector(
+        "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(3) > a"
+      )?.innerText;
+
+      category_by_imweb3 = document.querySelector(
+        "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(4) > a"
+      )?.innerText;
+
+      try {
+        if (category_top === "신발") {
+          size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_shoes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                  사이즈 설정하기 (필수)
+                </button>`;
+        } else if (category_top === "의류") {
+          console.log(category_top);
+          size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_clothes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                  사이즈 설정하기 (필수)
+                </button>`;
+        } else {
+          size_setting = "";
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+      }
+
+      try {
+        if (category_by_imweb2) {
+          if (category_by_imweb2.includes("신발")) {
+            size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_shoes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                 사이즈 설정하기 (필수)
+             </button>`;
+          }
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+      }
+
+      try {
+        if (category_by_imweb2) {
+          if (category_by_imweb2.includes("의류")) {
+            size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_clothes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                     사이즈 설정하기 (필수)
+                 </button>`;
+          }
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+      }
+
+      try {
+        if (category_by_imweb3) {
+          if (category_by_imweb3.includes("신발")) {
+            size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_shoes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                 사이즈 설정하기 (필수)
+             </button>`;
+          }
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+      }
+
+      try {
+        if (category_by_imweb3) {
+          if (category_by_imweb3.includes("의류")) {
+            size_setting = `<button type="button" class="btn btn-rixx-size-setting hover2__n" onclick="open_new_size_clothes_table()" style="border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                     사이즈 설정하기 (필수)
+                 </button>`;
+          }
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+      }
+
+      try {
+        buy_btn_pc.style = "width:100%";
+        buy_btn_pc = `<div style="display:flex;flex:1;">${buy_btn_pc.outerHTML}</div>`;
+      } catch (e) {
+        console.log(e);
+        buy_btn_pc = "";
+      }
+      try {
+        cart_btn_pc.style = "width:100%";
+        cart_btn_pc = `<div style="display:flex;flex:1;">${cart_btn_pc.outerHTML}</div>`;
+      } catch (e) {
+        console.log(e);
+        cart_btn_pc = "";
+      }
+      try {
+        like_btn_pc.style = "width:100%";
+        like_btn_pc = `<div style="display:flex;flex:1;">${like_btn_pc.outerHTML}</div>`;
+      } catch (e) {
+        console.log(e);
+        like_btn_pc = "";
+      }
+
+      option_box = document.createElement("div");
+      option_box.innerHTML = `<div class="pc__n" style="display:flex;flex-wrap:wrap;width:100%;">
+              <div style="display:flex;width:100%;margin-bottom:24px;">
+                ${size_setting}
+              </div>
+              <div class="option_box_box__n" style="display:flex;width:100%;"></div>
+              <div style="display:flex;width:100%;gap:10px;">
+                ${buy_btn_pc}
+                ${cart_btn_pc}
+                ${like_btn_pc}
+              </div>
+            </div>`;
+      option_box.querySelector(".option_box_box__n").append(opt_group_bg);
+      opt_group.style =
+        "width: 100%;padding-top: 0px !important;margin-top: 0px !important;border-top-width: 0px !important;";
+      opt_group.querySelector(".goods_wrap").classList.add("goods_wrap__n");
+      option_box.querySelector(".option_box_box__n").append(opt_group);
+
+      return option_box;
+    };
+
+    get_option_size_box = () => {
+      try {
+        if (category_top === "신발") {
+          size_setting = `<button type="button" class="btn btn-rixx-size-setting" onclick="open_new_size_shoes_table()" style="margin: 0 ${mgtmp} 0 15px;border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                  사이즈 설정하기
+                </button>`;
+          mgtmp2 = "8px";
+        } else if (category_top === "의류") {
+          size_setting = `<button type="button" class="btn btn-rixx-size-setting" onclick="open_new_size_clothes_table()" style="margin: 0 ${mgtmp} 0 15px;border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                  사이즈 설정하기
+                </button>`;
+          mgtmp2 = "8px";
+        } else {
+          size_setting = "";
+          mgtmp2 = "15px";
+        }
+      } catch (e) {
+        console.log(e);
+        size_setting = "";
+        mgtmp2 = "15px";
+      }
+
+      option_size_box = document.createElement("div");
+      option_size_box.style = "display:flex;width:100%;margin-bottom:8px;";
+      option_size_box.innerHTML = `${size_setting}`;
+      return option_size_box;
+    };
+
+    category_top = processing_data_dict["category_top"];
+    try {
+      if (category_top === "신발") {
+        // if (
+        //   get_rixxShoesSizeUrlCheck(window.location.href) &&
+        //   pageUrl.indexOf("idx") != -1
+        // ) {
+        //   $("body").append(rixxShoesPop_contents); //body에 사이즈 선택 팝업 추가
+        //   if (window.innerWidth < -768) {
+        //     append_shoes_set_btn2();
+        //   }
+        //   //append_shoes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        //   var modal_size = document.getElementById("modal_size");
+        //   setInterval(rixxShoesOptionController, 500);
+        // }
+      } else if (category_top === "의류") {
+        // if (
+        //   get_rixxClothesSizeUrlCheck(window.location.href) &&
+        //   pageUrl.indexOf("idx") != -1
+        // ) {
+        // $("body").append(rixxSizePop_contents); //body에 사이즈 선택 팝업 추가
+        // //append_clothes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        // var modal_size = document.getElementById("modal_size");
+        // setInterval(optionController, 500);
+        // }
+      } else {
+        setInterval(optionController, 500);
+
+        // if (category_by_imweb2) {
+        //   if (
+        //     category_by_imweb2.includes("의류") ||
+        //     category_by_imweb2.includes("신발")
+        //   )
+        // setInterval(optionController_tmp, 500);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    category_by_imweb = document.querySelector(
+      "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(2) > a"
+    )?.innerText;
+
+    category_by_imweb2 = document.querySelector(
+      "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(3) > a"
+    )?.innerText;
+
+    category_by_imweb3 = document.querySelector(
+      "#prod_detail > div > div.shop_sub_depth.hidden-xs.hidden-sm > ul > li:nth-child(4) > a"
+    )?.innerText;
+
+    try {
+      if (category_by_imweb2.includes("의류")) {
+        $("body").append(rixxSizePop_contents); //body에 사이즈 선택 팝업 추가
+        //append_clothes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        var modal_size = document.getElementById("modal_size");
+        setInterval(optionController, 500);
+      }
+    } catch (e) {
+      setInterval(optionController, 500);
+    }
+
+    try {
+      if (category_by_imweb2.includes("신발")) {
+        $("body").append(rixxShoesPop_contents); //body에 사이즈 선택 팝업 추가
+        if (window.innerWidth < -768) {
+          append_shoes_set_btn2();
+        }
+        //append_shoes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        var modal_size = document.getElementById("modal_size");
+        setInterval(rixxShoesOptionController, 500);
+      }
+    } catch (e) {
+      setInterval(optionController, 500);
+    }
+
+    try {
+      if (category_by_imweb3.includes("의류")) {
+        $("body").append(rixxSizePop_contents); //body에 사이즈 선택 팝업 추가
+        //append_clothes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        var modal_size = document.getElementById("modal_size");
+        setInterval(optionController, 500);
+      }
+    } catch (e) {
+      setInterval(optionController, 500);
+    }
+
+    try {
+      if (category_by_imweb3.includes("신발")) {
+        $("body").append(rixxShoesPop_contents); //body에 사이즈 선택 팝업 추가
+        if (window.innerWidth < -768) {
+          append_shoes_set_btn2();
+        }
+        //append_shoes_set_btn2();//위에서 option_box를 추가할 때 사이즈 설정 버튼 추가했음.
+        var modal_size = document.getElementById("modal_size");
+        setInterval(rixxShoesOptionController, 500);
+      }
+    } catch (e) {
+      setInterval(optionController, 500);
+    }
+
+    $("input[name=rixx_shoes_brand]").on("click", function () {
+      r_shoes_brand = $("input[name=rixx_shoes_brand]:checked").attr("id");
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+      // g_shoes_slider.slideNext();
+    });
+    $("input[name=rixx_shoes_kind]").on("click", function () {
+      r_shoes_kind = $("input[name=rixx_shoes_kind]:checked").attr("id");
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+      // g_shoes_slider.slideNext();
+    });
+    $("input[name=rixx_shoes_size]").on("click", function () {
+      r_shoes_size = $("input[name=rixx_shoes_size]:checked").attr("id");
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+      // g_shoes_slider.slideNext();
+    });
+    $("input[name=rixx_shoes_foot_ball]").on("click", function () {
+      r_shoes_foot_ball = $("input[name=rixx_shoes_foot_ball]:checked").attr(
+        "id"
+      );
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_shoes_slider.allowSlideNext = true;
+      // g_shoes_slider.slideNext();
+    });
+    $("#rixx_shoes_save").on("click", function () {
+      rixx_shoes_save_fn();
+    });
+    $("input[name=rixx_clothes_chest]").on("click", function () {
+      r_clothes_chest = $("input[name=rixx_clothes_chest]:checked").attr("id");
+
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+      g_slider.slideNext();
+    });
+    $("input[name=rixx_clothes_belly]").on("click", function () {
+      r_clothes_belly = $("input[name=rixx_clothes_belly]:checked").attr("id");
+      $(".btn-rixx-continue.disabled").removeClass("disabled");
+      g_slider.allowSlideNext = true;
+      g_slider.slideNext();
+    });
+
+    $("input[name=rixx_clothes_gender]").on("click", function () {
+      r_clothes_gender = $("input[name=rixx_clothes_gender]:checked").attr(
+        "id"
+      );
+      r_clothes_top = "";
+      r_clothes_pants = "";
+      if (r_clothes_gender == "rixx_clothes_gender_w") {
+        $("input[name=rixx_clothes_top_m]:checked").prop("checked", false);
+        $("input[name=rixx_clothes_pants_m]:checked").prop("checked", false);
+      } else {
+        $("input[name=rixx_clothes_top_w]:checked").prop("checked", false);
+        $("input[name=rixx_clothes_pants_w]:checked").prop("checked", false);
+      }
+      $(".btn-rixx-continue").addClass("disabled");
+      g_slider.allowSlideNext = false;
+    });
+    $("input[name=rixx_clothes_top_w]").on("click", function () {
+      r_clothes_top = $("input[name=rixx_clothes_top_w]:checked").attr("id");
+      rixx_clothes_top_pants_flag();
+      // $('.btn-rixx-continue.disabled').removeClass('disabled');
+      // g_slider.allowSlideNext = true;
+    });
+    $("input[name=rixx_clothes_pants_w]").on("click", function () {
+      r_clothes_pants = $("input[name=rixx_clothes_pants_w]:checked").attr(
+        "id"
+      );
+      rixx_clothes_top_pants_flag();
+      // $('.btn-rixx-continue.disabled').removeClass('disabled');
+      // g_slider.allowSlideNext = true;
+    });
+    $("input[name=rixx_clothes_top_m]").on("click", function () {
+      r_clothes_top = $("input[name=rixx_clothes_top_m]:checked").attr("id");
+      rixx_clothes_top_pants_flag();
+      // $('.btn-rixx-continue.disabled').removeClass('disabled');
+      // g_slider.allowSlideNext = true;
+    });
+    $("input[name=rixx_clothes_pants_m]").on("click", function () {
+      r_clothes_pants = $("input[name=rixx_clothes_pants_m]:checked").attr(
+        "id"
+      );
+      rixx_clothes_top_pants_flag();
+      // $('.btn-rixx-continue.disabled').removeClass('disabled');
+      // g_slider.allowSlideNext = true;
+    });
+    $("#rixx_clothes_save").on("click", function () {
+      rixx_clothes_save_fn();
+    });
+
+    if (window.innerWidth > 768) {
+      option_box = get_option_box();
+    } else {
+      product_rating_explain_modal_link_buymobile =
+        processing_data_dict["product_rating_explain_modal_link_buymobile"];
+      product_rating_explain_img_link_buymobile =
+        processing_data_dict["product_rating_explain_img_link_buymobile"];
+      if (product_rating_explain_modal_link_buymobile !== "") {
+        product_rating_explain_modal_btn_wrap = document.createElement("div");
+        product_rating_explain_modal_btn_wrap.style =
+          "display:flex;width:100%;margin-top:9px;";
+        //product_rating_explain_modal_btn = `<a href="${product_rating_explain_modal_link_buymobile}" class="btn" style="padding:0 !important;margin: 0 15px 0 15px;border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+        //  <div style="display:flex;margin: 8px, 0, 8px, 0;">퍼스널: 1:1제작 | 엑스트라: 하이엔드+정품동일소재 | 하이엔드: 최상위<br>내용 전체보기</div>
+        //</a>`;
+        product_rating_explain_modal_btn = `<a href="${product_rating_explain_modal_link_buymobile}" class="btn" style="padding:0 !important;margin: 0 15px 0 15px;border-radius:8px;border: 1px solid rgb(235,235,235);display: flex;justify-content: center;flex:1;cursor:pointer;align-items:center;">
+                <div style="display:flex;margin: 8px, 0, 8px, 0;"><img src="${product_rating_explain_img_link_buymobile}" style="width:100% !important;"></div>
+              </a>`;
+        product_rating_explain_modal_btn_wrap.innerHTML = `${product_rating_explain_modal_btn}`;
+      }
+      e_option_t = document.createElement("div");
+      e_option_t.style =
+        "font-size: 15px;margin-top: 9px;margin-bottom: 8px;padding-right: 15px;padding-left: 15px;";
+      e_option_t.innerHTML = "필수옵션";
+      option_size_box = get_option_size_box();
+      opt_group_bg = processing_data_dict["opt_group_bg"];
+      opt_group = processing_data_dict["opt_group"];
+    }
+    //buy_btn_mobile1 = processing_data_dict['buy_btn_mobile1'];
+    //buy_btn_mobile2 = processing_data_dict['buy_btn_mobile2'];
+    //cart_btn_mobile1 = processing_data_dict['cart_btn_mobile1'];
+    //cart_btn_mobile2 = processing_data_dict['cart_btn_mobile2'];
+    //like_btn_mobile = processing_data_dict['like_btn_mobile'];
+    //share_btn_mobile = processing_data_dict['share_btn_mobile'];
+    buy_btns_mobile = processing_data_dict["buy_btns_mobile"];
+    like_share_btns_mobile = processing_data_dict["like_share_btns_mobile"];
+    // 나중에 사용될 수 있거나 용도를 모르거나 모바일 전용인 것들
+    today_arrival_wrap = processing_data_dict["today_arrival_wrap"];
+    details_mobile = processing_data_dict["details_mobile"];
+    social_pc_position = processing_data_dict["social_pc_position"];
+    kakao_talk_channel_chat_button =
+      processing_data_dict["kakao_talk_channel_chat_button"];
+
+    hr0 = hr1.cloneNode(true);
+
+    // 화면 실제로 셋팅하는 구간
+
+    using_brand_name = false;
+    using_product_name_kr = true;
+    using_product_name_en = false;
+    using_shop_price = false;
+    using_selling_price = true;
+    using_product_information_text = false;
+    using_product_information = false;
+    using_brand_btn = false;
+    using_product_rating_btn = true;
+    using_high_end_banner = true;
+    using_premium_benefits_information_text = true;
+    using_premium_benefits_information = true;
+    using_additional_selection_options_text = true;
+    using_additional_selection_options = true;
+    using_like_share_btns_mobile = true;
+    using_today_arrival_wrap = false;
+
+    append_element = () => {
+      try {
+        if (using_brand_name) prod_goods_form_copied.append(brand_name);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_product_name_kr)
+          prod_goods_form_copied.append(product_name_kr);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_product_name_en)
+          prod_goods_form_copied.append(product_name_en);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_shop_price) prod_goods_form_copied.append(shop_price);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_selling_price) prod_goods_form_copied.append(selling_price);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_selling_price) prod_goods_form_copied.append(selling_price);
+      } catch (e) {
+        console.log(e);
+      }
+      //try {prod_goods_form_copied.append(hr1); } catch (e) {console.log(e);}
+      try {
+        if (using_product_information_text)
+          prod_goods_form_copied.append(product_information_text);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_product_information)
+          prod_goods_form_copied.append(product_information);
+      } catch (e) {
+        console.log(e);
+      }
+      //try {prod_goods_form_copied.append(hr2); } catch (e) {console.log(e);}
+      try {
+        if (using_brand_btn) prod_goods_form_copied.append(brand_btn);
+      } catch (e) {
+        console.log(e);
+      }
+      // try { prod_goods_form_copied.append(hr3); } catch (e) {  console.log(e); }
+      try {
+        if (using_product_rating_btn)
+          prod_goods_form_copied.append(product_rating_btn);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_high_end_banner)
+          prod_goods_form_copied.append(high_end_banner);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        prod_goods_form_copied.append(hr4);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_premium_benefits_information_text)
+          prod_goods_form_copied.append(premium_benefits_information_text);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_premium_benefits_information)
+          prod_goods_form_copied.append(premium_benefits_information);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        prod_goods_form_copied.append(hr5);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_additional_selection_options_text)
+          prod_goods_form_copied.append(additional_selection_options_text);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_additional_selection_options)
+          prod_goods_form_copied.append(additional_selection_options);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        prod_goods_form_copied.append(hr6);
+      } catch (e) {
+        console.log(e);
+      }
+      //try { prod_goods_form_copied.append(buy_btn_mobile1); } catch (e) { console.log(e); }
+      //try { prod_goods_form_copied.append(buy_btn_mobile2); } catch (e) { console.log(e); }
+      //try { prod_goods_form_copied.append(cart_btn_mobile1); } catch (e) { console.log(e); }
+      //try { prod_goods_form_copied.append(cart_btn_mobile2); } catch (e) { console.log(e); }
+      //try { prod_goods_form_copied.append(like_btn_mobile); } catch (e) { console.log(e); }
+      //try { prod_goods_form_copied.append(share_btn_mobile); } catch (e) { console.log(e); }
+      try {
+        if (using_like_share_btns_mobile)
+          prod_goods_form_copied.append(like_share_btns_mobile);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        if (using_today_arrival_wrap)
+          prod_goods_form_copied.append(today_arrival_wrap);
+      } catch (e) {
+        console.log(e);
+      }
+      if (window.innerWidth > 768) {
+        try {
+          prod_goods_form_copied.append(option_box);
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        $(
+          "#prod_detail > div > div.row.goods_wrapper > div.goods_form_wrap"
+        ).after(details_mobile);
+        try {
+          if (product_rating_explain_modal_link_buymobile !== "") {
+            $("#prod_options").before(product_rating_explain_modal_btn_wrap);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+        try {
+          $("#prod_options").before(e_option_t);
+        } catch (e) {
+          console.log(e);
+        }
+        try {
+          $("#prod_options").before(option_size_box);
+        } catch (e) {
+          console.log(e);
+        }
+        try {
+          prod_goods_form_copied.append(opt_group_bg);
+        } catch (e) {
+          console.log(e);
+        }
+        try {
+          prod_goods_form_copied.append(opt_group);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      try {
+        prod_goods_form_copied.append(social_pc_position);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        $("body").after(kakao_talk_channel_chat_button);
+      } catch (e) {
+        console.log(e);
+      }
+      try {
+        prod_goods_form_copied.append(buy_btns_mobile);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    append_element();
+    // 상품 정보 안의 내용 전부 초기화
+
+    // #prod_goods_form 을 #prod_goods_form_copied 로 대체
+    document.querySelector("#prod_goods_form").remove();
+    document
+      .querySelector(
+        "#prod_detail > div > div.row.goods_wrapper > div.goods_form_wrap"
+      )
+      .append(prod_goods_form_copied);
+
+    // try { document.querySelector(".goods_thumbs > .holder").append(document.querySelector(".goods_thumbs_wrap > .carousel-count-numbering")); } catch (e) { console.log(e); }
+    if (window.innerWidth > 768) {
+    } else {
+      // 숨겨놨던 모바일 상세 다시 제자리로
+      $("#prod_goods_form > div.opt-group-bg").before(details_mobile);
+    }
+    try {
+      $("#prod_goods_form").append($("#kakao-talk-channel-chat-button"));
+    } catch (e) {
+      console.log(e);
+    }
+
+    function waitForElm(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+        const observer = new MutationObserver((mutations) => {
+          if (document.querySelector(selector)) {
+            observer.disconnect();
+            resolve(document.querySelector(selector));
+          }
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+    get_item_detail = () => {
+      return waitForElm("#go-back-nav__n").then((elm) => {
+        $("#prod_goods_form").append($("#show-top-nav__n"));
+        $("#prod_goods_form").append($("#go-back-nav__n"));
+      });
+    };
+    try {
+      await get_item_detail();
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      $("#prod_goods_form").append($("#kakao-talk-channel-chat-button"));
+    } catch (e) {
+      console.log(e);
+    }
+    // 만들어놨던거 append
+  };
+
+  //if (window.location.href.indexOf("/?idx=9423") != -1) {
+  //  application();
+  //}
+  check_modified_page = async () => {
+    function waitForElm(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+        const observer = new MutationObserver((mutations) => {
+          if (document.querySelector(selector)) {
+            observer.disconnect();
+            resolve(document.querySelector(selector));
+          }
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+    get_item_detail = () => {
+      return waitForElm("#prod_goods_form > .goods_summary > .fr-view").then(
+        (elm) => {
+          // document에서 찾은 데이터의 길이가 1이라면 True를 반환, 아니라면 False를 반환
+          if (
+            document.querySelectorAll(
+              "#prod_goods_form > .goods_summary > .fr-view > .sd__n"
+            ).length == 1
+          ) {
+            return true;
+          } else {
+            return true;
+          }
+        }
+      );
+    };
+
+    if (await get_item_detail()) {
+      application();
+    }
+  };
+  check_modified_page();
+</script>
+
+<style>
+  /* 디자인을위한 클래스 적용, 데이터가 없을 때 어떻게 할지 ex)기획전카테고리에서 일부는 브랜드가 */
+
+  :root {
+    --font-color-black: rgb(0, 0, 0);
+    --font-color-gray: rgba(153, 153, 153);
+    --line-color: rgba(255, 215, 185, 0.5);
+    --line-color-darkgray: rgb(150, 150, 150);
+    --line-color-gray: rgb(200, 200, 200);
+    --line-color-lightgray: rgb(240, 240, 240);
+    --swiper-color-gray: rgba(0, 0, 0, 0.66);
+  }
+  /* 기획전 같은 것 디자인 할 때 바깥에 예쁘게 노출하기 위해서 상세요약 수정한 부분 상세페이지에서 안보이도록하기 */
+  div.special_exhibition_out_n {
+    display: none !important;
+  }
+  div.special_exhibition_in_n {
+    display: block !important;
+  }
+  /* __n */
+  .brand_name__n {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--font-color-black);
+  }
+  .product_name_kr__n {
+    font-size: 24px;
+    color: var(--font-color-black);
+  }
+  .product_name_en__n {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--font-color-black);
+  }
+  .shop_price__n {
+    font-size: 14px;
+    margin-top: 15px;
+    color: var(--font-color-gray);
+  }
+  .selling_price__n {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--font-color-black);
+  }
+  .hr__n {
+    width: 100%;
+    height: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid var(--line-color-gray);
+  }
+  .hr_light__n {
+    width: 100%;
+    height: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 1px solid var(--line-color-lightgray);
+  }
+  .product_information_text__n {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--font-color-black);
+  }
+  .premium_benefits_information_text__n {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--font-color-black);
+  }
+  .premium_benefits_information_text_title {
+    width: 25%;
+    font-size: 16px;
+    color: var(--font-color-gray);
+  }
+  .additional_selection_options_text__n {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--font-color-black);
+  }
+  .option_box_box__n .opt-group .goods_wrap__n {
+    padding-top: 0px;
+    margin-top: 0px;
+  }
+  /* swiper */
+  swiper-container::part(bullet-active) {
+    background-color: var(--swiper-color-gray);
+  }
+  swiper-container::part(button-prev) {
+    color: var(--swiper-color-gray);
+  }
+  swiper-container::part(button-next) {
+    color: var(--swiper-color-gray);
+  }
+  swiper-container {
+    border: 1px solid var(--line-color-darkgray) !important;
+    padding: 3px !important;
+    width: 60%;
+  }
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+  swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sw__n {
+    width: 100% !important;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* pc */
+  @media all and (min-width: 768px) {
+    .mobile__n {
+      display: none !important;
+    }
+    /* hover */
+    .hover1__n:hover {
+      border: 0px solid var(--line-color-lightgray) !important;
+    }
+    .hover2__n:hover {
+      border: 1px solid var(--line-color-darkgray) !important;
+    }
+    .hover3__n:hover {
+      box-shadow: 0 2px 6px rgb(128 68 18 / 24%) !important;
+    }
+    #prod_goods_form > header {
+      margin-bottom: 10px !important;
+    }
+  }
+
+  /* mobile */
+  @media all and (max-width: 768px) {
+    #show-top-nav__n,
+    #go-back-nav__n {
+      margin-bottom: constant(safe-area-inset-bottom) !important;
+      margin-bottom: env(safe-area-inset-bottom) !important;
+    }
+    .brand_name__n {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--font-color-black);
+    }
+    .product_name_kr__n {
+      font-size: 18px;
+      color: var(--font-color-black);
+    }
+    .pc__n {
+      display: none !important;
+    }
+    .option_box_box__n .opt-group .goods_wrap__n {
+      padding-top: 15px;
+    }
+    swiper-container {
+      width: 100%;
+    }
+    /* .hover3__n {
+            margin-bottom: 40px;
+          } */
+    .product_information_r__n {
+      padding-right: 10.5px !important;
+    }
+    .product_information_l__n {
+      padding-left: 10.5px !important;
+    }
+    .mobile_font_size_14__n {
+      font-size: 14px !important;
+    }
+    .bbb__n {
+      font-size: 1px;
+    }
+    .bbb2__n {
+      font-size: 1px;
+    }
+    .ccc__n {
+      font-size: 1px;
+    }
+    .ccc2__n {
+      font-size: 1px;
+    }
+  }
+  @media all and (max-width: 425px) {
+    .product_information_r__n {
+      padding-right: 9px !important;
+    }
+    .product_information_l__n {
+      padding-left: 9px !important;
+    }
+    .premium_benefits_information_text_title {
+      width: 45%;
+      font-size: 14px;
+      color: var(--font-color-gray);
+    }
+    .premium_benefits_information_text_detail {
+      width: 55%;
+      font-size: 14px;
+    }
+    .mobile_font_size_12__n {
+      font-size: 12px !important;
+    }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<script>
+  // 모바일 환경에서의 오류 수정
+</script>
+<script>
+  // 릭스 전용 코드 가져오기
+</script>
+
+<!-- QC관 관련 코드 -->
+<script>
+  process_qc__qc = async () => {
+    function waitForElm(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+        const observer = new MutationObserver((mutations) => {
+          if (document.querySelector(selector)) {
+            observer.disconnect();
+            resolve(document.querySelector(selector));
+          }
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+    get_item_detail = () => {
+      return waitForElm(".request_for_re_examination_btn__qc").then((elm) => {
+        document
+          .querySelector(".penalty_system_btn__qc")
+          .setAttribute(
+            "onclick",
+            `location.href="javascript:SITE.openModalMenu('m20231202bea01d1d37582', 'm20231121ff0dc0080b8f1');";`
+          );
+        document
+          .querySelector(".tooltip_icon__qc")
+          .setAttribute(
+            "href",
+            "javascript:SITE.openModalMenu('m202312077a503e2b7a276', 'm20231121ff0dc0080b8f1');"
+          );
+        document
+          .querySelector(".request_for_approval_btn__qc")
+          .setAttribute("onclick", "request_for_approval_btn_alert()");
+        document
+          .querySelector(".request_for_re_examination_btn__qc")
+          .setAttribute("onclick", "request_for_re_examination_btn_kakao()");
+        return "qc success";
+      });
+    };
+
+    console.log(await get_item_detail());
+  };
+  process_qc__qc();
+
+  request_for_approval_btn_alert = function () {
+    var inputString = prompt("고객님의 휴대전화 뒤 4자리를 입력해 주세요", "");
+    alert("번호가 일치하지 않습니다.");
+  };
+  request_for_re_examination_btn_kakao = function () {
+    document.querySelector("#kakao-talk-channel-chat-button a").click();
+  };
+</script>

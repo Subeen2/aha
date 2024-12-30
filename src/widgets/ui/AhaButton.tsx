@@ -7,7 +7,10 @@ interface AhaButtonProps {
 const AhaButton = ({ size, onClick, children }: AhaButtonProps) => {
   return (
     <button
-      className={`${size} === 's' ? w-2 : ${size} === 'm' ? w-5 : ${size} === 'l' ? w-10 `}
+      className={`${
+        size === "s" ? "w-[20vw]" : size === "m" ? "w-[50vw]" : "w-full"
+      } bg-main100 rounded p-2`}
+      onClick={onClick}
     >
       {children}
     </button>
