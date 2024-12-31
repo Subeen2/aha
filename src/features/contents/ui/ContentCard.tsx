@@ -2,22 +2,27 @@ import AhaIcon from "@/widgets/ui/AhaIcon";
 import { ContentCardI } from "../config/Content";
 import UserProfile from "./UserProfile";
 
-const ContentCard = (props: ContentCardI) => {
+const ContentCard = ({
+  userProfile,
+  likedNum,
+  linkArr,
+  content,
+}: ContentCardI) => {
   return (
-    <div className="w-[50%] px-4 py-7 bg-white rounded-xl shadow-md space-x-4 inline-block">
+    <div className="w-[49.5%] px-6 py-6 mb-4 bg-white rounded-xl shadow-md space-y-2">
       <div className="flex justify-between">
         <UserProfile
-          userImgSrc={props.userProfile.profileImg}
-          userName={props.userProfile.nickname}
+          userImgSrc={userProfile.profileImg}
+          userName={userProfile.nickname}
           isFlexRow={false}
           showName={true}
         />
 
-        <AhaIcon iconSrc="" content={props.likedNum} />
+        <AhaIcon iconSrc="" content={likedNum} />
       </div>
-      <p>{props.content}</p>
+      <p>{content}</p>
       <div className="flex flex-col">
-        {props.linkArr.map((item) => {
+        {linkArr.map((item) => {
           return (
             <a
               href={item}

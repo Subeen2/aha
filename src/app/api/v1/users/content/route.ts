@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   );
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   // 실제 데이터베이스 로직 대신 mock 데이터를 사용합니다.
   const mockData = [
     {

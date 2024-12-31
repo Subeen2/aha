@@ -5,29 +5,31 @@ import { ContentI } from "@/features/contents/config/Content";
 import ContentCard from "@/features/contents/ui/ContentCard";
 import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-// import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 
 import "../styles/style.css";
+
+const fetchPosts = async (): Promise<ContentI[]> => {
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/content`
+  );
+  return response.data.result.mockData;
+};
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  const [posts, setPosts] = useState<ContentI[]>();
+  // react-query로 데이터 가져오기
+  const { data, error, isLoading }: UseQueryResult<ContentI[]> = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+  });
 
-  // 게시글 모두 불러오기
-  const getPosts = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/content`
-      );
-      console.log(response.data.result.mockData);
-      if (response) setPosts(response.data.result.mockData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   // 인사이트 등록 버튼 클릭 시 모달 열기
   const openModal = () => {
@@ -40,10 +42,6 @@ export default function Home() {
 
   // 모달 닫는 핸들러
   const closeModal = () => setIsModalOpen(false);
-
-  useEffect(() => {
-    getPosts();
-  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
@@ -98,8 +96,8 @@ export default function Home() {
         onClose={closeModal}
         children={<AddPost afterAdd={closeModal} />}
       />
-      <div className="flex flex-wrap space-y-5 mt-10">
-        {posts?.map((item, index) => {
+      <div className="flex flex-wrap justify-between  mt-10">
+        {data?.map((item, index) => {
           return (
             <ContentCard
               likedNum={0}

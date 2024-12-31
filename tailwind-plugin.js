@@ -10,6 +10,7 @@ export default plugin(
       },
       "*": {
         margin: 0,
+        fontFamily: "Pretendard",
       },
       // macOS에서만 다르게 나타나는 폰트 문제를 통일
       body: {

@@ -1,5 +1,4 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Provider } from "react-redux";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -11,8 +10,8 @@ import Footer from "@/widgets/ui/Footer";
 import Header from "@/widgets/ui/Header";
 import TopBandBanner from "@/widgets/ui/TopBandBanner";
 
-import store from "@/shared/model/redux/store";
 import StoreProvider from "./StoreProvider";
+import QueryProvider from "./QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] }); // app/layout.js
 
@@ -41,16 +40,18 @@ const RootLayout = ({
       <body className={inter.className}>
         <StoreProvider>
           <AppRouterCacheProvider>
-            <ClientLayout>
-              <TopBandBanner
-                title={"오늘의 추천 키워드"}
-                contentArr={["MVVM 패턴", "Flex 패턴"]}
-                isRandom={true}
-              />
-              <Header />
-              {children}
-            </ClientLayout>
-            <Footer />
+            <QueryProvider>
+              <ClientLayout>
+                <TopBandBanner
+                  title={"오늘의 추천 키워드"}
+                  contentArr={["MVVM 패턴", "Flex 패턴"]}
+                  isRandom={true}
+                />
+                <Header />
+                {children}
+                <Footer />
+              </ClientLayout>
+            </QueryProvider>
           </AppRouterCacheProvider>
         </StoreProvider>
       </body>
