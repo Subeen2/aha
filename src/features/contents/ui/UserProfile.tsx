@@ -12,8 +12,16 @@ const UserProfile = ({
   showName = true,
 }: UserProfileProps) => {
   return (
-    <div className={isFlexRow ? "flex space-x-5" : "flex space-x-5 flex-col"}>
-      <img src={userImgSrc} />
+    <div
+      className={`inline-block ${
+        isFlexRow ? "flex  space-x-5 flex-col" : "flex gap-2"
+      }`}
+    >
+      <img
+        className="w-[24px] h-[24px]"
+        src={userImgSrc}
+        alt="gender-neutral-user--v1"
+      />
       <span className={showName ? "block" : "none"}>{userName}</span>
     </div>
   );

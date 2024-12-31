@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type AhaIconProps = {
   iconSrc: string;
   content: string | number;
@@ -8,13 +6,7 @@ type AhaIconProps = {
 const AhaIcon = ({ iconSrc, content }: AhaIconProps) => {
   return (
     <div className="flex space-x-3">
-      <Image
-        src={iconSrc}
-        alt="Example Image"
-        layout="responsive"
-        width={16}
-        height={9}
-      />
+      <img src={iconSrc} alt="Example Image" className="scale-90" />
       <span>{content}</span>
     </div>
   );

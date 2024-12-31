@@ -101,7 +101,11 @@ export default function Home() {
           return (
             <ContentCard
               likedNum={0}
-              userProfile={{ profileImg: "", userId: 1, nickname: "me" }}
+              userProfile={{
+                profileImg: "https://img.icons8.com/forma-light/24/user.png",
+                userId: 1,
+                nickname: "me",
+              }}
               comments={[]}
               contentId={item.contentId}
               content={item.content}

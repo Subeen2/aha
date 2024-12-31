@@ -17,6 +17,7 @@ const config: Config = {
       second200: "#FFF9D0",
       white: "#FFFFFF",
       grey900: "#191f28",
+      grey800: "#666666",
     },
     extend: {
       boxShadow: {

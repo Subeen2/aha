@@ -18,19 +18,30 @@ const ContentCard = ({
           showName={true}
         />
 
-        <AhaIcon iconSrc="" content={likedNum} />
+        <AhaIcon
+          iconSrc="https://img.icons8.com/material-outlined/24/like--v1.png"
+          content={likedNum}
+        />
       </div>
       <p>{content}</p>
       <div className="flex flex-col">
         {linkArr.map((item) => {
           return (
-            <a
-              href={item}
-              target="_blank"
-              className="text-blue-600 hover:underline"
-            >
-              <p className="font-semibold text-gray-900">{item}</p>
-            </a>
+            <div className="flex gap-2">
+              <img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material-two-tone/48/link--v1.png"
+                alt="link--v1"
+              />
+              <a
+                href={item}
+                target="_blank"
+                className="text-blue-600 hover:underline"
+              >
+                <p className="font-semibold text-grey800">{item}</p>
+              </a>
+            </div>
           );
         })}
       </div>
