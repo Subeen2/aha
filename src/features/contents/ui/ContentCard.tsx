@@ -9,7 +9,7 @@ const ContentCard = ({
   content,
 }: ContentCardI) => {
   return (
-    <div className="w-[49.5%] px-6 py-6 mb-4 bg-white rounded-xl shadow-md space-y-5">
+    <div className="w-full px-6 py-6 mb-4 bg-white rounded-xl shadow-md space-y-5">
       <div className="flex justify-between">
         <UserProfile
           userImgSrc={userProfile.profileImg}

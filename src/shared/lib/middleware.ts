@@ -5,7 +5,7 @@ import { decrypt } from "./session";
 export default async function middleware(req: NextRequest) {
   const protectedRoutes = ["/"];
   const currentPath = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
+  const isProtectedRoute = protectedRoutes.includes(currentPath);
 
   if (isProtectedRoute) {
     const cookie = cookies().get("session")?.value;

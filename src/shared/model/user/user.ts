@@ -27,10 +27,10 @@ function userDTO(user) {
     name: user.name,
     email: user.email,
     session: user.session,
-    auditTrail: canViewAudit(user.auditTrail, user.role),
+    // auditTrail: canViewAudit(user.auditTrail, user.role),
   };
 }
 
-function canViewAudit(auditTrail, role) {
-  return role === "admin" ? auditTrail : null;
-}
+// function canViewAudit(auditTrail, role) {
+//   return role === "admin" ? auditTrail : null;
+// }

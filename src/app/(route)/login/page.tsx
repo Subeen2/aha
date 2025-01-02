@@ -8,11 +8,12 @@ import { useInput } from "@/shared/ui/useInput";
 import InputField from "@/shared/ui/InputFeild";
 import { emailRegEx } from "@/shared/config/regex";
 import { login } from "@/shared/model/redux/features/users/userSlice";
+import { signup } from "@/shared/api/signup";
 
 export default function LogIn() {
   const dispatch = useDispatch();
 
-  const [state, action, pending] = useActionState(login);
+  const [state, action, pending] = useActionState(signup);
   // 클라이언트에서만 사용
   // const dispatch = useDispatch();
 

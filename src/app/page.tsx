@@ -1,6 +1,7 @@
 "use client";
 
 import AddPost from "@/entities/ui/post/AddPost";
+import LoadMorePost from "@/entities/ui/post/LoadMorePosts";
 import { ContentI } from "@/features/contents/config/Content";
 import ContentCard from "@/features/contents/ui/ContentCard";
 import { RootState } from "@/shared/model/redux/store";
@@ -42,6 +43,8 @@ export default function Home() {
 
   // 모달 닫는 핸들러
   const closeModal = () => setIsModalOpen(false);
+
+  const posts = data ?? [];
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-second100">
@@ -96,24 +99,7 @@ export default function Home() {
         onClose={closeModal}
         children={<AddPost afterAdd={closeModal} />}
       />
-      <div className="flex flex-wrap justify-between  mt-10">
-        {data?.map((item, index) => {
-          return (
-            <ContentCard
-              likedNum={0}
-              userProfile={{
-                profileImg: "https://img.icons8.com/forma-light/24/user.png",
-                userId: 1,
-                nickname: "me",
-              }}
-              comments={[]}
-              contentId={item.contentId}
-              content={item.content}
-              linkArr={["http://www.korea.com", "https://www.naver.com"]}
-            />
-          );
-        })}
-      </div>
+      <LoadMorePost items={posts} />
     </main>
   );
 }

@@ -4,7 +4,12 @@ import { SignUpFormSchema } from "../config/SignUpFormSchema";
 import bcrypt from "bcrypt";
 import { createSession } from "../lib/session";
 
-export async function signup(state, formData) {
+type ActionState = {
+  loading: boolean;
+  error: string | null;
+};
+
+export async function signup(state: ActionState, formData: FormData) {
   const validateionResult = SignUpFormSchema.safeParse({
     name: formData.get("name"),
     eamil: formData.get("email"),

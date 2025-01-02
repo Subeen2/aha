@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 const LoadMoreComponent = ({ items }: { items: any[] }) => {
-  const [currentDisplayCount, setCurrentDisplayCount] = useState(5);
+  const [currentDisplayCount, setCurrentDisplayCount] = useState(3);
 
   const handleLoadMore = () => {
-    setCurrentDisplayCount((prevCount) => prevCount + 5);
+    setCurrentDisplayCount((prevCount) => prevCount + 3);
   };
 
   return (
