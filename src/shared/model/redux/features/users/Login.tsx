@@ -11,11 +11,6 @@ const Login = () => {
     (state: RootState) => state.user
   );
 
-  const handleLogin = () => {
-    const userInfo = { id: 1, name: "Jo" };
-    dispatch(login(userInfo));
-  };
-
   const handleLogout = () => {
     dispatch(logout());
   };

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,8 @@ import { login } from "@/shared/model/redux/features/users/userSlice";
 
 export default function LogIn() {
   const dispatch = useDispatch();
+
+  const [state, action, pending] = useActionState(login);
   // 클라이언트에서만 사용
   // const dispatch = useDispatch();
 
@@ -91,6 +93,7 @@ export default function LogIn() {
         <form
           className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg"
           onSubmit={handleLoginSubmit}
+          action={action}
         >
           <div className="flex flex-col">
             <InputField
@@ -103,6 +106,7 @@ export default function LogIn() {
               error={error.emailError}
             />
           </div>
+          {state?.errors?.email && <p>{state.errors.email}</p>}
           <div className="flex flex-col">
             <InputField
               label="비밀번호"
@@ -115,11 +119,13 @@ export default function LogIn() {
               setPasswordHide={setPasswordHide}
             />
           </div>
+          {state?.errors?.password && <p>{state.errors.password}</p>}
           <button
             type="submit"
+            disabled={pending}
             className="w-full mt-1 py-3 text-lg bg-main400 text-white rounded-lg"
           >
-            로그인
+            {pending ? "처리중..." : "로그인"}
           </button>
           <button
             type="button"

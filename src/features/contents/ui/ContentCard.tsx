@@ -17,9 +17,10 @@ const ContentCard = ({
           isFlexRow={false}
           showName={true}
         />
-
+        {/** 좋아요 기능 optimistic update 적용 */}
+        {/** https://img.icons8.com/material-rounded/24/like--v1.png */}
         <AhaIcon
-          iconSrc="https://img.icons8.com/material-outlined/24/like--v1.png"
+          iconSrc={"https://img.icons8.com/material-outlined/24/like--v1.png"}
           content={likedNum}
         />
       </div>
