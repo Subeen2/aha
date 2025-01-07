@@ -26,9 +26,9 @@ const ContentCard = ({
       </div>
       <p>{content}</p>
       <div className="flex flex-col">
-        {linkArr.map((item) => {
+        {linkArr.map((item, index) => {
           return (
-            <div className="flex gap-2">
+            <div className="flex gap-2" key={index}>
               <img
                 width="24"
                 height="24"

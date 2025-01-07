@@ -50,12 +50,16 @@ const AddPost = ({ afterAdd }: { afterAdd: () => void }) => {
             setLink(e.target.value);
           }}
         />
-        <AhaButton size={"s"} onClick={handleAddLink} children={"링크 추가"} />
+        <AhaButton size={"s"} onClick={handleAddLink}>
+          링크 추가
+        </AhaButton>
       </div>
       {linkArr.map((item, index) => {
         return <p key={item}>{item}</p>;
       })}
-      <AhaButton size="l" onClick={handleAddContent} children={"등록"} />
+      <AhaButton size="l" onClick={handleAddContent}>
+        등록
+      </AhaButton>
     </div>
   );
 };

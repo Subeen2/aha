@@ -120,7 +120,7 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
           onChange={onChange}
         />
       )}
-      {error && <p className={`text-red-3 text-[12px] mt-2`}>{error}</p>}
+      {error && <p className={`text-red100 text-[12px] mt-2`}>{error}</p>}
     </div>
   );
 });

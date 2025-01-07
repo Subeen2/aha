@@ -2,14 +2,23 @@
 
 import InputField from "@/shared/ui/InputFeild";
 import { useInput } from "@/shared/ui/useInput";
-
+import { z } from "zod"; // Zod 임포트
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function SignUp() {
-  // use client + next + router 사용 시 navigation 임포트 해야 함.
+// Zod로 스키마 정의
+const signupSchema = z.object({
+  nickname: z
+    .string()
+    .min(3, { message: "닉네임은 최소 3자 이상이어야 합니다." }),
+  email: z.string().email({ message: "유효한 이메일 주소를 입력해주세요." }),
+  password: z
+    .string()
+    .min(6, { message: "비밀번호는 최소 6자 이상이어야 합니다." }),
+});
 
+export default function SignUp() {
   const router = useRouter();
 
   const [error, setError] = useState({
@@ -28,51 +37,30 @@ export default function SignUp() {
 
   const { nickname, email, password } = input;
 
-  // const handleSignupSubmit = async () => {
-  //   try {
-  //     await axios
-  //       .post(`${httpURL}/signup`, { nickname, email, password })
-  //       .then((res) => {
-
-  //         if (res.data.result !== null) {
-  //           // redux에 저장
-
-  //           // 새로고침 시 데이터 날아감 방지
-  //           // localStorage.setItem(
-  //           //   "reduxState",
-  //           //   JSON.stringify({ uid: res.data.result, email: loginData.email })
-  //           // );
-
-  //           // 메인페이지로 리디렉션
-  //           router.push("/login");
-  //         }
-  //       });
-  //   } catch (err) {
-  //     return { error: err };
-  //   }
-  // };
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-  });
-
   const [success, setSuccess] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
   const handleSignupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError({ ...error, passwordError: "" });
+    setError({ nicknameError: "", emailError: "", passwordError: "" }); // 초기화
     setSuccess("");
 
+    // Zod로 검증
+    const result = signupSchema.safeParse(input);
+
+    if (!result.success) {
+      // 검증 실패 시 에러 메시지 설정
+      const errorMessages = result.error.errors.reduce(
+        (acc: any, error: any) => ({
+          ...acc,
+          [`${error.path[0]}Error`]: error.message,
+        }),
+        {}
+      );
+      setError(errorMessages);
+      return;
+    }
+
+    // Zod 검증을 통과한 후 회원가입 API 호출
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/signup`,
@@ -83,6 +71,7 @@ export default function SignUp() {
         setTimeout(() => router.push("/login"), 2000); // 2초 후 로그인 페이지로 리디렉션
       }
     } catch (err) {
+      console.log(err);
       setError({
         ...error,
         passwordError: "회원가입에 실패했습니다. 다시 시도해주세요.",
@@ -91,8 +80,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col text-center py-xl">
-      <h1 className="text-3xl font-bold  mb-[70px]">회원가입</h1>
+    <div className="flex flex-col text-center py-xl pt-16">
+      <h1 className="text-3xl font-bold mb-[70px]">회원가입</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form
           onSubmit={handleSignupSubmit}
@@ -140,11 +129,7 @@ export default function SignUp() {
           </button>
         </form>
       </div>
-      {error && (
-        <p className="text-red-500 mt-4">
-          {error.nicknameError + error.emailError + error.passwordError}
-        </p>
-      )}
+
       {success && <p className="text-green-500 mt-4">{success}</p>}
     </div>
   );

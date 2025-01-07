@@ -94,11 +94,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        children={<AddPost afterAdd={closeModal} />}
-      />
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <AddPost afterAdd={closeModal} />
+      </Modal>
       <LoadMorePost items={posts} />
     </main>
   );

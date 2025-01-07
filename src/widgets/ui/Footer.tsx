@@ -30,7 +30,7 @@ export default function Footer() {
                 </li> */}
             </ul>
           </nav>
-          {/* <div className="flex flex-col justify-end">
+          <div className="flex flex-col justify-end">
             <ul className="flex items-center justify-end text-[16px] gap-1">
               <li>
                 <a
@@ -45,32 +45,13 @@ export default function Footer() {
                     height="24"
                     decoding="async"
                     data-nimg="1"
-                    src="/img/icon-github.svg?width=48&amp;quality=75"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://teamsparta.notion.site/A06-6-6-bdcf4b23863d4d1e871ba7fc936e60d8"
-                  target="_blank"
-                  title="노션으로 이동"
-                >
-                  <img
-                    alt="노션 아이콘"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    src="/img/icon-notion.svg?width=48&amp;quality=75"
+                    src="https://img.icons8.com/?size=100&id=62856&format=png&color=000000"
                   />
                 </a>
               </li>
             </ul>
-            <p className="mt-[10px] text-gray-3 text-[14px]">
-              Copyright©라이킹
-            </p>
-          </div> */}
+            <p className="mt-[10px] text-gray-3 text-[14px]">Copyright©AHA</p>
+          </div>
         </div>
       </div>
     </footer>

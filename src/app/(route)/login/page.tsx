@@ -10,10 +10,20 @@ import { emailRegEx } from "@/shared/config/regex";
 import { login } from "@/shared/model/redux/features/users/userSlice";
 import { signup } from "@/shared/api/signup";
 
+export interface FormState {
+  success: boolean;
+  message: string;
+}
+
+const initialState: FormState = {
+  success: false,
+  message: "",
+};
+
 export default function LogIn() {
   const dispatch = useDispatch();
 
-  const [state, action, pending] = useActionState(signup);
+  const [state, action, pending] = useActionState(signup, initialState);
   // 클라이언트에서만 사용
   // const dispatch = useDispatch();
 

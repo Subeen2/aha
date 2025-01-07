@@ -18,6 +18,7 @@ const config: Config = {
       white: "#FFFFFF",
       grey900: "#191f28",
       grey800: "#666666",
+      red100: "red",
     },
     extend: {
       boxShadow: {
