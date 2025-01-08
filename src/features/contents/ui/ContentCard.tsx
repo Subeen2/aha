@@ -49,14 +49,19 @@ const ContentCard = ({
 
       <div className="flex flex-col items-start">
         <div className="flex items-center space-x-2"></div>
-        <div className="flex space-x-3 mt-2">
+        <div className="flex space-x-1 mt-2">
           <img
-            src="/_next/static/media/bookmark-deactive.4d44502e.svg"
+            src="https://img.icons8.com/?size=100&id=82461&format=png&color=000000"
             alt="북마크"
             className="w-4 h-4 text-transparent"
           />
           <img
-            src="/_next/static/media/link-mono.ec0dfa62.svg"
+            src="https://img.icons8.com/?size=100&id=83134&format=png&color=000000"
+            alt="링크 복사"
+            className="w-4 h-4 text-transparent"
+          />
+          <img
+            src="https://img.icons8.com/?size=100&id=K6OM9OBagzCm&format=png&color=000000"
             alt="링크 복사"
             className="w-4 h-4 text-transparent"
           />

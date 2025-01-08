@@ -14,61 +14,41 @@ const pool = new Pool({
   password: process.env.NEXT_PUBLIC_DB_PASSWORD,
 });
 
-export type ActionState = {
+type ActionState = {
   loading: boolean;
   error: string | null;
 };
 
-type SignupResponse =
-  | {
-      errors: {
-        message: string;
-      };
-    }
-  | {
-      user: {
-        name?: string[];
-        email?: string[];
-        password?: string[];
-      };
-    }
-  | undefined;
-
 export async function signup(
-  formData: FormData,
-  state: ActionState
-): Promise<SignupResponse> {
-  // 로딩 상태 설정
+  state: ActionState,
+  formData: FormData
+): Promise<ActionState> {
   state.loading = true;
+  state.error = null; // 오류 초기화
 
-  // FormData에서 값을 추출하여 객체로 변환
   const formObject = {
-    name: formData.get("name") as string | null, // null을 처리하는 로직 추가
+    name: formData.get("name") as string | null,
     email: formData.get("email") as string | null,
     password: formData.get("password") as string | null,
   };
 
-  // 검증
   const validationResult = SignUpFormSchema.safeParse(formObject);
 
   if (!validationResult.success) {
-    // 로딩 상태 종료
     state.loading = false;
-    // 필드 오류 반환
-    return {
-      errors: {
-        message: validationResult.error.flatten().fieldErrors as string,
-      },
-    };
+
+    // 각 필드별로 에러를 처리
+    const errors: string[] = [];
+
+    state.error = errors.join(", "); // 모든 에러 메시지를 하나의 문자열로 합침
+    return state;
   }
 
   const { name, email, password } = validationResult.data;
 
-  // 사용자 생성: 비밀번호 암호화
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
-    // PostgreSQL에 사용자 데이터 삽입
     const client = await pool.connect();
 
     const result = await client.query(
@@ -76,27 +56,17 @@ export async function signup(
       [name, email, hashedPassword]
     );
 
-    const user = result.rows[0]; // 삽입된 사용자 데이터 반환
+    const user = result.rows[0];
 
-    // 세션 생성
     await createSession(user.id);
 
-    // 연결 종료
     client.release();
 
-    // 로딩 상태 종료
     state.loading = false;
-
-    // 성공적인 결과 반환
-    return undefined; // 오류가 없으면 undefined 반환
+    return { loading: false, error: null }; // 성공적으로 완료된 상태 반환
   } catch (err) {
-    // 오류 발생 시
-    console.error(err);
     state.loading = false;
-    return {
-      errors: {
-        message: "회원가입에 실패했습니다. 다시 시도해주세요.",
-      },
-    };
+    state.error = "회원가입에 실패했습니다. 다시 시도해주세요.";
+    return state;
   }
 }
