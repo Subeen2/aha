@@ -62,7 +62,7 @@ export default function LogIn() {
     // 로그인 요청
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_HTTP_LOCAL}/login`,
+        `${process.env.NEXT_PUBLIC_API_URL}/login`,
         loginData
       );
 
