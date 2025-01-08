@@ -2,6 +2,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 const key = new TextEncoder().encode(process.env.SECRET);
 
@@ -34,14 +35,23 @@ export async function createSession(userId: string) {
   const session = await encrypt({ userId, expires });
 
   cookies().set(cookie.name, session, { ...cookie.options, expires });
-  redirect("/");
+  // 리디렉션을 NextResponse를 사용해 처리합니다.
+  return NextResponse.redirect(
+    new URL("/", process.env.NEXT_PUBLIC_HTTP_LOCAL || "http://localhost:3000")
+  );
 }
 
 export async function verifySession() {
   const cookieValue = cookies().get(cookie.name)?.value;
   const session = await decrypt(cookieValue);
   if (!session?.userId) {
-    redirect("/login");
+    // 리디렉션을 NextResponse를 사용해 처리합니다.
+    return NextResponse.redirect(
+      new URL(
+        "/login",
+        process.env.NEXT_PUBLIC_HTTP_LOCAL || "http://localhost:3000"
+      )
+    );
   }
 
   return { userId: session.userId };
@@ -49,5 +59,11 @@ export async function verifySession() {
 
 export async function deleteSession() {
   cookies().delete(cookie.name);
-  redirect("/login");
+  // 리디렉션을 NextResponse를 사용해 처리합니다.
+  return NextResponse.redirect(
+    new URL(
+      "/login",
+      process.env.NEXT_PUBLIC_HTTP_LOCAL || "http://localhost:3000"
+    )
+  );
 }
