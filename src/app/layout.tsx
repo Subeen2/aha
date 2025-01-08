@@ -35,6 +35,10 @@ const RootLayout = ({
     <html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
       </Head>
 
       <body className={inter.className}>
