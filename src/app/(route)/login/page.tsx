@@ -40,10 +40,10 @@ export default function LogIn() {
   const { email, password } = input;
 
   // `useActionState` 사용
-  const [state, signupAction, pending] = useActionState(signup, {
-    loading: false,
-    error: null,
-  });
+  // const [state, signupAction, pending] = useActionState(signup, {
+  //   loading: false,
+  //   error: null,
+  // });
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -110,13 +110,12 @@ export default function LogIn() {
               setPasswordHide={setPasswordHide}
             />
           </div>
-          {state?.error && <p>{state.error}</p>}
+
           <button
             type="submit"
-            disabled={pending}
             className="w-full mt-1 py-3 text-lg bg-main400 text-white rounded-lg"
           >
-            {pending ? "처리중..." : "로그인"}
+            로그인
           </button>
           <button
             type="button"
