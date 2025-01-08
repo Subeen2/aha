@@ -37,14 +37,14 @@ export async function POST(request: Request) {
 
   try {
     const result = await pool.query(
-      `INSERT INTO "user" (name, email, password) VALUES ($1, $2, $3) RETURNING id`,
+      `INSERT INTO user (name, email, password) VALUES ($1, $2, $3) RETURNING id`,
       [nickname, email, hashedPassword]
     );
 
     const user = result.rows[0]; // 삽입된 사용자 데이터 반환
     console.log("User inserted:", user);
 
-    //세션 생성
+    // 세션 생성
     await createSession(user.id);
     console.log("Session created.");
 

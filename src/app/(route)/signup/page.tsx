@@ -46,7 +46,6 @@ export default function SignUp() {
 
     // Zod로 검증
     const result = signupSchema.safeParse(input);
-    console.log(input, result);
 
     if (!result.success) {
       // 검증 실패 시 에러 메시지 설정
