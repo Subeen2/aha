@@ -39,7 +39,7 @@ export async function createSession(userId: string) {
   return NextResponse.redirect(
     new URL(
       "/",
-      `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users` ||
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users` ||
         "http://localhost:3000"
     )
   );
@@ -53,7 +53,7 @@ export async function verifySession() {
     return NextResponse.redirect(
       new URL(
         "/login",
-        `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users` ||
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users` ||
           "http://localhost:3000"
       )
     );
@@ -68,7 +68,7 @@ export async function deleteSession() {
   return NextResponse.redirect(
     new URL(
       "/login",
-      `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users` ||
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users` ||
         "http://localhost:3000"
     )
   );

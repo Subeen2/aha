@@ -18,7 +18,7 @@ const AddPost = ({ afterAdd }: { afterAdd: () => void }) => {
   const handleAddContent = async () => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users/content`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/content`,
         {
           userInfo: {},
           content,
