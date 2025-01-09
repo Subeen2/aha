@@ -45,7 +45,7 @@ export default function Footer() {
                     height="24"
                     decoding="async"
                     data-nimg="1"
-                    src="https://img.icons8.com/?size=100&id=62856&format=png&color=000000"
+                    src=""
                   />
                 </a>
               </li>
