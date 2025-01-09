@@ -37,7 +37,10 @@ export async function createSession(userId: string) {
   cookies().set(cookie.name, session, { ...cookie.options, expires });
   // 리디렉션을 NextResponse를 사용해 처리합니다.
   return NextResponse.redirect(
-    new URL("/", process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000")
+    new URL(
+      "/",
+      process.env.NEXT_PUBLIC_API_LOCAL_URL || "http://localhost:3000"
+    )
   );
 }
 
@@ -49,7 +52,7 @@ export async function verifySession() {
     return NextResponse.redirect(
       new URL(
         "/login",
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
+        process.env.NEXT_PUBLIC_API_LOCAL_URL || "http://localhost:3000"
       )
     );
   }
@@ -63,7 +66,7 @@ export async function deleteSession() {
   return NextResponse.redirect(
     new URL(
       "/login",
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
+      process.env.NEXT_PUBLIC_API_LOCAL_URL || "http://localhost:3000"
     )
   );
 }

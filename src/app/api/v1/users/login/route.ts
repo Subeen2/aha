@@ -1,50 +1,80 @@
+import bcrypt from "bcrypt";
+import pool from "@/shared/api/db";
+
 export async function POST(request: Request) {
   const { email, password } = await request.json();
 
-  // 실제 데이터베이스 로직 대신 mock 데이터를 사용합니다.
-  const mockUsers = [
-    {
-      nickname: "콩콩",
-      email: "existing@example.com",
-      password: "password123",
-      user_uid: "adadsdasdasd33",
-    },
-  ];
+  // 데이터베이스에서 이메일로 사용자 찾기
+  try {
+    const result = await pool.query(
+      `SELECT id, nickname, email, password FROM "user" WHERE email = $1`,
+      [email]
+    );
 
-  const user = mockUsers.find(
-    (u) => u.email === email && u.password === password
-  );
+    if (result.rowCount === 0) {
+      return new Response(
+        JSON.stringify({
+          message: "유저가 존재하지 않음.",
+          result: null,
+        }),
+        {
+          status: 404,
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
+    }
 
-  if (!user) {
+    // 비밀번호 검증
+    const user = result.rows[0];
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return new Response(
+        JSON.stringify({
+          message: "비밀번호가 일치하지 않음.",
+          result: null,
+        }),
+        {
+          status: 401,
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
+    }
+
+    // 로그인 성공 시 세션 생성 또는 JWT 발급 등을 진행
     return new Response(
       JSON.stringify({
-        message: "유저 등록이 안돼있음.",
+        message: "로그인 성공",
+        result: {
+          user_uid: user.id,
+          nickname: user.nickname,
+          email: user.email,
+        },
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    return new Response(
+      JSON.stringify({
+        message: "서버 오류가 발생했습니다.",
         result: null,
       }),
       {
-        status: 202,
+        status: 500,
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }
     );
   }
-
-  // 유저를 찾았을 경우 로그인 성공 메시지를 반환합니다.
-  return new Response(
-    JSON.stringify({
-      message: "로그인 성공",
-      result: {
-        user_uid: user.user_uid,
-        nickname: user.nickname,
-        // 필요한 다른 데이터도 이곳에 추가할 수 있습니다.
-      },
-    }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-    }
-  );
 }
