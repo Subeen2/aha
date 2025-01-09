@@ -18,7 +18,7 @@ export default async function PostsPage() {
             key={item.contentId} // 고유값으로 key 설정
             likedNum={0}
             userProfile={{
-              profileImg: "https://img.icons8.com/forma-light/24/user.png",
+              profileImg: "",
               userId: 1,
               nickname: "me",
             }}
