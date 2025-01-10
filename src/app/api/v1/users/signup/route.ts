@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     // 사용자 정보 추가: 회원가입된 사용자 정보로 'profiles' 테이블에 nickname 저장
 
     const { error: insertError } = await supabase
-      .from("profiles") // "profiles" 테이블에 nickname 추가
+      .from("user") // "profiles" 테이블에 nickname 추가
       .insert([
         {
           id: user?.id,
