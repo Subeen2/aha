@@ -119,7 +119,7 @@ export default function LogIn() {
           </button>
           <button
             type="button"
-            className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md"
+            className="flex items-center justify-center text-lg border border-gray-200 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md"
             onClick={handleSignupRedirect}
           >
             회원가입

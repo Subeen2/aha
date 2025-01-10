@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-types": "npx supabase gen types typescript --project-id xothfkxgmdtwvtyswqqk --schema public > src/entities/config/supabase/types_db.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.13.5",
@@ -31,6 +32,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@supabase/ssr": "^0.5.2",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.17.8",
     "@types/pg": "^8.11.10",

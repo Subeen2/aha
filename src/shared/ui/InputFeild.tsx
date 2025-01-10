@@ -21,7 +21,7 @@ const variantStyles = {
   default:
     "h-[48px] px-4 w-full rounded-lg border md:text-[18px] text-[16px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition",
   underline:
-    "border-b w-full px-1 py-2 md:text-[20px] text-[16px] placeholder-gray-2 focus:outline-none focus:border-black transition rounded-none",
+    "border-b w-full px-1 py-2 md:text-[20px] text-[16px] placeholder-gray-200 focus:outline-none focus:border-black transition rounded-none",
 };
 
 // 부모컴포넌트가 직접 접근 할 수 없기 때문에 forwardRef로 전달 받음
@@ -75,7 +75,7 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
         <div className="relative">
           <input
             className={`${variantStyles[variant]} ${
-              error ? "border-red-3" : "border-gray-2"
+              error ? "border-red-3" : "border-grey800"
             }`}
             type={type}
             value={value}
