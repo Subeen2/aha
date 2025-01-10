@@ -32,6 +32,27 @@ export async function POST(request: Request) {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    // Supabase에서 사용자 생성
+    const { data: user, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    if (error) {
+      throw error;
+    }
+
+    // 사용자 정보 추가
+
+    const { error: insertError } = await supabase.from("user").insert([
+      {
+        user_id: user.user?.id,
+        nickname,
+      },
+    ]);
+
+    if (insertError) {
+      throw insertError;
+    }
     return new Response(JSON.stringify({ message: "회원가입 성공!" }), {
       status: 200,
       headers: {
