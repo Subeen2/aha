@@ -63,7 +63,7 @@ export default function SignUp() {
     // Zod 검증을 통과한 후 회원가입 API 호출
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users/signup`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/signup`,
         input
       );
       if (response.status === 200) {
