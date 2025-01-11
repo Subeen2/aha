@@ -29,9 +29,6 @@ export default function Home() {
     queryFn: fetchPosts,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   // 인사이트 등록 버튼 클릭 시 모달 열기
   const openModal = () => {
     if (!isLoggedIn) {
@@ -97,6 +94,7 @@ export default function Home() {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <AddPost afterAdd={closeModal} />
       </Modal>
+      {/* {isLoading ? <div>loding...</div> :} */}
       <LoadMorePost items={posts} />
     </main>
   );

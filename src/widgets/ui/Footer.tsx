@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import AhaIcon from "./AhaIcon";
 
 export default function Footer() {
   return (
@@ -34,19 +35,11 @@ export default function Footer() {
             <ul className="flex items-center justify-end text-[16px] gap-1">
               <li>
                 <a
-                  href="https://github.com/erinmzo/livingalone"
+                  href="https://github.com/Subeen2/aha"
                   target="_blank"
                   title="깃헙으로 이동"
                 >
-                  <img
-                    alt="깃헙 아이콘"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    src=""
-                  />
+                  <AhaIcon iconSrc={"/icons/git.svg"} width={"20px"} />
                 </a>
               </li>
             </ul>

@@ -19,14 +19,18 @@ const ContentCard = ({
         />
         {/** 좋아요 기능 optimistic update 적용 */}
         {/** https://img.icons8.com/material-rounded/24/like--v1.png */}
-        <AhaIcon iconSrc={""} content={likedNum} />
+        <AhaIcon
+          iconSrc={"/icons/heart.svg"}
+          content={likedNum}
+          width={"15px"}
+        />
       </div>
       <p>{content}</p>
       <div className="flex flex-col">
         {linkArr.map((item, index) => {
           return (
             <div className="flex gap-2" key={index}>
-              <img width="24" height="24" src="" alt="link--v1" />
+              <AhaIcon iconSrc={"/icons/link.svg"} width={"20px"} />
               <a
                 href={item}
                 target="_blank"
@@ -41,10 +45,13 @@ const ContentCard = ({
 
       <div className="flex flex-col items-start">
         <div className="flex items-center space-x-2"></div>
-        <div className="flex space-x-1 mt-2">
-          <img src="" alt="북마크" className="w-4 h-4 text-transparent" />
-          <img src="" alt="링크 복사" className="w-4 h-4 text-transparent" />
-          <img src="" alt="링크 복사" className="w-4 h-4 text-transparent" />
+        <div className="flex space-x-2 mt-2">
+          <AhaIcon
+            iconSrc={"/icons/comment.svg"}
+            width={"20px"}
+            content="댓글"
+          />
+          <AhaIcon iconSrc={"/icons/book-mark.svg"} width={"20px"} />
         </div>
       </div>
     </div>

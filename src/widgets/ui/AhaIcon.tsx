@@ -1,13 +1,20 @@
 type AhaIconProps = {
   iconSrc: string;
-  content: string | number;
+  content?: string | number;
+  width?: string;
+  height?: string;
 };
 
-const AhaIcon = ({ iconSrc, content }: AhaIconProps) => {
+const AhaIcon = ({ iconSrc, content, width, height }: AhaIconProps) => {
   return (
     <div className="flex space-x-1 cursor-pointer">
-      <img src={iconSrc} alt="Example Image" className="scale-90" />
-      <span>{content}</span>
+      <img
+        src={iconSrc}
+        alt="Example Image"
+        className="scale-90"
+        width={width}
+      />
+      <span className={`text-[14px]`}>{content}</span>
     </div>
   );
 };

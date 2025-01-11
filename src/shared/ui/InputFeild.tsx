@@ -19,9 +19,9 @@ interface InputProps {
 
 const variantStyles = {
   default:
-    "h-[48px] px-4 w-full rounded-lg border md:text-[18px] text-[16px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition",
+    "h-[48px] px-4 w-full rounded-lg border md:text-[18px] text-[16px] placeholder-gray800 focus:outline-none focus:border-gray900 transition",
   underline:
-    "border-b w-full px-1 py-2 md:text-[20px] text-[16px] placeholder-gray-200 focus:outline-none focus:border-black transition rounded-none",
+    "border-b w-full px-1 py-2 md:text-[20px] text-[16px] placeholder-gray800 focus:outline-none focus:border-gray900 transition rounded-none",
 };
 
 // 부모컴포넌트가 직접 접근 할 수 없기 때문에 forwardRef로 전달 받음
@@ -51,18 +51,18 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
   };
 
   // 부모에게 제공할 메서드를 정의
-  //   useImperativeHandle(inputRef, () => ({
-  //     focus: () => {
-  //       if (inputRef.current) {
-  //         inputRef.current?.focus();
-  //       }
-  //     },
-  //     clear: () => {
-  //       if (inputRef.current) {
-  //         inputRef.current.value = "";
-  //       }
-  //     },
-  //   }));
+  // useImperativeHandle(inputRef, () => ({
+  //   focus: () => {
+  //     if (inputRef.current) {
+  //       inputRef.current?.focus();
+  //     }
+  //   },
+  //   clear: () => {
+  //     if (inputRef.current) {
+  //       inputRef.current.value = "";
+  //     }
+  //   },
+  // }));
 
   return (
     <div className="flex flex-col">

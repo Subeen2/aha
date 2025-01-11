@@ -80,7 +80,7 @@ export default function LogIn() {
   };
 
   return (
-    <div className="flex flex-col text-center py-xl mt-10">
+    <div className="flex flex-col text-center py-xl pt-16 pb-16">
       <h1 className="text-3xl font-bold mb-[70px]">로그인</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form
