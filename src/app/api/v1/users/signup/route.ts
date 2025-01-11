@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         user_id: user.user?.id,
         nickname,
         email,
-        password,
+        password: hashedPassword,
       },
     ]);
 
