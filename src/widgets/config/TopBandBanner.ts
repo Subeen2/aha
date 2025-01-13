@@ -1,5 +1,5 @@
 export interface TopBandBannerI {
   title: string;
-  contentArr: string[];
+  contentArr?: string[];
   isRandom?: boolean;
 }

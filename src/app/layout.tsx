@@ -46,11 +46,7 @@ const RootLayout = ({
           <AppRouterCacheProvider>
             <QueryProvider>
               <ClientLayout>
-                <TopBandBanner
-                  title={"오늘의 추천 키워드"}
-                  contentArr={["MVVM 패턴", "Flex 패턴"]}
-                  isRandom={true}
-                />
+                <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
                 <Header />
                 {children}
                 <Footer />
