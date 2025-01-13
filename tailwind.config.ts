@@ -61,12 +61,17 @@ const config: Config = {
             transform: "translateY(0)",
           },
         },
+        spinColor: {
+          "0%, 100%": { borderColor: "blue" },
+          "50%": { borderColor: "red" },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         bubble: "bubble 3s ease-in-out infinite",
         reveal: "reveal 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite",
         bounce: "bounce 1s ease infinite both",
+        spin: "spin 3s linear infinite",
       },
     },
   },
