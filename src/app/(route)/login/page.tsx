@@ -10,6 +10,7 @@ import { emailRegEx } from "@/shared/config/regex";
 import { login } from "@/shared/model/redux/features/users/userSlice";
 
 import { signup } from "@/shared/api/signup";
+import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
 
 export interface FormState {
   success: boolean;
@@ -24,6 +25,7 @@ const initialState: FormState = {
 export default function LogIn() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const saveUser = useAuthStore((state) => state.saveUser);
 
   const [error, setError] = useState({
     emailError: "",
@@ -66,8 +68,12 @@ export default function LogIn() {
         loginData
       );
 
-      if (response.data.result !== null) {
-        dispatch(login(response.data.result.nickname)); // 로그인 성공 시 Redux에 사용자 정보 저장
+      const userInfo = response.data.result;
+
+      if (userInfo !== null) {
+        console.log(userInfo);
+        saveUser(userInfo.result);
+        // dispatch(login(response.data.result.nickname)); // 로그인 성공 시 Redux에 사용자 정보 저장
         router.push("/"); // 로그인 후 메인 페이지로 리디렉션
       }
     } catch (err) {
