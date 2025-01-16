@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddPost afterAdd={closeModal} />
+        <AddPost addSuccessHandler={closeModal} />
       </Modal>
       {isLoading ? (
         <div className="flex items-center justify-center min-h-screen">

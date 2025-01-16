@@ -17,11 +17,12 @@ interface InputProps {
   setPasswordHide?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// 인풋 스타일 설정
 const variantStyles = {
   default:
-    "h-[48px] px-4 w-full rounded-lg border md:text-[18px] text-[16px] placeholder-gray800 focus:outline-none focus:border-gray900 transition",
+    "h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray800 focus:outline-none focus:border-gray900 transition",
   underline:
-    "border-b w-full px-1 py-2 md:text-[20px] text-[16px] placeholder-gray800 focus:outline-none focus:border-gray900 transition rounded-none",
+    "border-b w-full px-1 py-2 md:text-[16px] text-[14px] placeholder-gray800 focus:outline-none focus:border-gray900 transition rounded-none",
 };
 
 // 부모컴포넌트가 직접 접근 할 수 없기 때문에 forwardRef로 전달 받음
@@ -65,9 +66,9 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
   // }));
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       {label && (
-        <label className="ml-1 mb-2 font-bold text-[18px]" htmlFor={inputId}>
+        <label className="ml-1 mb-2 font-bold text-[17px]" htmlFor={inputId}>
           {label}
         </label>
       )}
