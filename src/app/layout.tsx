@@ -1,19 +1,22 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+// RootLayout.tsx (서버 컴포넌트로 변경)
 
-import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
-import Footer from "@/widgets/ui/Footer";
-import Header from "@/widgets/ui/Header";
-import TopBandBanner from "@/widgets/ui/TopBandBanner";
-
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import StoreProvider from "./StoreProvider";
 import QueryProvider from "./QueryProvider";
+import ClientLayout from "./ClientLayout";
 
-const inter = Inter({ subsets: ["latin"] }); // app/layout.js
+import TopBandBanner from "@/widgets/ui/TopBandBanner";
+import Header from "@/widgets/ui/Header";
+import Footer from "@/widgets/ui/Footer";
+
+import type { Metadata, Viewport } from "next";
+import GetUserProvider from "./GetUserProvider";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AHA",
@@ -30,7 +33,6 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  // TODO :: 일단 header, footer 여기에 두고 페이지 별로 헤더 푸터 유동적으로 사용해야 하는지 판단 후 구조 변경
   return (
     <html lang="en">
       <Head>
@@ -40,17 +42,19 @@ const RootLayout = ({
           content="upgrade-insecure-requests"
         ></meta>
       </Head>
-
       <body className={inter.className}>
+        {/* 최상위 Provider 순서 */}
         <StoreProvider>
           <AppRouterCacheProvider>
             <QueryProvider>
-              <ClientLayout>
-                <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
-                <Header />
-                {children}
-                <Footer />
-              </ClientLayout>
+              <GetUserProvider>
+                <ClientLayout>
+                  <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
+                  <Header />
+                  {children}
+                  <Footer />
+                </ClientLayout>
+              </GetUserProvider>
             </QueryProvider>
           </AppRouterCacheProvider>
         </StoreProvider>

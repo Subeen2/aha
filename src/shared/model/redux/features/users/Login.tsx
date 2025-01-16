@@ -4,23 +4,35 @@ import { useDispatch, UseDispatch, useSelector } from "react-redux";
 import { login, logout } from "./userSlice";
 import Image from "next/image";
 import { RootState } from "../../store";
+import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
+import { useEffect, useState } from "react";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const { isLoggedIn, userInfo } = useSelector(
-    (state: RootState) => state.user
-  );
+  const user = useAuthStore((state) => state.user);
+  const saveUser = useAuthStore((state) => state.saveUser);
+  const [isClient, setIsClient] = useState(false);
+  // const dispatch = useDispatch();
+  // const { isLoggedIn, userInfo } = useSelector(
+  //   (state: RootState) => state.user
+  // );
 
   const handleLogout = () => {
-    dispatch(logout());
+    saveUser(null);
+    // dispatch(logout());
   };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <div className="md:block">
-      {isLoggedIn ? (
+      {user ? (
         <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
           <li>
-            <a href={`/profile/${userInfo}`} className="group cursor-pointer">
+            <a href={`/profile/${user?.id}`} className="group cursor-pointer">
               내 프로필
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 -&gt;

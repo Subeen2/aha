@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
 import AddPost from "@/entities/ui/post/AddPost";
 import LoadMorePost from "@/entities/ui/post/LoadMorePosts";
 import { ContentI } from "@/features/contents/config/Content";
@@ -8,7 +9,7 @@ import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import "../styles/style.css";
@@ -21,6 +22,8 @@ const fetchPosts = async (): Promise<ContentI[]> => {
 };
 
 export default function Home() {
+  const user = useAuthStore((state) => state.user);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   // react-query로 데이터 가져오기
@@ -31,7 +34,7 @@ export default function Home() {
 
   // 인사이트 등록 버튼 클릭 시 모달 열기
   const openModal = () => {
-    if (!isLoggedIn) {
+    if (!user) {
       alert("로그인이 필요합니다.");
       return;
     }

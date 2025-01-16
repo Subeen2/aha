@@ -71,8 +71,7 @@ export default function LogIn() {
       const userInfo = response.data.result;
 
       if (userInfo !== null) {
-        console.log(userInfo);
-        saveUser(userInfo.result);
+        saveUser(userInfo);
         // dispatch(login(response.data.result.nickname)); // 로그인 성공 시 Redux에 사용자 정보 저장
         router.push("/"); // 로그인 후 메인 페이지로 리디렉션
       }
