@@ -8,9 +8,10 @@ export interface CommentI {
 }
 
 export interface ContentI {
-  contentId: number | string;
+  id: number | string;
   content: string;
   linkArr: string[];
+  writer: string;
 }
 
 export interface ContentCardI extends ContentI {

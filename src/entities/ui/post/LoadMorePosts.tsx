@@ -22,12 +22,13 @@ const LoadMorePost = ({ items }: { items: ContentI[] }) => {
               userProfile={{
                 profileImg: "https://img.icons8.com/forma-light/24/user.png",
                 userId: 1,
-                nickname: "me",
+                nickname: "anonymous",
               }}
               comments={[]}
-              contentId={item.contentId}
               content={item.content}
-              linkArr={["http://www.korea.com", "https://www.naver.com"]}
+              linkArr={["https://www.naver.com"]}
+              id={item.id}
+              writer={item.writer}
             />
           </div>
         ))}
