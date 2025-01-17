@@ -1,22 +1,26 @@
 "use client";
 
-import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
-import { PropsWithChildren, useEffect } from "react";
-import { getUser } from "./api/v1/users/auth/auth";
+import { createClient } from "@/entities/lib/supabase/client";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-function GetUserProvider({ children }: PropsWithChildren) {
-  const saveUser = useAuthStore((state) => state.saveUser);
+export default function AuthProvider({ accessToken, children }) {
+  const supabase = createClient();
+  const router = useRouter();
 
-  // 새로고침 후 user 데이터를 저장할 때 로컬 스토리지를 사용하도록 설정
   useEffect(() => {
-    getUser().then((res) => {
-      if (res.data.user) {
-        saveUser(res.data.user);
+    const {
+      data: { subscription: authListner },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.access_token !== accessToken) {
+        router.refresh();
       }
     });
-  }, [saveUser]);
 
-  return <>{children}</>;
+    return () => {
+      authListner.unsubscribe();
+    };
+  }, [accessToken, supabase, router]);
+
+  return children;
 }
-
-export default GetUserProvider;

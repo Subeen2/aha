@@ -15,6 +15,7 @@ import Footer from "@/widgets/ui/Footer";
 
 import type { Metadata, Viewport } from "next";
 import GetUserProvider from "./GetUserProvider";
+import { createClient } from "@/entities/lib/supabase/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,11 +29,17 @@ export const viewport: Viewport = {
   width: "device-width",
 };
 
-const RootLayout = ({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const supabase = await createClient();
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   return (
     <html lang="en">
       <Head>
@@ -47,7 +54,7 @@ const RootLayout = ({
         <StoreProvider>
           <AppRouterCacheProvider>
             <QueryProvider>
-              <GetUserProvider>
+              <GetUserProvider accessToken={session?.access_token}>
                 <ClientLayout>
                   <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
                   <Header />
