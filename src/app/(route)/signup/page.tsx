@@ -68,7 +68,7 @@ export default function SignUp() {
       );
       if (response.status === 200) {
         setSuccess("회원가입 성공! 로그인 페이지로 이동합니다.");
-        setTimeout(() => router.push("/login"), 1500); // 2초 후 로그인 페이지로 리디렉션
+        setTimeout(() => router.push("/login"), 1000); // 2초 후 로그인 페이지로 리디렉션
       }
     } catch (err) {
       console.log(err);

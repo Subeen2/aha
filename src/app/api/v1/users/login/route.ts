@@ -10,8 +10,8 @@ export async function POST(request: NextRequest) {
     const password = data.password as string;
 
     const { data: user, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+      email: email,
+      password: password,
     });
 
     if (error) {

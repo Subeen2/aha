@@ -12,7 +12,7 @@ const LoadMorePost = ({ items }: { items: ContentI[] }) => {
   return (
     <div className="flex flex-col mt-32">
       <div className="flex flex-wrap justify-center gap-4">
-        {items.slice(0, currentDisplayCount).map((item, index) => (
+        {items?.slice(0, currentDisplayCount).map((item, index) => (
           <div
             key={index}
             className="shop-item w-[48%] h-auto bg-gray-200 flex items-center justify-center rounded-md"

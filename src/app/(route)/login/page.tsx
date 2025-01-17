@@ -7,9 +7,6 @@ import { useDispatch } from "react-redux";
 import { useInput } from "@/shared/ui/useInput";
 import InputField from "@/shared/ui/InputFeild";
 import { emailRegEx } from "@/shared/config/regex";
-import { login } from "@/shared/model/redux/features/users/userSlice";
-
-import { signup } from "@/shared/api/signup";
 import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
 
 export interface FormState {
@@ -64,7 +61,7 @@ export default function LogIn() {
     // 로그인 요청
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`,
+        `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users/login`,
         loginData
       );
 

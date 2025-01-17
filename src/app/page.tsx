@@ -18,7 +18,7 @@ const fetchPosts = async (): Promise<ContentI[]> => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/content`
   );
-  return response.data;
+  return response.data.data;
 };
 
 export default function Home() {
@@ -44,6 +44,7 @@ export default function Home() {
   // 모달 닫는 핸들러
   const closeModal = () => setIsModalOpen(false);
 
+  console.log(data);
   const posts = data ?? [];
 
   return (
