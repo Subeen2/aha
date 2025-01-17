@@ -8,6 +8,7 @@ import { useInput } from "@/shared/ui/useInput";
 import InputField from "@/shared/ui/InputFeild";
 import { emailRegEx } from "@/shared/config/regex";
 import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
+import { createClient } from "@/entities/lib/supabase/client";
 
 export interface FormState {
   success: boolean;
@@ -20,7 +21,6 @@ const initialState: FormState = {
 };
 
 export default function LogIn() {
-  const dispatch = useDispatch();
   const router = useRouter();
   const saveUser = useAuthStore((state) => state.saveUser);
 
@@ -35,6 +35,7 @@ export default function LogIn() {
   });
 
   const [passwordHide, setPasswordHide] = useState(true);
+  const [newPassword, setNewPassword] = useState("password123");
 
   const { email, password } = input;
 
@@ -57,7 +58,6 @@ export default function LogIn() {
       }));
       return;
     }
-
     // 로그인 요청
     try {
       const response = await axios.post(
@@ -112,7 +112,6 @@ export default function LogIn() {
               setPasswordHide={setPasswordHide}
             />
           </div>
-
           <button
             type="submit"
             className="w-full mt-1 py-3 text-lg bg-main400 text-white rounded-lg"
