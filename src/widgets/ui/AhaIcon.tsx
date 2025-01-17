@@ -14,7 +14,9 @@ const AhaIcon = ({ iconSrc, content, width, height }: AhaIconProps) => {
         className="scale-90"
         width={width}
       />
-      <span className={`text-[14px]`}>{content}</span>
+      <span className={`text-[14px] flex justify-center items-center`}>
+        {content}
+      </span>
     </div>
   );
 };

@@ -30,6 +30,8 @@ export default function Home() {
   const { data, error, isLoading }: UseQueryResult<ContentI[]> = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
+    staleTime: 60 * 1000, // 1분은 60초 따라서 1분을 설정하려면 1000 (1초) * 60
+    gcTime: 60 * 1000 * 10,
   });
 
   // 인사이트 등록 버튼 클릭 시 모달 열기
