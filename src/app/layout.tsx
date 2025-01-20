@@ -54,14 +54,14 @@ const RootLayout = async ({
         <StoreProvider>
           <AppRouterCacheProvider>
             <QueryProvider>
-              {/* <GetUserProvider accessToken={session?.access_token}> */}
-              <ClientLayout>
-                <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
-                <Header />
-                {children}
-                <Footer />
-              </ClientLayout>
-              {/* </GetUserProvider> */}
+              <GetUserProvider accessToken={session?.access_token}>
+                <ClientLayout>
+                  <TopBandBanner title={"오늘의 추천 키워드"} isRandom={true} />
+                  <Header />
+                  {children}
+                  <Footer />
+                </ClientLayout>
+              </GetUserProvider>
             </QueryProvider>
           </AppRouterCacheProvider>
         </StoreProvider>

@@ -13,12 +13,12 @@ const UserProfile = ({
 }: UserProfileProps) => {
   return (
     <div
-      className={`inline-block ${
+      className={`items-center inline-block ${
         isFlexRow ? "flex  space-x-5 flex-col" : "flex gap-2"
       }`}
     >
       <img
-        className="w-[24px] h-[24px]"
+        className="w-[20px] h-[18px]"
         src={userImgSrc}
         alt="gender-neutral-user--v1"
       />

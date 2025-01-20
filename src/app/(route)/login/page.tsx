@@ -61,11 +61,13 @@ export default function LogIn() {
     try {
       axios.defaults.withCredentials = true;
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`,
+        `${process.env.NEXT_PUBLIC_API_LOCAL_URL}/api/v1/users/login`,
         loginData
       );
 
-      const userInfo = response.data.result;
+      console.log(response);
+
+      const userInfo = response.data.user;
 
       if (userInfo !== null) {
         saveUser(userInfo);

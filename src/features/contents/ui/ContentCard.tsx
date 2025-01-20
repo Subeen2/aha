@@ -1,3 +1,4 @@
+import Tooltip from "@/shared/ui/Tooltip";
 import AhaIcon from "@/widgets/ui/AhaIcon";
 import { ContentCardI } from "../config/Content";
 import UserProfile from "./UserProfile";
@@ -10,6 +11,7 @@ const ContentCard = ({
 }: ContentCardI) => {
   return (
     <div className="w-full px-6 py-6 mb-4 bg-white rounded-xl shadow-md space-y-5">
+      {/** 유저 프로필 및 좋아요 영역 */}
       <div className="flex justify-between">
         <UserProfile
           userImgSrc={userProfile.profileImg}
@@ -25,27 +27,33 @@ const ContentCard = ({
           width={"15px"}
         />
       </div>
-      <p>{content}</p>
+
+      {/** 컨텐츠 내용 영역 */}
+      <p className="text-[14px]">{content}</p>
+
+      {/** 링크 영역 */}
       <div className="flex flex-col">
         {linkArr.map((item, index) => {
           return (
             <div className="flex gap-2" key={index}>
-              <AhaIcon iconSrc={"/icons/link.svg"} width={"20px"} />
+              <Tooltip content="레퍼런스 사이트 주소" position="top">
+                <AhaIcon iconSrc={"/icons/link.svg"} width={"20px"} />
+              </Tooltip>
               <a
                 href={item}
                 target="_blank"
                 className="text-blue-600 hover:underline"
               >
-                <p className="font-semibold text-grey800">{item}</p>
+                <p className="font-semibold text-grey800 text-[14px]">{item}</p>
               </a>
             </div>
           );
         })}
       </div>
-
+      {/** 댓글 및 공유 영역 */}
       <div className="flex flex-col items-start">
-        <div className="flex items-center space-x-2"></div>
-        <div className="flex space-x-2 mt-2">
+        <div className="flex items-center "></div>
+        <div className="flex space-x-2 mt-2 justify-between w-full">
           <AhaIcon
             iconSrc={"/icons/comment.svg"}
             width={"20px"}

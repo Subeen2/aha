@@ -43,7 +43,6 @@ export default function Home() {
 
   // 모달 닫는 핸들러
   const closeModal = () => setIsModalOpen(false);
-
   const posts = data ?? [];
 
   return (
