@@ -11,10 +11,10 @@ export default plugin(
       "*": {
         margin: 0,
         fontFamily: "Pretendard",
+        color: "black",
       },
       // macOS에서만 다르게 나타나는 폰트 문제를 통일
       body: {
-        "font-family": theme("fontFamily.sans"),
         "-webkit-font-smoothing": "antialiased",
         "-moz-osx-font-smoothing": "grayscale",
       },
