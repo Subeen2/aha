@@ -13,6 +13,7 @@ const config: Config = {
       main200: "#CAF4FF",
       main300: "#A0DEFF",
       main400: "#5AB2FF",
+      main500: "rgb(165 236 255)",
       second100: "rgb(255 251 224)",
       second200: "#FFF9D0",
       white: "#FFFFFF",

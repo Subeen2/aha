@@ -9,7 +9,7 @@ const AhaButton = ({ size = "s", onClick, children }: AhaButtonProps) => {
     <button
       className={`${
         size === "s" ? "w-[10vw]" : size === "m" ? "w-[50vw]" : "w-full"
-      } bg-main100 rounded p-2`}
+      } bg-main500 rounded p-1 text-[14px]`}
       onClick={onClick}
     >
       {children}

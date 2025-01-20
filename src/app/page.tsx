@@ -9,7 +9,7 @@ import { RootState } from "@/shared/model/redux/store";
 import Modal from "@/widgets/ui/Modal";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import { useSelector } from "react-redux";
 
 import "../styles/style.css";
@@ -52,8 +52,8 @@ export default function Home() {
         <h1 className="text-center font-[700]  text-[35px] mb-[40px] mt-5 text-grey900 leading-tight">
           무엇이 궁금하신가요?
         </h1>
-        <form className="css-1hq0ax0 e1crplu70">
-          <div className="css-17vqye5 e5hjo0l0">
+        <form className="css-1hq0ax0">
+          <div className="css-17vqye5">
             <div className="input rounded-md flex border border-[#c8c8c8]">
               <span
                 className="icon p-icon p-icon--legacy-colored input__left-addon ml-[20px] mr-[10px]"
@@ -77,7 +77,7 @@ export default function Home() {
                 className="input__field w-full"
                 placeholder="키워드, 최신 트렌드 등 무엇이든 검색해보세요"
                 aria-label="키워드, 최신 트렌드 등 무엇이든 검색해보세요"
-                id="input-:r1p:"
+                id={useId()}
               />
             </div>
           </div>
