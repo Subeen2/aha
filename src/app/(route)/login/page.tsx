@@ -8,7 +8,6 @@ import { useInput } from "@/shared/ui/useInput";
 import InputField from "@/shared/ui/InputFeild";
 import { emailRegEx } from "@/shared/config/regex";
 import { useAuthStore } from "@/entities/lib/supabase/zustand/authStore";
-import { createClient } from "@/entities/lib/supabase/client";
 
 export interface FormState {
   success: boolean;
@@ -35,7 +34,6 @@ export default function LogIn() {
   });
 
   const [passwordHide, setPasswordHide] = useState(true);
-  const [newPassword, setNewPassword] = useState("password123");
 
   const { email, password } = input;
 
@@ -59,7 +57,9 @@ export default function LogIn() {
       return;
     }
     // 로그인 요청
+
     try {
+      axios.defaults.withCredentials = true;
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`,
         loginData
