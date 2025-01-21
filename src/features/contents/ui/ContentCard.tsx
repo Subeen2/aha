@@ -21,11 +21,7 @@ const ContentCard = ({
         />
         {/** 좋아요 기능 optimistic update 적용 */}
         {/** https://img.icons8.com/material-rounded/24/like--v1.png */}
-        <AhaIcon
-          iconSrc={"/icons/heart.svg"}
-          content={likedNum}
-          width={"15px"}
-        />
+        <AhaIcon iconSrc={"/icons/heart.svg"} content={likedNum} width={15} />
       </div>
 
       {/** 컨텐츠 내용 영역 */}
@@ -37,7 +33,7 @@ const ContentCard = ({
           return (
             <div className="flex gap-2" key={index}>
               <Tooltip content="레퍼런스 사이트 주소" position="top">
-                <AhaIcon iconSrc={"/icons/link.svg"} width={"20px"} />
+                <AhaIcon iconSrc={"/icons/link.svg"} width={20} />
               </Tooltip>
               <a
                 href={item}
@@ -54,12 +50,8 @@ const ContentCard = ({
       <div className="flex flex-col items-start">
         <div className="flex items-center "></div>
         <div className="flex space-x-2 mt-2 justify-between w-full">
-          <AhaIcon
-            iconSrc={"/icons/comment.svg"}
-            width={"20px"}
-            content="댓글"
-          />
-          <AhaIcon iconSrc={"/icons/book-mark.svg"} width={"20px"} />
+          <AhaIcon iconSrc={"/icons/comment.svg"} width={20} content="댓글" />
+          <AhaIcon iconSrc={"/icons/book-mark.svg"} width={20} />
         </div>
       </div>
     </div>

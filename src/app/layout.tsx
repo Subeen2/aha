@@ -45,6 +45,7 @@ const RootLayout = async ({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
+          name="aha"
           http-equiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         ></meta>

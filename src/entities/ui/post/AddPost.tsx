@@ -46,7 +46,7 @@ const AddPost = ({ addSuccessHandler }: { addSuccessHandler: () => void }) => {
       />
       <div className="flex w-full justify-between">
         <div className="flex w-[70%]">
-          <AhaIcon iconSrc={"/icons/link.svg"} width={"20px"} />
+          <AhaIcon iconSrc={"/icons/link.svg"} width={20} />
           <InputField
             variant={"underline"}
             value={link}

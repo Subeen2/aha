@@ -39,7 +39,7 @@ export default function Footer() {
                   target="_blank"
                   title="깃헙으로 이동"
                 >
-                  <AhaIcon iconSrc={"/icons/git.svg"} width={"20px"} />
+                  <AhaIcon iconSrc={"/icons/git.svg"} width={20} />
                 </a>
               </li>
             </ul>
